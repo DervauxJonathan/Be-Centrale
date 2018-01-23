@@ -43,3 +43,9 @@
    *Colors
    * "Taille d'écrans"
    
+ ```<section class="about section"
+      <div class="title">
+      <div class="paragraph">
+         <h2 class="title_paragraph">```
+   
+   
