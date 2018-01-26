@@ -1,0 +1,15 @@
+@import "../modules/variables";
+@import "../base/base";
+.header{
+  background-color: $white;
+  opacity: 0.9;
+  display: flex;
+  justify-content: space-between;
+  h1{
+    font-size: $header-title-size;
+    font-family: $text-font;
+  }
+  button{
+
+  }
+}

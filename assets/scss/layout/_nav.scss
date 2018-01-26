@@ -1,0 +1,19 @@
+@import "../modules/variables";
+@import "../base/base";
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: $darkgrey;
+  ul {
+    display: flex;
+    list-style: none;
+    color: #ffffff;
+
+    li {
+      font-family: $nav-font;
+      font-size: 20px;
+      margin-right: 20px;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Roboto);.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #333333;
+}
+
+.nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  color: #ffffff;
+}
+
+.nav ul li {
+  font-family: "Montserrat";
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.header {
+  background-color: #ffffff;
+  opacity: 0.9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header h1 {
+  font-size: 50px;
+  font-family: "Roboto";
+}
+
