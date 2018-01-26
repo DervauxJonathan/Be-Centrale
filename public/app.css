@@ -1,4 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat|Roboto);.nav {
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Roboto);* {
+  padding: 0;
+  margin: 0;
+}
+
+.nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -22,19 +27,36 @@
   margin-right: 20px;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.nav {
+  padding: 10px;
+}
+
+.nav img {
+  padding-left: 20px;
+}
+
 .header {
-  background-color: #ffffff;
-  opacity: 0.9;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  height: 900px;
+  width: 1440px;
+  background-image: url("./images/Becentral.jpg");
 }
 
 .header h1 {
   font-size: 50px;
   font-family: "Roboto";
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
+.header button {
+  width: 202px;
+  height: 54px;
+  background-color: #00d991;
+  color: #fff;
+  border: none;
+}
