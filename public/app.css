@@ -38,3 +38,38 @@
   font-family: "Roboto";
 }
 
+body {
+  background-color: #ffffff;
+  font-family: "Roboto";
+}
+
+h2 {
+  font-size: 40px;
+  color: #00d991;
+}
+
+h3 {
+  font-family: "Montserrat";
+  font-size: 28px;
+}
+
+p {
+  font-size: 16px;
+}
+
+section {
+  display: inline;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.title {
+  float: left;
+}
+

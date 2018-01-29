@@ -1,0 +1,35 @@
+@import "../modules/variables";
+
+body{
+  background-color: $white;
+  font-family: $text-font;
+}
+
+h2{
+  font-size: $subtitle-size;
+  color: $title;
+}
+h3{
+  font-family: $nav-font;
+  font-size: $left-title-size;
+}
+
+p{
+  font-size: $txt-size;
+}
+
+section{
+  display: inline;
+}
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+
+.title{
+  float: left;
+}
