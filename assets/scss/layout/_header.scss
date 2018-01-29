@@ -1,27 +1,30 @@
 @import "../modules/variables";
 @import "../base/base";
-.nav{
+
+.nav {
   padding: 10px;
-  img{
+
+  img {
     padding-left: 20px;
   }
 }
-.header{
+
+.header {
   height: 900px;
   width: 1440px;
   background-image: url("/../../images/Becentral.jpg");
 
-
-  h1{
+  h1 {
     font-size: $header-title-size;
     font-family: $text-font;
     flex-wrap: wrap;
   }
-  button{
+
+  button {
     width: 202px;
     height: 54px;
     background-color: $title;
-    color:#fff;
+    color: #fff;
     border: none;
   }
 }
