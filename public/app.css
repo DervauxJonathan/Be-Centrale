@@ -66,15 +66,19 @@
   margin: 0;
 }
 
-footer {
-  width: 100%;
-  height: 291px;
-  background-color: #333333;
-  position: absolute;
-  bottom: 0;
+body {
+  background-image: url("/../../images/Becentral");
 }
 
-footer .content {
+body footer {
+  width: 100%;
+  height: 291px;
+  position: absolute;
+  bottom: 0;
+  background: #333333;
+}
+
+body footer .content {
   margin: 0 auto;
   width: 140px;
   position: absolute;
@@ -85,7 +89,7 @@ footer .content {
   margin-bottom: 40px;
 }
 
-footer .content ul {
+body footer .content ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -95,11 +99,11 @@ footer .content ul {
   color: #fff;
 }
 
-footer .content ul li {
+body footer .content ul li {
   list-style: none;
 }
 
-footer .content .copyright {
+body footer .content .copyright {
   color: #fff;
   text-align: center;
   margin-top: 20px;
