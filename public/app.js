@@ -65,11 +65,6 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-<<<<<<< HEAD
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/user/Documents/Be-Centrale/assets/js/app.js'");
-=======
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -82,49 +77,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
+// load the styles
 var content = __webpack_require__(2);
-
 if(typeof content === 'string') content = [[module.i, content, '']];
-
+// Prepare cssTransformation
 var transform;
-var insertInto;
 
-
-
-var options = {"hmr":true}
-
+var options = {}
 options.transform = transform
-options.insertInto = undefined;
-
+// add the styles to the DOM
 var update = __webpack_require__(6)(content, options);
-
 if(content.locals) module.exports = content.locals;
-
+// Hot Module Replacement
 if(false) {
-	module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./app.scss", function() {
-		var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./app.scss");
-
-		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./app.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./app.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
 
@@ -138,7 +114,7 @@ exports = module.exports = __webpack_require__(4)(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat|Roboto);", ""]);
 
 // module
-exports.push([module.i, "* {\n  padding: 0;\n  margin: 0; }\n\n.nav {\n  display: flex;\n  justify-content: space-between;\n  background-color: #333333; }\n  .nav ul {\n    display: flex;\n    list-style: none;\n    color: #ffffff; }\n    .nav ul li {\n      font-family: \"Montserrat\";\n      font-size: 20px;\n      margin-right: 20px; }\n\n* {\n  padding: 0;\n  margin: 0; }\n\n.nav {\n  padding: 10px; }\n  .nav img {\n    padding-left: 20px; }\n\n.header {\n  height: 900px;\n  width: 1440px;\n  background: url(" + escape(__webpack_require__(5)) + ") cover center center;\n  background-size: cover; }\n  .header h1 {\n    font-size: 50px;\n    font-family: \"Roboto\";\n    flex-wrap: wrap;\n    color: aqua; }\n  .header button {\n    width: 202px;\n    height: 54px;\n    background-color: #00d991;\n    color: #fff;\n    border: none; }\n\n* {\n  padding: 0;\n  margin: 0; }\n\nbody {\n  background-image: url(\"/../../images/Becentral\"); }\n  body footer {\n    width: 100%;\n    height: 291px;\n    position: absolute;\n    bottom: 0;\n    background: #333333; }\n    body footer .content {\n      margin: 0 auto;\n      width: 140px;\n      position: absolute;\n      bottom: 0;\n      left: 50%;\n      transform: translateX(-50%);\n      margin-bottom: 40px; }\n      body footer .content ul {\n        display: flex;\n        justify-content: space-between;\n        color: #fff; }\n        body footer .content ul li {\n          list-style: none; }\n      body footer .content .copyright {\n        color: #fff;\n        text-align: center;\n        margin-top: 20px;\n        font-family: \"Roboto\";\n        font-size: 13px; }\n\nbody {\n  background-color: #ffffff;\n  font-family: \"Roboto\"; }\n\nh2 {\n  font-size: 40px;\n  color: #00d991;\n  margin-bottom: 0; }\n\nh3 {\n  font-family: \"Montserrat\";\n  font-size: 28px;\n  transform: rotate(90deg); }\n\np {\n  font-size: 16px; }\n\nimg {\n  width: 500px; }\n\n.left {\n  float: left;\n  margin: 10px 20px; }\n\n.right {\n  float: right; }\n\nsection {\n  display: flex;\n  flex-direction: row; }\n\n.title_1 {\n  width: 15%; }\n\n.title_2 {\n  width: 15%;\n  text-align: center; }\n\n.paragraph {\n  width: 85%; }\n\n.background_color {\n  background-color: #F9F9F9;\n  padding: 38px; }\n\np {\n  margin: 28px; }\n\n.image_left {\n  width: 64%; }\n\n.image_background_color {\n  background-color: #f9f9f9; }\n\nbutton {\n  border: none;\n  background-color: #ffffff;\n  border-color: #00d991;\n  color: #00d991;\n  height: 30px;\n  line-height: 30px; }\n", ""]);
+exports.push([module.i, "* {\n  padding: 0;\n  margin: 0; }\n\n.btn {\n  position: relative;\n  display: inline-block;\n  width: 155px;\n  height: 50px;\n  border: 1px solid #00d991;\n  cursor: pointer;\n  font-size: sans-serif;\n  font-weight: light;\n  letter-spacing: 1px;\n  color: #00d991;\n  transition: all 1s easeInOut .5s;\n  left: 50%;\n  margin-top: 25%; }\n  .btn .line {\n    width: 24px;\n    height: 2px;\n    background-color: #00d991;\n    margin: -25px;\n    margin-left: 10px; }\n\n.btn:after {\n  content: \"\";\n  position: absolute;\n  transition: all 0.3s ease 0s;\n  z-index: -1; }\n\n.btn:hover,\n.btn:focus {\n  color: #f8f8f8; }\n  .btn:hover .line,\n  .btn:focus .line {\n    background-color: #fff; }\n\n.btn-a:after {\n  background: #1ABC9C;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 100%; }\n\n.btn-a:hover,\n.btn-a:focus {\n  background-color: transparent; }\n\n.btn-a:hover:after,\n.btn-a:focus:after {\n  right: 0; }\n\np {\n  text-align: center;\n  font-family: \"sans-serif\"; }\n\n.nav {\n  display: flex;\n  justify-content: space-between;\n  background-color: #333333; }\n  .nav ul {\n    display: flex;\n    list-style: none;\n    color: #ffffff; }\n    .nav ul li {\n      font-family: \"Montserrat\";\n      font-size: 20px;\n      margin-right: 20px; }\n\n* {\n  padding: 0;\n  margin: 0; }\n\n.btn {\n  position: relative;\n  display: inline-block;\n  width: 155px;\n  height: 50px;\n  border: 1px solid #00d991;\n  cursor: pointer;\n  font-size: sans-serif;\n  font-weight: light;\n  letter-spacing: 1px;\n  color: #00d991;\n  transition: all 1s easeInOut .5s;\n  left: 50%;\n  margin-top: 25%; }\n  .btn .line {\n    width: 24px;\n    height: 2px;\n    background-color: #00d991;\n    margin: -25px;\n    margin-left: 10px; }\n\n.btn:after {\n  content: \"\";\n  position: absolute;\n  transition: all 0.3s ease 0s;\n  z-index: -1; }\n\n.btn:hover,\n.btn:focus {\n  color: #f8f8f8; }\n  .btn:hover .line,\n  .btn:focus .line {\n    background-color: #fff; }\n\n.btn-a:after {\n  background: #1ABC9C;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 100%; }\n\n.btn-a:hover,\n.btn-a:focus {\n  background-color: transparent; }\n\n.btn-a:hover:after,\n.btn-a:focus:after {\n  right: 0; }\n\np {\n  text-align: center;\n  font-family: \"sans-serif\"; }\n\n.nav {\n  padding: 10px; }\n  .nav img {\n    padding-left: 20px; }\n\n.header {\n  height: 900px;\n  width: 1440px;\n  background: url(" + escape(__webpack_require__(5)) + ") cover center center;\n  background-size: cover; }\n  .header h1 {\n    font-size: 50px;\n    font-family: \"Roboto\";\n    flex-wrap: wrap;\n    color: aqua; }\n  .header button {\n    width: 202px;\n    height: 54px;\n    background-color: #00d991;\n    color: #fff;\n    border: none; }\n\nbody {\n  background-color: #ffffff;\n  font-family: \"Roboto\"; }\n\nh2 {\n  font-size: 40px;\n  color: #00d991;\n  margin-bottom: 0; }\n\nh3 {\n  font-family: \"Montserrat\";\n  font-size: 28px;\n  transform: rotate(90deg);\n  width: 300px;\n  margin-left: -28px;\n  margin-top: 142px; }\n\n.title_1 {\n  width: 15%; }\n\n.title_2 {\n  width: 15%; }\n\np {\n  font-size: 16px; }\n\nimg {\n  width: 500px; }\n\n.left {\n  float: left;\n  margin: 10px 20px; }\n\n.image_left {\n  width: 64%; }\n\n.right {\n  float: right; }\n\n.image_right {\n  width: 64%; }\n\nsection {\n  display: flex;\n  flex-direction: row; }\n\n.co_funders_section {\n  margin-top: 255px; }\n\n.paragraph {\n  width: 85%; }\n\n.background_color {\n  background-color: #F9F9F9;\n  padding: 38px; }\n\np {\n  margin: 28px; }\n\n.image_background_color {\n  background-color: #f9f9f9; }\n\n.btn {\n  position: relative;\n  display: inline-block;\n  width: 155px;\n  height: 50px;\n  border: 1px solid #00d991;\n  cursor: pointer;\n  font-size: sans-serif;\n  font-weight: light;\n  letter-spacing: 1px;\n  color: #00d991;\n  transition: all 1s easeInOut .5s;\n  left: 50%;\n  margin-top: 25%; }\n  .btn .line {\n    width: 24px;\n    height: 2px;\n    background-color: #00d991;\n    margin: -25px;\n    margin-left: 10px; }\n\n.btn:after {\n  content: \"\";\n  position: absolute;\n  transition: all 0.3s ease 0s;\n  z-index: -1; }\n\n.btn:hover,\n.btn:focus {\n  color: #f8f8f8; }\n  .btn:hover .line,\n  .btn:focus .line {\n    background-color: #fff; }\n\n.btn-a:after {\n  background: #1ABC9C;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 100%; }\n\n.btn-a:hover,\n.btn-a:focus {\n  background-color: transparent; }\n\n.btn-a:hover:after,\n.btn-a:focus:after {\n  right: 0; }\n\n* {\n  padding: 0;\n  margin: 0; }\n\n.btn {\n  position: relative;\n  display: inline-block;\n  width: 155px;\n  height: 50px;\n  border: 1px solid #00d991;\n  cursor: pointer;\n  font-size: sans-serif;\n  font-weight: light;\n  letter-spacing: 1px;\n  color: #00d991;\n  transition: all 1s easeInOut .5s;\n  left: 50%;\n  margin-top: 25%; }\n  .btn .line {\n    width: 24px;\n    height: 2px;\n    background-color: #00d991;\n    margin: -25px;\n    margin-left: 10px; }\n\n.btn:after {\n  content: \"\";\n  position: absolute;\n  transition: all 0.3s ease 0s;\n  z-index: -1; }\n\n.btn:hover,\n.btn:focus {\n  color: #f8f8f8; }\n  .btn:hover .line,\n  .btn:focus .line {\n    background-color: #fff; }\n\n.btn-a:after {\n  background: #1ABC9C;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 100%; }\n\n.btn-a:hover,\n.btn-a:focus {\n  background-color: transparent; }\n\n.btn-a:hover:after,\n.btn-a:focus:after {\n  right: 0; }\n\np {\n  text-align: center;\n  font-family: \"sans-serif\"; }\n\nbody {\n  background-image: url(\"/../../images/Becentral\"); }\n  body footer {\n    width: 100%;\n    height: 291px;\n    position: absolute;\n    bottom: 0;\n    background: #333333; }\n    body footer .content {\n      margin: 0 auto;\n      width: 140px;\n      position: absolute;\n      bottom: 0;\n      left: 50%;\n      transform: translateX(-50%);\n      margin-bottom: 40px; }\n      body footer .content ul {\n        display: flex;\n        justify-content: space-between;\n        color: #fff; }\n        body footer .content ul li {\n          list-style: none; }\n      body footer .content .copyright {\n        color: #fff;\n        text-align: center;\n        margin-top: 20px;\n        font-family: \"Roboto\";\n        font-size: 13px; }\n\nbody {\n  background-color: #ffffff;\n  font-family: \"Roboto\"; }\n\nh2 {\n  font-size: 40px;\n  color: #00d991;\n  margin-bottom: 0; }\n\nh3 {\n  font-family: \"Montserrat\";\n  font-size: 28px;\n  transform: rotate(90deg);\n  width: 300px;\n  margin-left: -28px;\n  margin-top: 142px; }\n\n.title_1 {\n  width: 15%; }\n\n.title_2 {\n  width: 15%; }\n\np {\n  font-size: 16px; }\n\nimg {\n  width: 500px; }\n\n.left {\n  float: left;\n  margin: 10px 20px; }\n\n.image_left {\n  width: 64%; }\n\n.right {\n  float: right; }\n\n.image_right {\n  width: 64%; }\n\nsection {\n  display: flex;\n  flex-direction: row; }\n\n.co_funders_section {\n  margin-top: 255px; }\n\n.paragraph {\n  width: 85%; }\n\n.background_color {\n  background-color: #F9F9F9;\n  padding: 38px; }\n\np {\n  margin: 28px; }\n\n.image_background_color {\n  background-color: #f9f9f9; }\n\n.btn {\n  position: relative;\n  display: inline-block;\n  width: 155px;\n  height: 50px;\n  border: 1px solid #00d991;\n  cursor: pointer;\n  font-size: sans-serif;\n  font-weight: light;\n  letter-spacing: 1px;\n  color: #00d991;\n  transition: all 1s easeInOut .5s;\n  left: 50%;\n  margin-top: 25%; }\n  .btn .line {\n    width: 24px;\n    height: 2px;\n    background-color: #00d991;\n    margin: -25px;\n    margin-left: 10px; }\n\n.btn:after {\n  content: \"\";\n  position: absolute;\n  transition: all 0.3s ease 0s;\n  z-index: -1; }\n\n.btn:hover,\n.btn:focus {\n  color: #f8f8f8; }\n  .btn:hover .line,\n  .btn:focus .line {\n    background-color: #fff; }\n\n.btn-a:after {\n  background: #1ABC9C;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 100%; }\n\n.btn-a:hover,\n.btn-a:focus {\n  background-color: transparent; }\n\n.btn-a:hover:after,\n.btn-a:focus:after {\n  right: 0; }\n", ""]);
 
 // exports
 
@@ -282,39 +258,19 @@ var isOldIE = memoize(function () {
 	return window && document && document.all && !window.atob;
 });
 
-var getTarget = function (target) {
-  return document.querySelector(target);
-};
-
 var getElement = (function (fn) {
 	var memo = {};
 
-	return function(target) {
-                // If passing function in options, then use it for resolve "head" element.
-                // Useful for Shadow Root style i.e
-                // {
-                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
-                // }
-                if (typeof target === 'function') {
-                        return target();
-                }
-                if (typeof memo[target] === "undefined") {
-			var styleTarget = getTarget.call(this, target);
-			// Special case to return head of iframe instead of iframe itself
-			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-				try {
-					// This will throw an exception if access to iframe is blocked
-					// due to cross-origin restrictions
-					styleTarget = styleTarget.contentDocument.head;
-				} catch(e) {
-					styleTarget = null;
-				}
-			}
-			memo[target] = styleTarget;
+	return function(selector) {
+		if (typeof memo[selector] === "undefined") {
+			memo[selector] = fn.call(this, selector);
 		}
-		return memo[target]
+
+		return memo[selector]
 	};
-})();
+})(function (target) {
+	return document.querySelector(target)
+});
 
 var singleton = null;
 var	singletonCounter = 0;
@@ -333,10 +289,10 @@ module.exports = function(list, options) {
 
 	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
 	// tags it will allow on a page
-	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+	if (!options.singleton) options.singleton = isOldIE();
 
 	// By default, add <style> tags to the <head> element
-        if (!options.insertInto) options.insertInto = "head";
+	if (!options.insertInto) options.insertInto = "head";
 
 	// By default, add <style> tags to the bottom of the target
 	if (!options.insertAt) options.insertAt = "bottom";
@@ -439,11 +395,8 @@ function insertStyleElement (options, style) {
 		stylesInsertedAtTop.push(style);
 	} else if (options.insertAt === "bottom") {
 		target.appendChild(style);
-	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
-		var nextSibling = getElement(options.insertInto + " " + options.insertAt.before);
-		target.insertBefore(style, nextSibling);
 	} else {
-		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
 	}
 }
 
@@ -729,7 +682,6 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
->>>>>>> master
 
 /***/ })
 /******/ ]);
