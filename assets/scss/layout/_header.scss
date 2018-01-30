@@ -12,12 +12,14 @@
 .header {
   height: 900px;
   width: 1440px;
-  background-image: url("/../../images/Becentral.jpg");
+  background: url("../images/Becentral.jpg")cover center center;
+  background-size:cover;
 
   h1 {
     font-size: $header-title-size;
     font-family: $text-font;
     flex-wrap: wrap;
+    color: aqua;
   }
 
   button {
