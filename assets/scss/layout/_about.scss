@@ -4,18 +4,27 @@ body{
   background-color: $white;
   font-family: $text-font;
 }
-
+//titre en vert
 h2{
   font-size: $subtitle-size;
   color: $title;
   margin-bottom: 0;
-  //position: absolute;
-  //z-index: 1;
 }
+//titre latéral
 h3{
   font-family: $nav-font;
   font-size: $left-title-size;
   transform: rotate(90deg);
+  width: 300px;
+  margin-left: -28px;
+  margin-top: 142px;
+}
+.title_1{
+  width: 15%;
+}
+.title_2{
+  width: 15%;
+  //text-align: center;
 }
 
 p{
@@ -25,29 +34,28 @@ p{
 img{
   width: 500px;
 }
-
+//section about image à gauche
 .left{
   float: left;
   margin: 10px 20px;
 }
-
+.image_left{
+  width: 64%;
+}
+//section co-funders image à droite
 .right{
   float: right;
 }
+.image_right{
+  width: 64%;
+}
+
 section{
   display: flex;
   flex-direction: row;
 }
-
-.title_1{
-  width: 15%;
-  //transform: rotate(90deg);
-}
-
-.title_2{
-  width: 15%;
-  //transform: rotate(90deg);
-  text-align: center;
+.co_funders_section{
+  margin-top: 255px;
 }
 
 .paragraph{
@@ -63,19 +71,55 @@ p{
   margin: 28px;
 }
 
-.image_left{
-  width: 64%;
-}
 
 .image_background_color{
   background-color: #f9f9f9;
 }
-
-button{
-  border: none;
-  background-color: $white;
-  border-color: #00d991;
+//Style du boutton
+.btn {
+  position: relative;
+  display: inline-block;
+  width: 155px;
+  height: 50px;
+  border: 1px solid #00d991;
+  cursor: pointer;
+  font-size: sans-serif;
+  font-weight: light;
+  letter-spacing: 1px;
   color: #00d991;
-  height: 30px;
-  line-height: 30px;
+  transition: all 1s easeInOut .5s;
+  left: 50%;
+  margin-top: 25%;
+  .line{
+    width: 24px;
+    height: 2px;
+    background-color: #00d991;
+    margin: -25px;
+    margin-left: 10px;
+  }
+}
+.btn:after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  z-index: -1;
+}
+.btn:hover,
+.btn:focus {
+  .line{
+    background-color: #fff;
+  }
+  color: #f8f8f8;
+}
+.btn-a:after {
+  background: #1ABC9C;
+  top:0; bottom: 0; left: 0; right: 100%;
+}
+.btn-a:hover,
+.btn-a:focus, {
+  background-color: transparent;
+}
+.btn-a:hover:after,
+.btn-a:focus:after{
+  right:0;
 }

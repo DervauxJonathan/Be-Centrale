@@ -18,7 +18,6 @@ const browserSync = new BrowserSyncPlugin({
         }
 });
 
-
 module.exports = {
     entry: './assets/js/app.js',
     output: {path: path.resolve(__dirname, 'public'), filename: 'app.js'},
