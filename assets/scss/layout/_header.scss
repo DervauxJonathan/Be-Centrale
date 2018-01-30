@@ -1,15 +1,32 @@
 @import "../modules/variables";
 @import "../base/base";
-.header{
-  background-color: $white;
-  opacity: 0.9;
-  display: flex;
-  justify-content: space-between;
-  h1{
+
+.nav {
+  padding: 10px;
+
+  img {
+    padding-left: 20px;
+  }
+}
+
+.header {
+  height: 900px;
+  width: 1440px;
+  background: url("../images/Becentral.jpg")cover center center;
+  background-size:cover;
+
+  h1 {
     font-size: $header-title-size;
     font-family: $text-font;
+    flex-wrap: wrap;
+    color: aqua;
   }
-  button{
 
+  button {
+    width: 202px;
+    height: 54px;
+    background-color: $title;
+    color: #fff;
+    border: none;
   }
 }
