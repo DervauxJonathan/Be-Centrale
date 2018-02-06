@@ -1,0 +1,131 @@
+@import'../modules/variables.scss';
+
+.container{
+   display: flex;
+   
+   max-width:960px;
+   margin: 0 auto;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+.section-title{
+    display: block;
+    width: 320px;
+    height: 40px;
+    margin: 0 auto;
+
+    
+}
+
+.line{
+
+    display: block;
+    height: 5px;
+    width: 50px;
+    background-color:$title;
+    float:left;
+    margin-top: 20px;
+}
+
+.subtitle{
+    
+    font-size:$subtitle-size;
+    font-family: $text-font;
+    color: $title;
+    margin-bottom: 60px;
+    text-align: center;
+   
+}
+
+
+.card{
+    margin: 20px;
+    width: 280px;
+    height: 350px;
+    font-family: $text-font;
+    &:hover.state{ 
+        transform: translateX(0px);
+        visibility: visible;
+        -webkit-transition: 2000ms;
+        transition: 2000ms ease-in-out;
+        
+
+    }
+    
+    .event-img{
+        width: 280px;
+        height: 230px;
+        background-color: rgba(58, 0, 120, 0.2);
+    }
+    .event-describe{
+        display: block;
+        height: 120px;
+        width: 280px;
+        background-color:$purple;
+        color: $white;
+
+    }
+    .state{
+       
+        margin-top: -19px;
+        width: 124px;
+        height: 56px;
+        background-color:$title;
+        color:$white;
+        font-weight:bold;
+        font-family:$nav-font;
+        transform: translateX(-120px);
+        visibility: hidden;
+        
+       
+       
+        .white-line{
+            background-color:$white;
+            float: left;
+            width: 20px;
+            height: 0.5px;
+            margin-top: 10px;
+
+        }
+        .subtitle{
+            margin-left: 4px;
+        }
+
+    }
+    h5{
+        font-size: 16px;
+        color:$title;
+        font-weight: 100;
+        margin-left: 16px;
+    }
+    .event-title{
+        margin-left: 30px;
+        font-family: $text-font;
+        font-weight: bold;
+        font-size: $txt-size;
+    }
+
+    .event-sub{
+        margin-left: 30px;
+        font-size: 13px;
+        font-weight: 200;
+    }
+}
+
+.bg-lock{
+    position: relative;
+    width: 960px;
+    height: auto;
+    margin-top: 150px;
+    .greybg{
+        position: absolute;
+        width: 971px;
+        height: 748px;
+        left: 60%;
+        margin-top:120px;
+        margin-left: 250px;
+        background: #F7F7F7;
+        z-index: -5;
+    }
+}
+

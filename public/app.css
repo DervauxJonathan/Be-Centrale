@@ -1,113 +1,282 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat|Roboto);* {
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
 .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  background-color: #333333;
-}
-
-.nav ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  list-style: none;
-  color: #ffffff;
-}
-
-.nav ul li {
-  font-family: "Montserrat";
-  font-size: 20px;
-  margin-right: 20px;
-}
+  justify-content: space-between;
+  background-color: #333333; }
+  .nav ul {
+    display: flex;
+    list-style: none;
+    color: #ffffff; }
+    .nav ul li {
+      font-family: "Montserrat";
+      font-size: 20px;
+      margin-right: 20px;
+      color: #ffffff;
+      cursor: pointer; }
+      .nav ul li:hover {
+        color: #00d991;
+        cursor: pointer; }
 
 * {
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
 .nav {
-  padding: 10px;
-}
+  padding: 10px; }
+  .nav img {
+    padding-left: 20px; }
 
-.nav img {
-  padding-left: 20px;
-}
+.landing-img {
+  height: 960px;
+  width: 100%;
+  background: url(./images/Becentral.jpg) center center;
+  background-size: cover; }
 
-.header {
-  height: 900px;
-  width: 1440px;
-  background-image: url("/../../images/Becentral.jpg");
-}
+.ticket {
+  margin-top: 150px;
+  position: absolute;
+  width: 942px;
+  height: 388px;
+  background-color: #ffffff; }
+  .ticket .logo {
+    float: left;
+    margin: 45px; }
+  .ticket .title {
+    position: absolute;
+    display: block;
+    width: 600px;
+    height: 200px;
+    left: 201px;
+    top: 115px; }
+    .ticket .title h1 {
+      width: 555px;
+      font-family: "Roboto";
+      font-size: 50px;
+      font-style: normal;
+      font-weight: bold;
+      line-height: normal;
+      margin-left: 45px;
+      color: #333333; }
 
-.header h1 {
-  font-size: 50px;
-  font-family: "Roboto";
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
+.btn {
+  position: absolute;
+  display: inline-block;
+  width: 200px;
+  height: 50px;
+  border: 1px solid #00d991;
+  cursor: pointer;
+  font-size: sans-serif;
+  font-weight: light;
+  letter-spacing: 1px;
+  color: #00d991;
+  transition: all 1s easeInOut .5s;
+  margin-top: 319px; }
+  .btn .line {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: #00d991;
+    top: 8px; }
 
-.header button {
-  width: 202px;
-  height: 54px;
-  background-color: #00d991;
-  color: #fff;
-  border: none;
-}
+.btn:after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s ease 0s; }
+
+.btn:hover .line,
+.btn:focus .line {
+  background-color: #fff; }
+
+.btn:hover p:focus,
+.btn:focus p:focus {
+  color: #f8f8f8; }
+
+.btn-a:after {
+  background: #00d991;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 100%; }
+
+.btn-a:hover,
+.btn-a:focus {
+  background-color: transparent; }
+
+.btn-a:hover:after,
+.btn-a:focus:after {
+  right: 0; }
+
+p {
+  margin-top: 15px;
+  display: inline-block;
+  margin-left: 30px;
+  font-family: "sans-serif"; }
 
 * {
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
 body {
-  background-image: url("/../../images/Becentral");
-}
+  background-image: url("/../../images/Becentral"); }
+  body footer {
+    width: 100%;
+    height: 291px;
+    position: absolute;
+    bottom: 0;
+    background: #333333; }
+    body footer .content {
+      margin: 0 auto;
+      width: 140px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: 40px; }
+      body footer .content ul {
+        display: flex;
+        justify-content: space-between;
+        color: #fff; }
+        body footer .content ul li {
+          list-style: none; }
+      body footer .content .copyright {
+        color: #fff;
+        text-align: center;
+        margin-top: 20px;
+        font-family: "Roboto";
+        font-size: 13px; }
 
-body footer {
-  width: 100%;
-  height: 291px;
-  position: absolute;
-  bottom: 0;
-  background: #333333;
-}
-
-body footer .content {
-  margin: 0 auto;
-  width: 140px;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  margin-bottom: 40px;
-}
-
-body footer .content ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.container {
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  color: #fff;
-}
+  max-width: 960px;
+  margin: 0 auto;
+  justify-content: center;
+  flex-wrap: wrap; }
 
-body footer .content ul li {
-  list-style: none;
-}
+.section-title {
+  display: block;
+  width: 320px;
+  height: 40px;
+  margin: 0 auto; }
 
-body footer .content .copyright {
-  color: #fff;
-  text-align: center;
-  margin-top: 20px;
+.line {
+  display: block;
+  height: 5px;
+  width: 50px;
+  background-color: #00d991;
+  float: left;
+  margin-top: 20px; }
+
+h3 {
+  font-size: 40px;
   font-family: "Roboto";
-  font-size: 13px;
-}
+  color: #00d991;
+  margin-bottom: 60px;
+  text-align: center; }
 
+.card {
+  margin: 20px;
+  width: 280px;
+  height: 350px;
+  font-family: "Roboto"; }
+  .card:hover.state {
+    transform: translateX(0px);
+    visibility: visible;
+    -webkit-transition: 2000ms;
+    transition: 2000ms ease-in-out; }
+  .card .event-img {
+    width: 280px;
+    height: 230px;
+    background-color: rgba(58, 0, 120, 0.2); }
+  .card .event-describe {
+    display: block;
+    height: 120px;
+    width: 280px;
+    background-color: #0f001f;
+    color: #ffffff; }
+  .card .state {
+    margin-top: -19px;
+    width: 124px;
+    height: 56px;
+    background-color: #00d991;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: "Montserrat";
+    transform: translateX(-120px);
+    visibility: hidden; }
+    .card .state .white-line {
+      background-color: #ffffff;
+      float: left;
+      width: 20px;
+      height: 0.5px;
+      margin-top: 10px; }
+    .card .state .subtitle {
+      margin-left: 4px; }
+  .card h5 {
+    font-size: 16px;
+    color: #00d991;
+    font-weight: 100;
+    margin-left: 16px; }
+  .card .event-title {
+    margin-left: 30px;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 16px; }
+  .card .event-sub {
+    margin-left: 30px;
+    font-size: 13px;
+    font-weight: 200; }
+
+.bg-lock {
+  position: relative;
+  width: 960px;
+  height: auto;
+  margin-top: 150px; }
+  .bg-lock .greybg {
+    position: absolute;
+    width: 971px;
+    height: 748px;
+    left: 60%;
+    top: 30%;
+    background: #F7F7F7;
+    z-index: -5; }
+
+.booking {
+  width: 126px;
+  height: 135px;
+  display: block; }
+
+.spaces {
+  margin: 0 auto;
+  width: 900px;
+  height: 465px;
+  background-color: grey;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+
+.details {
+  display: block;
+  float: right; }
+
+.thumbnail {
+  width: 220px;
+  height: 220px;
+  border: 1px solid black; }
+
+.thumbnail-large {
+  width: 440px;
+  height: 220px;
+  border: 1px solid black;
+  margin-left: -20px; }
+
+@media screen and (max-width: 900px) {
+  .details {
+    display: block;
+    float: left; } }
+
+* {
+  padding: 0;
+  margin: 0; }

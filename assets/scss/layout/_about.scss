@@ -1,0 +1,48 @@
+@import "../modules/variables";
+
+.img-presentation{
+  width: 475px;
+  height: 425px;
+  background-color:red;
+  display: block;
+  
+  
+}
+
+.about-text{
+    float: right;
+    width: 385px;
+    height: 300px;
+    position: relative;
+    margin-top: 60px;
+    line-height: 30px;
+
+
+}
+
+.img_about{
+  width: 475px;
+  margin-bottom:auto;
+  margin-top: auto; 
+}
+
+.subtitle{
+    font-size: 40px;
+    font-family: "Roboto";
+    color: #00d991;
+    margin-bottom: 60px;
+    text-align: center;
+    position: absolute;
+    margin-left: 205px;
+}
+
+.bottom-text{
+  width: 885px;
+  height: 180px;
+  line-height: 30px;
+  margin-left: -92px;
+}
+
+.about{
+  margin-top: 145px;
+}

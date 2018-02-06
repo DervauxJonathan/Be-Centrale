@@ -1,0 +1,142 @@
+// @import "../modules/variables";
+// @import "../base/base";
+
+%titre {
+  width: 400px;
+  position: relative;
+  left: -160px;
+  top: -70px;
+  margin-bottom: 25px;
+  font-family: $text-font;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  hr {
+    background: $title;
+    height: 5px;
+    width: 50px;
+    margin-right: 25px;
+    border: none;
+  }
+  h2 {
+    font-size: $title-size;
+    display: block;
+    color: $title;
+    align-items: flex-end;
+  }
+}
+
+.community {
+  margin-top: 200px;
+  position: relative;
+  .section_title{
+    position: absolute;
+    top: 50%;
+    left: 200px;
+    transform: rotate(90deg) translateX(-50%);
+    transform-origin: top left;
+    font-size: 18px;
+    font-family:$nav-font;
+    display: flex;
+    width:390px;
+    justify-content: space-between;
+    align-items: center;
+    h1{
+      display: block;
+    }
+  }
+  .mobile {
+    display: none;
+  }
+  .container {
+    position: relative;
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    .bg {
+      position: absolute;
+      width: 90%;
+      height: 120%;
+      min-width: 757px;
+      background: $ligthgrey;
+      z-index: -2;
+      top: -20px;
+      left: -10px;
+    }
+    .img_container {
+      margin-top: -80px;
+      margin-left: 45px;
+    }
+    .paragraphe {
+      font-family: $text-font;
+      line-height: $txt-lh;
+      margin-left: 78px;
+      max-width: 355px;
+      .subTitle {
+        @extend %titre
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1290px) {
+  .community {
+    .section_title{
+      display: none;
+    }
+    .container {
+      margin: 0 0 0 10%;
+    }
+  }
+}
+
+@media screen and (max-width: 925px) {
+  .community {
+    margin-top: 50px;
+    .mobile {
+      width: 400px;
+      position: relative;
+      margin: 0 auto 25px;
+      font-family: $text-font;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 5;
+      hr {
+        background: $title;
+        height: 5px;
+        width: 50px;
+        margin-right: 25px;
+        border: none;
+      }
+      h2 {
+        font-size: $title-size;
+        display: block;
+        color: $title;
+        align-items: flex-end;
+      }
+    }
+    .container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width:100%;
+      margin: 0 auto;
+      .bg {
+        display: none;
+      }
+      .img_container {
+        margin: 0 auto 25px;
+      }
+      .paragraphe {
+        font-family: $text-font;
+        line-height: $txt-lh;
+        margin-left: 0;
+        .subTitle {
+          display: none;
+        }
+      }
+    }
+  }
+}

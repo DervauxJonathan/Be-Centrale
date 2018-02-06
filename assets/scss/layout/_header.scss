@@ -1,4 +1,4 @@
-@import "../modules/variables";
+@import "../modules/variables.scss";
 @import "../base/base";
 
 .nav {
@@ -9,24 +9,105 @@
   }
 }
 
-.header {
-  height: 900px;
-  width: 1440px;
-  background: url("../images/Becentral.jpg")cover center center;
-  background-size:cover;
+.landing-img{
+  height: 960px;
+  width: 100%;
+  background:url('../images/Becentral.jpg') center center;
+  background-size: cover;
+}
 
-  h1 {
-    font-size: $header-title-size;
-    font-family: $text-font;
-    flex-wrap: wrap;
-    color: aqua;
+.ticket{
+  margin-top: 150px;
+  position: absolute;
+  width: 942px;
+  height: 388px;
+  background-color:rgba(255, 255, 255, 0.95);
+  
+  .logo{
+    float: left;
+    margin: 45px;
   }
-
-  button {
-    width: 202px;
-    height: 54px;
-    background-color: $title;
-    color: #fff;
-    border: none;
+  .title{
+    position: absolute;
+    display: block;
+    width: 600px;
+    height: 200px;
+    left: 201px;
+    top: 115px;
+    h1{
+    width: 555px;  
+    font-family: $text-font;
+    font-size: $header-title-size;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    margin-left: 45px;
+    color:$darkgrey;
+    }
   }
 }
+.btn {
+    position: absolute;
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #00d991;
+    cursor: pointer;
+    font-size: sans-serif;
+    font-weight: light;
+    letter-spacing: 1px;
+    color: #00d991;
+    transition: all 1s easeInOut .5s;
+    margin-top: 319px;
+.line{
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: #00d991;
+  top:8px;
+  
+}
+
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  
+}
+.btn:hover,
+.btn:focus {
+.line{
+  background-color: #fff;
+}
+p:focus{
+  color: #f8f8f8;
+}
+
+
+
+}
+
+
+
+.btn-a:after {
+background: #00d991;
+top:0; bottom: 0; left: 0; right: 100%;
+}
+.btn-a:hover,
+.btn-a:focus, {
+background-color: transparent;
+}
+.btn-a:hover:after,
+.btn-a:focus:after{
+right:0;
+}
+
+p{
+margin-top: 15px;
+display: inline-block;
+margin-left: 30px;
+font-family: "sans-serif";
+}
+
