@@ -1,15 +1,13 @@
 @import "../modules/variables";
 @import "../base/base";
-.header{
-  background-color: $white;
+
+.header {
   opacity: 0.9;
   display: flex;
   justify-content: space-between;
-  h1{
+  h1 {
     font-size: $header-title-size;
     font-family: $text-font;
-  }
-  button{
-
+    background: white;
   }
 }
