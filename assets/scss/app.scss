@@ -1,11 +1,12 @@
-@import "/layout/nav";
-@import "/layout/header";
-@import "/layout/footer";
-@import "/layout/agenda";
-@import "/layout/space";
-@import "/layout/about";
-@import "/layout/contact";
-@import "/base/base";
-@import "/layout/community";
-@import "/layout/join_us";
-
+// @import "/layout/nav";
+// @import "/layout/header";
+// @import "/layout/footer";
+// @import "/layout/agenda";
+// @import "/layout/space";
+// @import "/layout/about";
+// @import "/layout/contact";
+ @import "/base/base";
+ @import "./modules/variables.scss";
+// @import "/layout/community";
+// @import "/layout/join_us";
+@import "./layout/community_page.scss";
