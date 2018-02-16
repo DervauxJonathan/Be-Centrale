@@ -96,7 +96,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(6)(content, options);
+var update = __webpack_require__(4)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -131,19 +131,18 @@ if(false) {
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat|Roboto);", ""]);
 
 // module
-exports.push([module.i, "* {\n  padding: 0;\n  margin: 0; }\n\n.container {\n  margin-top: 119px;\n  width: 100%;\n  display: -webkit-flex;\n  display: -ms-flex;\n  display: flex; }\n\n.title {\n  left: 50%;\n  position: relative;\n  width: 400px;\n  margin-bottom: 50px;\n  text-align: center;\n  transform: translateX(-50%);\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none;\n    display: block; }\n  .title h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.left {\n  width: 30%; }\n\n.bg {\n  width: 80%;\n  height: 300px;\n  min-width: 200px;\n  margin-left: 20px;\n  background-color: #f9f9f9; }\n\n.text {\n  margin-top: -240px;\n  margin-left: 50px;\n  min-width: 250px;\n  font-family: \"Roboto\";\n  font-size: 16px; }\n\n.right {\n  display: flex;\n  width: 70%;\n  flex-wrap: wrap;\n  justify-content: center; }\n\n.img-ctn {\n  width: 174px;\n  border: 2px;\n  border-color: #00d991;\n  border-style: solid;\n  margin-left: 30px;\n  height: 174px;\n  margin-bottom: 20px;\n  transition: 100ms background-color ease-in; }\n\n.img-ctn:hover {\n  background-color: #fafafa; }\n\n@media screen and (max-width: 790px) {\n  .container {\n    margin-top: 0;\n    flex-direction: column;\n    justify-content: center; }\n  .right {\n    width: 100%; }\n  .title {\n    left: 60%;\n    position: absolute; } }\n", ""]);
+exports.push([module.i, "* {\n  padding: 0;\n  margin: 0; }\n\n.cofunders_page .bg {\n  width: 893px;\n  height: 354px;\n  background: #f9f9f9;\n  position: absolute;\n  left: 200px;\n  bottom: 0;\n  margin-top: 0;\n  z-index: -2;\n  top: 0; }\n\n.cofunders_page .description {\n  position: relative;\n  font-family: \"Roboto\";\n  line-height: 30px;\n  left: 45%; }\n  .cofunders_page .description p {\n    max-width: 675px; }\n\n.cofunders_page header,\n.cofunders_page section {\n  margin-bottom: 100px; }\n\n.cofunders_page .amb {\n  display: flex;\n  width: 98%;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  margin: 0 auto;\n  padding: 10px; }\n  .cofunders_page .amb .img-block {\n    display: -webkit-flex;\n    display: -ms-flex;\n    display: flex;\n    flex-direction: column;\n    position: relative;\n    margin-bottom: 20px;\n    width: 230px; }\n    .cofunders_page .amb .img-block .img {\n      height: 250px;\n      width: 100%; }\n      .cofunders_page .amb .img-block .img img {\n        width: 100%; }\n      .cofunders_page .amb .img-block .img .more {\n        color: #00d991;\n        position: absolute;\n        top: 10px;\n        right: 10px;\n        font-size: 25px;\n        z-index: 5; }\n        .cofunders_page .amb .img-block .img .more a {\n          text-decoration: none;\n          color: #00d991; }\n    .cofunders_page .amb .img-block .text {\n      background: #0F001F;\n      height: 80px;\n      color: white;\n      margin-top: 20px;\n      text-transform: uppercase;\n      font-family: \"Montserrat\"; }\n      .cofunders_page .amb .img-block .text p {\n        padding: 20px; }\n\n.cofunders_page .title {\n  left: 30%;\n  position: relative;\n  width: 400px;\n  margin-bottom: 50px;\n  text-align: center;\n  transform: translateX(-50%);\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center;\n  top: 40px; }\n  .cofunders_page .title hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none;\n    display: block; }\n  .cofunders_page .title h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.cofunders_page .cofunders {\n  display: flex;\n  width: 98%;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  margin: 0 auto;\n  padding: 10px; }\n  .cofunders_page .cofunders .img-block-1 {\n    display: -webkit-flex;\n    display: -ms-flex;\n    display: flex;\n    flex-direction: column;\n    position: relative;\n    margin-bottom: 20px;\n    width: 230px; }\n  .cofunders_page .cofunders .img {\n    height: 250px;\n    width: 100%; }\n    .cofunders_page .cofunders .img img {\n      width: 100%; }\n    .cofunders_page .cofunders .img .more {\n      color: #00d991;\n      position: absolute;\n      top: 10px;\n      right: 10px;\n      font-size: 25px;\n      z-index: 5; }\n      .cofunders_page .cofunders .img .more a {\n        text-decoration: none;\n        color: #00d991; }\n  .cofunders_page .cofunders .text {\n    background: #0F001F;\n    height: 80px;\n    color: white;\n    margin-top: 20px;\n    text-transform: uppercase;\n    font-family: \"Montserrat\"; }\n    .cofunders_page .cofunders .text p {\n      padding: 20px; }\n\n.title {\n  left: 50%;\n  position: relative;\n  width: 400px;\n  margin-bottom: 50px;\n  text-align: center;\n  transform: translateX(-50%);\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none;\n    display: block; }\n  .title h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 /*
@@ -225,8 +224,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 5 */,
-/* 6 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -292,7 +290,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(7);
+var	fixUrls = __webpack_require__(5);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -608,7 +606,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports) {
 
 
