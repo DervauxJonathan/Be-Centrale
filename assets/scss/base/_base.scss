@@ -1,0 +1,54 @@
+.title {
+  position: relative;
+  margin-bottom: 25px;
+  font-family: $text-font;
+  display: flex;
+  align-items: center;
+  hr {
+    background: $title;
+    height: 5px;
+    width: 50px;
+    margin-right: 25px;
+    border: none;
+  }
+  h2 {
+    font-size: $title-size;
+    display: block;
+    color: $title;
+  }
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 20px;
+  margin-bottom:100px;
+  .section_title {
+    display: none;
+  }
+  h3,p{
+    font-family:$text-font;
+  }
+  .reg-paragraphe{
+    font-size:16px;
+    line-height:31px;
+  }
+}
+
+.img_container {
+  width: 100%;
+  img {
+    width: 100%;
+    margin-bottom:25px;
+  }
+}
+
+.desktop {
+  display: none;
+}
+
+@media (min-width: 576px) {
+
+}
+

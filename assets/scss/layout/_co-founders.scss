@@ -1,0 +1,55 @@
+@import "../modules/variables";
+@import "../base/base";
+
+.co-founders {
+  .subTitle {
+    @extend .title;
+    z-index: 5;
+  }
+  .desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .co-founders {
+    .container {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      .paragraphe{
+        width: 50%;
+        max-width:454px;
+        margin-right:50px;
+        .subTitle {
+          position: absolute;
+          top:70px;
+        }
+      }
+      .img_container{
+        width:50%;
+        margin-top: 130px;
+        max-width:440px;
+        .bg {
+          background:$ligthgrey;
+          width:100%;
+          max-width:440px;
+          height:60%;
+          margin-left:-30px;
+          margin-top:-60px;
+          position: absolute;
+          z-index: -5;
+        }
+      }
+      .img_container.mobile{
+        display: none;
+      }
+      .img_container.desktop{
+        display: block;
+      }
+      .reg-paragraphe{
+        margin-top:140px;
+      }
+    }
+  }
+}

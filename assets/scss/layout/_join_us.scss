@@ -2,121 +2,29 @@
 @import "../base/base";
 
 .join_us {
-  position: relative;
-  margin-top:50px;
-  .section_title{
-    position: absolute;
-    top: 50%;
-    left: 200px;
-    transform: rotate(90deg) translateX(-50%);
-    transform-origin: top left;
-    font-size: 18px;
-    font-family:$nav-font;
-    display: flex;
-    width:300px;
-    justify-content: space-between;
-    align-items: center;
-    h1{
-      display: block;
-    }
-  }
   .subTitle {
-    left: 50%;
-    position: relative;
-    width: 400px;
-    margin-bottom: 50px;
-    text-align: center;
-    transform: translateX(-50%);
-    font-family: $text-font;
+    @extend .title;
+    z-index: 5;
+  }
+  .item {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    hr {
-      background: $title;
-      height: 5px;
-      width: 50px;
-      margin-right: 25px;
-      border: none;
+    .join_us_icons {
+      align-self: center;
+      margin-right:20px;
     }
-    h2 {
-      font-size: $title-size;
-      display: block;
-      color: $title;
-      align-items: flex-end;
-    }
-  }
-  .container {
-    position: relative;
-    width: 60%;
-    flex-wrap: wrap;
-    display: flex;
-    margin: 0 auto;
-    justify-content: space-between;
-    .bg {
-      position: absolute;
-      width: 85%;
-      height: 120%;
-      background: $ligthgrey;
-      z-index: -2;
-      top: -20px;
-      left: -10px;
-    }
-    .item {
-      margin-bottom: 50px;
-      display: flex;
-      width: 32%;
-      .join_us_icons {
-        align-self: center;
-        width:41px;
+    .item-text {
+
+      h3 {
+        margin-bottom: 5px;
       }
-      .item-text {
-        font-family: $text-font;
-        margin-left: 20px;
-        h3 {
-          margin-bottom: 5px;
-        }
-        p {
-          color: #4F4F4F;
-          font-weight: 100;
-          min-width: 260px;
-        }
+      p {
+        color: #4F4F4F;
+        font-weight: 100;
       }
     }
   }
 }
 
-@media screen and (max-width: 1535px) {
-  .join_us {
-    .section_title{
-      display: none;
-    }
-    .container {
-      .item {
-        width: 45%;
-      }
-    }
-  }
-}
+@media (min-width: 576px) {
 
-@media screen and (max-width: 840px) {
-  .join_us {
-    .container {
-      width: 90%;
-      .item {
-        width: 100%;
-        margin: 0 auto 20px;
-        max-width:340px;
-        align-self: center;
-      }
-    }
-  }
 }
-
-@media screen and (max-width:940px) {
-  .join_us {
-    .container {
-      width: 90%;
-    }
-  }
-}
-
