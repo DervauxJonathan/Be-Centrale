@@ -9,6 +9,9 @@
   .desktop {
     display: none;
   }
+  .section_title {
+    @extend .section_title_style;
+  }
 }
 
 @media (min-width: 768px) {
@@ -17,39 +20,40 @@
       display: flex;
       justify-content: center;
       position: relative;
-      .paragraphe{
+      .paragraphe {
         width: 50%;
-        max-width:454px;
-        margin-right:50px;
+        max-width: 454px;
+        margin-right: 50px;
         .subTitle {
           position: absolute;
-          top:70px;
+          top: 70px;
         }
       }
-      .img_container{
-        width:50%;
+      .img_container {
+        width: 50%;
         margin-top: 130px;
-        max-width:440px;
+        max-width: 440px;
         .bg {
-          background:$ligthgrey;
-          width:100%;
-          max-width:440px;
-          height:60%;
-          margin-left:-30px;
-          margin-top:-60px;
+          background: $ligthgrey;
+          width: 100%;
+          max-width: 440px;
+          height: 60%;
+          margin-left: -30px;
+          margin-top: -60px;
           position: absolute;
           z-index: -5;
         }
       }
-      .img_container.mobile{
+      .img_container.mobile {
         display: none;
       }
-      .img_container.desktop{
+      .img_container.desktop {
         display: block;
       }
-      .reg-paragraphe{
-        margin-top:140px;
+      .reg-paragraphe {
+        margin-top: 140px;
       }
     }
   }
 }
+

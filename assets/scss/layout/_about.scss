@@ -1,10 +1,16 @@
-.about{
+@import "../modules/variables";
+@import "../base/base";
+
+.about {
   .subTitle {
     @extend .title;
-    z-index:5;
+    z-index: 5;
   }
-  .desktop{
+  .desktop {
     display: none;
+  }
+  .section_title {
+    @extend .section_title_style;
   }
 }
 
@@ -12,43 +18,43 @@
   .about {
     .container {
       display: flex;
-      flex-direction:column;
+      flex-direction: column;
       position: relative;
       .subContainer {
         display: flex;
         justify-content: center;
-        .bg{
+        .bg {
           position: absolute;
-          max-width:1050px;
-          top:150px;
-          width:100%;
+          max-width: 1050px;
+          top: 150px;
+          width: 100%;
           height: 70%;
           background: $ligthgrey;
           z-index: -5;
         }
-        .subTitle{
-          width:380px;
+        .subTitle {
+          width: 380px;
           display: flex;
           position: absolute;
-          top:80px;
-          margin-left:-85px;
+          top: 80px;
+          margin-left: -85px;
         }
         .img_container {
           width: 50%;
-          max-width:475px;
+          max-width: 475px;
           margin-right: 20px;
           margin-top: 85px;
         }
         .paragraphe {
           width: 50%;
-          margin-top:145px;
-          max-width:400px;
+          margin-top: 145px;
+          max-width: 400px;
         }
-        .mobile{
+        .mobile {
           display: none;
-          background: red;
         }
       }
     }
   }
 }
+

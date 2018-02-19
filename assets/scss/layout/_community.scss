@@ -9,6 +9,10 @@
   .subTitle.desktop {
     display: none;
   }
+  .section_title {
+    @extend .section_title_style;
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -53,3 +57,4 @@
     }
   }
 }
+
