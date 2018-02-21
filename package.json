@@ -26,6 +26,7 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
+    "email": "^0.2.6",
     "jquery": "^3.3.1"
   }
 }
