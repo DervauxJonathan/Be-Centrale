@@ -1,13 +1,174 @@
-@import "../modules/variables";
+@import "../modules/variables.scss";
 @import "../base/base";
 
-.header {
-  opacity: 0.9;
-  display: flex;
-  justify-content: space-between;
-  h1 {
-    font-size: $header-title-size;
+.nav {
+  padding: 10px;
+  a{
+    
+    text-decoration: none;
+    color: #fff;
+    &:hover{
+      color: $title;
+    }
+  }
+  img {
+    padding-left: 20px;
+  }
+}
+
+
+
+//
+video{
+  
+ position: relative;
+ top: 0;
+ left: 0;
+ overflow: hidden;
+ width: 100%;
+ background-attachment: fixed;
+
+
+
+}
+// media queries 880
+.ticket{
+  position: absolute;
+  top:300px;
+  width: 942px;
+  height: 388px;
+  background-color:rgba(255,255,255, 0.5);
+  
+  opacity: 50%;;
+ 
+  z-index: 2;
+  
+  
+  .logo{
+    float: left;
+    margin: 45px;
+  }
+  
+  .title{
+    position: absolute;
+    display: block;
+    width: 600px;
+    height: 200px;
+    left: 201px;
+    top: 115px;
+    h1{
+    width: 555px;  
     font-family: $text-font;
-    background: white;
+    font-size: $header-title-size;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    margin-left: 45px;
+    color:$darkgrey;
+    }
+  }
+  .newsLetter{
+    position: absolute;
+    left: 30%;
+    input{
+      background-color:rgba(255, 255, 255, 0);
+      border: 1px solid $title;
+    }
+  }
+}
+.btn {
+    position: absolute;
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #00d991;
+    cursor: pointer;
+    font-size: sans-serif;
+    font-weight: light;
+    letter-spacing: 1px;
+    color: #00d991;
+    transition: all 1s easeInOut .5s;
+    margin-top: 319px;
+.line{
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: #00d991;
+  top:8px;
+  
+}
+
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  
+}
+.btn:hover,
+.btn:focus {
+.line{
+  background-color: #fff;
+}
+p:focus{
+  color: #f8f8f8;
+}
+
+
+
+}
+
+
+
+.btn-a:after {
+background: #00d991;
+top:0; bottom: 0; left: 0; right: 100%;
+}
+.btn-a:hover,
+.btn-a:focus, {
+background-color: transparent;
+}
+.btn-a:hover:after,
+.btn-a:focus:after{
+right:0;
+}
+
+p{
+margin-top: 15px;
+display: inline-block;
+margin-left: 30px;
+font-family: "sans-serif";
+}
+
+@media screen and (max-width: 1250px){
+  .ticket{
+    width: 400px;
+    display: block;
+    position: relative;
+    top: 0px;
+    .title{
+      width: 400px;
+      h1{
+        width: 400px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 780px){
+
+  video{
+    display:none;
+  }
+  .ticket{
+    display: none;
+    .title{
+      display: none;
+      h1{
+        display: none;
+      }
+    }
+   
   }
 }

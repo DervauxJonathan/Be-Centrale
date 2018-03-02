@@ -1,4 +1,5 @@
 const path = require('path');
+var webpack = require('webpack');
 const imagePath = "./images";
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -37,9 +38,12 @@ module.exports = {
                 }]
             }
         ]
-    },
+    }, 
     plugins: [
+        new webpack.ProvidePlugin({
+            $:'jquery',
+            jQuery: 'jquery'
+        }),
         extractSass,browserSync
     ]
 };
-

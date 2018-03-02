@@ -2,6 +2,13 @@
 @import "../base/base";
 
 .join_us {
+  margin-top: 150px;
+  .button{
+    right: 324px;
+    position: absolute;
+    bottom: -27px;
+  }
+
   .subTitle {
     @extend .title;
     z-index: 5;

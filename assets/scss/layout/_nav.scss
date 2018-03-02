@@ -1,20 +1,39 @@
-
 @import "../modules/variables";
 @import "../base/base";
-/*
+
 .nav {
+  position:fixed;
   display: flex;
   justify-content: space-between;
-  background-color: $darkgrey;
+  background-color: $purple;
+ 
+  z-index: 10;
+  width: 100%;
+
   ul {
     display: flex;
     list-style: none;
-    color: #ffffff;
+    color:$white;
+    margin-right: 200px;
+    
+
     li {
       font-family: $nav-font;
       font-size: 20px;
-      margin-right: 20px;
+      margin-right: 60px;
+      color:$white;
+      cursor: pointer;
+      &:hover{
+        color: $title;
+        cursor:pointer;
+      }
     }
   }
 }
-*/
+//media queries 690
+
+@media screen and (max-width: 770px) {
+  .nav{
+    display: none;
+  }
+}

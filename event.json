@@ -1,0 +1,13 @@
+{
+    "emails": [
+        {
+            "email": "contact@becentral.org",
+            "verified": false,
+            "primary": true
+        }
+    ],
+    "id": 85329145958,
+    "name": "Andrew Godwin",
+    "first_name": "Andrew",
+    "last_name": "Godwin"
+}

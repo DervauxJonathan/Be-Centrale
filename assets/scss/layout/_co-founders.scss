@@ -1,6 +1,5 @@
 @import "../modules/variables";
 @import "../base/base";
-
 .co-founders {
   .subTitle {
     @extend .title;
@@ -16,6 +15,11 @@
 
 @media (min-width: 768px) {
   .co-founders {
+    .button{
+      bottom: 0;
+      position: absolute;
+      left: 22%;
+    }
     .container {
       display: flex;
       justify-content: center;
@@ -30,9 +34,12 @@
         }
       }
       .img_container {
-        width: 50%;
+        width: auto;
+        height: auto;
         margin-top: 130px;
         max-width: 440px;
+        overflow: hidden;
+        display: block;
         .bg {
           background: $ligthgrey;
           width: 100%;
@@ -46,12 +53,15 @@
       }
       .img_container.mobile {
         display: none;
+        overflow: hidden;
       }
       .img_container.desktop {
+        overflow: hidden;
         display: block;
       }
       .reg-paragraphe {
         margin-top: 140px;
+        overflow: hidden;
       }
     }
   }

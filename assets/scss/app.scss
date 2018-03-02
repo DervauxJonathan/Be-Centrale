@@ -3,9 +3,17 @@
 @import "/layout/nav";
 @import "/layout/header";
 @import "/layout/join_us";
-@import "/layout/Community";
+@import "/layout/community";
 @import "/layout/co-founders";
 @import "/layout/about";
+@import "/layout/menu";;
+@import "/layout/contact";
+@import "/layout/agenda";
+@import "/layout/spaces";
+@import "/layout/footer";
+@import "./layout/community_page.scss";
+@import "./layout/cofunders.scss";
+@import "./layout/form.scss";
 
 *{
   margin: 0;

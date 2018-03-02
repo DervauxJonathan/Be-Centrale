@@ -1,0 +1,68 @@
+@import "../modules/variables";
+@import "../base/base";
+.space{
+    .section_title{
+        @extend .section_title_style;
+        display: block;
+       
+        margin-top: -55px;
+        img{
+            margin-bottom: -30px;
+            margin-left: -24px
+        }
+        h1{
+            display: block;
+            margin-left: 30px;
+        }
+    }
+    .subTitle{
+        margin-left: 300px;
+        @extend .title;
+        z-index: 5;
+        display: content;
+            
+          
+    }
+    .space-container{
+        padding: 39px;
+        display: flex;
+        max-width:960px;
+        margin: 0 auto;
+        justify-content: center;
+        flex-wrap: wrap;
+        p{
+            padding: 20px;
+            font-family: $nav-font;
+            color: $title;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 29px;
+            text-transform: uppercase;
+        }
+        .thumbnail{
+            width: 220px;
+            height: 230px;
+            margin-left: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+          &:hover{
+              img{
+                
+                transform: scale(1.1);
+                transition: 0.5s ease-in-out;
+              }
+          }
+          .add{
+              margin-top: 20px;
+              text-align: center;
+              margin: 0 auto;
+          }
+        }
+        .large{
+            width: 440px;
+        }
+        .more-details{
+            text-align: center;
+        }
+    }
+}

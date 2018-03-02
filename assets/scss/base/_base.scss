@@ -22,9 +22,11 @@
 }
 .img_container {
   width: 100%;
+  overflow: hidden;
   img {
     width: 100%;
     margin-bottom: 25px;
+    overflow: hidden;
   }
 }
 .section {
@@ -78,3 +80,110 @@
   }
 }
 
+.button{
+  position: relative;
+  float: left
+}
+
+a.animated-button:link, a.animated-button:visited {
+  font-family: sans-serif;
+  width: 150px;
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+  color: #000;
+  border: 1px solid $title;
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: lowercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	border-radius: 0;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+a.animated-button:link:after, a.animated-button:visited:after {
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 150%;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+a.animated-button:link:hover, a.animated-button:visited:hover {
+	color: #FFF;
+	text-shadow: none;
+}
+a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+	height: 450%;
+}
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color:$title;
+	font-size:14px;
+	border-radius: 0;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+
+
+
+a.animated-button:hover {
+	color: #fff !important;
+	background-color: transparent;
+	text-shadow: nthree;
+}
+a.animated-button:hover:before {
+	left: 0%;
+	right: auto;
+	width: 100%;
+}
+a.animated-button:before {
+	display: block;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 100%;
+	width: 0px;
+	z-index: -1;
+	content: '';
+	color: #000 !important;
+	background: $title;
+	transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+#bg-title{
+  width: 700px;
+  height: 60px;
+  position: absolute;
+  
+}
+.grey{
+  background-color:$thumbnailsGreen;
+}
+.green{
+  background-color: $title;
+}

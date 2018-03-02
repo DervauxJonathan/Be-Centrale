@@ -2,6 +2,8 @@
 @import "../base/base";
 
 .community {
+  margin-top: 150px;
+  
   .subTitle {
     @extend .title;
     z-index: 5;
@@ -11,7 +13,7 @@
   }
   .section_title {
     @extend .section_title_style;
-    display: none;
+    
   }
 }
 
@@ -19,6 +21,11 @@
   .community {
     .subTitle.mobile {
       display: none;
+    }
+    .button{
+      position: absolute;
+      bottom: -20px;
+      right: 480px;
     }
     .container {
       display: flex;
@@ -41,6 +48,7 @@
         margin-left: -50px;
       }
       .img_container {
+        overflow: hidden;
         width: 50%;
         max-width: 350px;
         margin-right: 20px;
