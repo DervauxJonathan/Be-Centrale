@@ -7,15 +7,15 @@ const extractSass = new ExtractTextPlugin({
     disable: process.env.NODE_ENV === "development"
 });
 const browserSync = new BrowserSyncPlugin({
-        files: [
-            './assets/js/*',
-            './assets/scss/*',
-            './public/*.html',
-        ],
-        server: {
-            baseDir: 'public',
-            index: "public/index.html"
-        }
+    files: [
+        './assets/js/*',
+        './assets/scss/*',
+        './public/*.html',
+    ],
+    server: {
+        baseDir: 'public',
+        index: "public/index.html"
+    }
 });
 
 
@@ -39,7 +39,7 @@ module.exports = {
         ]
     },
     plugins: [
-        extractSass,browserSync
+        extractSass, browserSync
     ]
 };
 
