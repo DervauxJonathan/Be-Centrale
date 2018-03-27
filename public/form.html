@@ -5,18 +5,16 @@
   <meta charset="utf-8">
   <title>Contact</title>
 </head>
-
 <body>
 
   <div class="form">
     <div class="title">
-      <hr class="line" />
+      <hr class="line"/>
       <h2>Book a room</h2>
     </div>
     <div class="container">
-
       <div class="form_contact">
-          <h3>Contact us</h3>
+          <!-- <h3>Contact us</h3> -->
         <form id="contact-form" class="form" action="#" method="POST" role="form">
           <div class="form-group">
             <label class="form-label" for="name">Name</label>
@@ -42,12 +40,12 @@
             <div class="form-group">
               <label class="form-label" for="date-event">Date of event</label>
               <h4>Date of event</h4>
-              <input type="date" class="form-control" id="date-event" name="date-event" placeholder="Date of event" tabindex="6" required>
+              <input id="date" type="date" value="0000-00-00">
             </div>
             <div class="form-group">
               <label class="form-label" for="time-event">Time of event</label>
               <h4>Time of event</h4>
-              <input type="time" class="form-control" id="time" name="time-event" placeholder="Time of event" tabindex="7" required>
+            <input id="time" type="time">
             </div>
           </div>
           <div class="form-group_number">
@@ -72,7 +70,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
+          <div class="send_msg">
 
             <h4>Message</h4>
             <div class="msg">
@@ -84,10 +82,6 @@
           </div>
         </form>
       </div>
-<!--
-      <div class="right">
-        <div class="imgcontainer">
-          <img src="images/test_form.jpg" alt=""> -->
         </div>
       </div>
     </div>
@@ -142,6 +136,3 @@
 </body>
 
 </html>
-
-
-<!-- js -->

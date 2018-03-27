@@ -1,47 +1,41 @@
-textarea {
-  resize: none;
-  font-family: "roboto";
-}
-
 .form {
   width: 100%;
+  padding-bottom: 100px;
 
-:focus {
-  outline: none;
-  }
-  .form a{
+  :focus {
     outline: none;
   }
-.title{
-  left: 20%;
-  position: relative;
-  width: 400px;
-  margin-bottom: 50px;
-  text-align: center;
-  transform: translateX(-50%);
-  font-family: $text-font;
-  display: flex;
-  align-items: center;
 
-
-  hr {
-
-    background: $title;
-    height: 5px;
-    width: 50px;
-    margin-right: 25px;
-    border: none;
-    display: block;
+  .form a {
+    outline: none;
   }
 
-  h2 {
-    font-size: $title-size;
-    display: block;
-    color: $title;
+  .title {
+    left: 20%;
+    position: relative;
+    width: 400px;
+    margin-bottom: 50px;
+    text-align: center;
+    transform: translateX(-50%);
+    font-family: $text-font;
+    display: flex;
+    align-items: center;
+
+    hr {
+      background: $title;
+      height: 5px;
+      width: 40px;
+      border: none;
+      display: block;
+    }
+
+    h2 {
+      font-size: $title-size;
+      display: block;
+      color: $title;
+    }
   }
 
-
-}
   .container {
     width: 80%;
     display: flex;
@@ -52,18 +46,20 @@ textarea {
       width: 45%;
       border: 1px solid;
       border-color: $title;
-      padding: 30px;
+      padding: 20px;
       box-sizing: border-box;
 
+
       input {
-        width: 400px;
+        width: 80%;
+        margin-bottom: 40px;
       }
 
-      h3{
-        font-family: $text-font;
-        color: #757575;
-        text-align: center;
-      }
+      // h3 {
+      //   font-family: $text-font;
+      //   color: #757575;
+      //   text-align: center;
+      // }
 
       h4 {
         font-size: 11.5px;
@@ -73,6 +69,7 @@ textarea {
         margin-bottom: 20px;
         width: 50px;
       }
+
       .number {
         width: 80%;
         display: flex;
@@ -80,8 +77,17 @@ textarea {
         justify-content: space-between;
         flex-wrap: wrap;
 
-        input{
+        input {
           width: 100%;
+        }
+
+        input[type='date'] {
+          color: $darkgrey;
+          flex-direction: row;
+        }
+        input[type='time']{
+          color: $darkgrey;
+          flex-direction: row;
         }
 
         h4 {
@@ -91,35 +97,31 @@ textarea {
           color: #757575;
           width: 100%;
           border: none;
-          margin-top: -5px;
-
+          margin-left: 30px;
         }
-      }
-      .form-group_number{
-
-        input{
-        width: 32%;
-      }
       }
 
       .checkbox {
-        width: 100%;
-        margin-top: 30px;
-        margin-bottom: 30px;
+        width: 85%;
+        margin: 0 auto;
 
         .contain {
-          width: 90%;
+          width: 100%;
           display: flex;
           justify-content: space-between;
+          margin-left: -30px;
 
-          input[type="checkbox"]{
+          input[type="checkbox"] {
             height: 11px;
             width: 11px;
             border: none;
+
           }
+
           span {
             font-size: 10px;
             font-family: 'roboto';
+            margin-left: 4px;
           }
 
           .form-group {
@@ -127,19 +129,29 @@ textarea {
             display: -ms-flex;
             display: flex;
             justify-content: space-between;
+            margin: 0 auto;
 
-            input {
-              width: 25px;
-            }
           }
         }
+      }
+    }
+
+    .send_msg {
+      width: 85%;
+      margin: 0 auto;
+
+      textarea {
+        width: 85%;
+        height: 100px;
+        border: none;
+        border-bottom: 1px solid $darkgrey;
+        padding-bottom: 50px;
       }
     }
 
     .form-label {
       font-size: 12px;
       color: #5e9bfc;
-      line-height: 30px;
       margin: 0;
       display: block;
       opacity: 1;
@@ -165,21 +177,22 @@ textarea {
     }
 
     .js-unhighlight-label {
-      color: red;
+      color: $title;
     }
 
     .btn-start-order {
       background: 0 0 #ffffff;
       border: 1px solid $title;
-      color: $darkgrey;
-      font-family: "roboto";
-      font-size: 14px;
+      color: $title;
+      font-family: "montserrat";
+      font-size: 16px;
       line-height: inherit;
-      margin: 10px 0;
+      margin: 40px 0;
       padding: 10px 20px;
-      text-transform: uppercase;
       transition: all 0.25s ease 0s;
-
+      width: 154px;
+      height: 51px;
+      left: 44%;
     }
 
     .btn-start-order:active,
@@ -188,17 +201,8 @@ textarea {
       border-color: #5e9bfc;
       color: #5e9bfc;
     }
-    .msg textarea{
-      width: 400px;
-      height: 100px;
-      border: none;
-    }
-
-    // .right {
-    //   width: 45%;
-    //   img{
-    //     width: 500px;
-    //   }
-    // }
   }
+}
+@media screen and(max-width:1000px){
+
 }
