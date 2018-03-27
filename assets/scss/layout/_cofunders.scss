@@ -79,10 +79,13 @@
       width: 100%;
       text-transform: uppercase;
 
+
       p {
         padding: 10px;
         font-family: $nav-font;
-        font-size: 13px;
+        font-size: 14px;
+        padding-top: 30px;
+
       }
     }
   }
@@ -135,7 +138,8 @@
       p {
         padding: 10px;
         font-family: $nav-font;
-        font-size: 13px;
+        font-size: 14px;
+        padding-top: 30px;
       }
     }
   }
