@@ -16,69 +16,62 @@
       <div class="form_contact">
           <!-- <h3>Contact us</h3> -->
         <form id="contact-form" class="form" action="#" method="POST" role="form">
-          <div class="form-group">
-            <label class="form-label" for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Name" tabindex="1" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="name">First-Name</label>
-            <input type="text" class="form-control" id="first-name" name="name" placeholder="First-Name" tabindex="2" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" tabindex="3" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="company">Company</label>
-            <input type="text" class="form-control" id="company" name="company" placeholder="Company" tabindex="4" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="name-event">Name of event</label>
-            <input type="text" class="form-control" id="name-event" name="name-event" placeholder="Name of event" tabindex="5" required>
-          </div>
-          <div class="number">
+          <div id="first-group">
             <div class="form-group">
-              <label class="form-label" for="date-event">Date of event</label>
-              <h4>Date of event</h4>
-              <input id="date" type="date" value="0000-00-00">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Name" tabindex="1" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="time-event">Time of event</label>
-              <h4>Time of event</h4>
-            <input id="time" type="time">
+              <input type="text" class="form-control" id="first-name" name="name" placeholder="First-Name" tabindex="2" required>
             </div>
-          </div>
-          <div class="form-group_number">
-            <label class="form-label" for="attendees">Number of attendees</label>
-            <input type="number" class="form-control" id="attendees" name="attendees" placeholder="Number of attendees" tabindex="8" required>
+            <div class="form-group">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" tabindex="3" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="company" name="company" placeholder="Company" tabindex="4" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="name-event" name="name-event" placeholder="Name of event" tabindex="5" required>
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" id="attendees" name="attendees" placeholder="Number of attendees" tabindex="8" required>
+            </div>
+              <div class="form-group">
+                <input id="date" type="text" placeholder="date"  onfocus="(this.type='date')">
+              </div>
+              <div class="form-group">
+              <input id="time" type="text" onfocus="(this.type='time')" placeholder="time">
+              </div>
           </div>
 
-          <div class="checkbox">
-            <h4>Catering</h4>
-            <div class="contain">
-              <div class="form-group">
-                <input type="checkbox" class="form-control" id="checkbox" name="breakfast" placeholder="Breakfast" tabindex="9" required> <span>Breakfast</span> <span class="checkmark"></span>
+          <div id="second-group">
+            <div class="checkbox">
+              <h4>Catering</h4>
+              <div class="contain">
+                <div class="form-group">
+                  <input type="checkbox" class="form-control" id="checkbox" name="breakfast" placeholder="Breakfast" tabindex="9" required> <span>Breakfast</span> <span class="checkmark"></span>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" class="form-control" id="checkbox" name="lunch" placeholder="Lunch" tabindex="10" required> <span>Lunch</span> <span class="checkmark"></span>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" class="form-control" id="checkbox" name="dinner" placeholder="Dinner" tabindex="11" required> <span>Dinner</span> <span class="checkmark"></span>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" class="form-control" id="checkbox" name="reception" placeholder="Reception" tabindex="12" required> <span>Reception</span> <span class="checkmark"></span>
+                </div>
               </div>
-              <div class="form-group">
-                <input type="checkbox" class="form-control" id="checkbox" name="lunch" placeholder="Lunch" tabindex="10" required> <span>Lunch</span> <span class="checkmark"></span>
-              </div>
-              <div class="form-group">
-                <input type="checkbox" class="form-control" id="checkbox" name="dinner" placeholder="Dinner" tabindex="11" required> <span>Dinner</span> <span class="checkmark"></span>
-              </div>
-              <div class="form-group">
-                <input type="checkbox" class="form-control" id="checkbox" name="reception" placeholder="Reception" tabindex="12" required> <span>Reception</span> <span class="checkmark"></span>
+              <div class="send_msg">
+                <h4>Message</h4>
+                <div class="msg">
+                  <textarea name="message" class="form-control" id="message" placeholder="..." tabindex="13" required></textarea>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="send_msg">
 
-            <h4>Message</h4>
-            <div class="msg">
-              <textarea name="message" class="form-control" id="message" placeholder="..." tabindex="13" required></textarea>
-            </div>
           </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-start-order">Send</button>
+
+          <div class="button">
+          <button type="button" name="button">send</button>
           </div>
         </form>
       </div>
