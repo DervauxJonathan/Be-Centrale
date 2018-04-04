@@ -10,6 +10,9 @@
   align-items: center;
   height:77px;
   justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
   ul{
     font-family:$nav-font;
     color: white;
@@ -17,6 +20,7 @@
     list-style: none;
     width: 700px;
     justify-content: space-between;
+    z-index:100;
     #news{
       color:$title;
     }
