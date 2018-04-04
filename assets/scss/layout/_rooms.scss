@@ -1,6 +1,13 @@
 @import "../modules/variables";
 @import "../base/base";
 
+a{
+  text-decoration: none;
+  color: #fff;
+  &:hover{
+    color: $purple;
+  }
+}
 .rooms {
   position: relative;
   font-family: $text-font;
@@ -20,7 +27,6 @@
     }
   }
 }
-
 @media (min-width: 992px) {
   .rooms {
     .container {
@@ -50,6 +56,7 @@
             color: $title;
             padding: 10px;
           }
+          
         }
         .specs {
           width: 90%;
