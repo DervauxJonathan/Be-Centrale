@@ -13,15 +13,12 @@
   .section_title {
     @extend .section_title_style;
   }
-
   #event-list {
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-column-gap: 20px;
+    grid-template-columns: 297px;
     grid-row-gap: 20px;
     .item {
-      overflow: hidden;
-      min-width:297px;
       .img-container {
         position: relative;
         img {
@@ -38,12 +35,12 @@
         }
       }
       .desc {
-        z-index:10;
+        z-index: 10;
         background: #0F001F;
         color: white;
         margin-top: -5px;
         padding: 15px;
-        .date{
+        .date {
           color: $title;
           margin-bottom: 8px;
           display: block;
@@ -61,13 +58,18 @@
       display: flex;
       flex-direction: column;
       #event-list {
+        display: grid;
         grid-template-columns: 250px 250px;
+        grid-column-gap: 20px;
+        .item {
+          overflow: hidden;
+        }
       }
     }
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 980px) {
   .event {
     .container {
       .subTitle {

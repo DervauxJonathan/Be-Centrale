@@ -1,24 +1,31 @@
-
 @import "../modules/variables";
 @import "../base/base";
 
-.main-nav{
+.main-nav {
+  margin: 0 auto;
+  position: fixed;
+  z-index: 50;
+  width: 100%;
   background: #333333;
-  padding-left: 20px;
-  padding-right: 20px;
-  display: flex;
   align-items: center;
-  height:77px;
-  justify-content: space-between;
-  ul{
-    font-family:$nav-font;
-    color: white;
+  display: flex;
+  height: 77px;
+  .container {
+    width:98%;
+    margin: 0 auto;
     display: flex;
-    list-style: none;
-    width: 700px;
+    align-items: center;
     justify-content: space-between;
-    #news{
-      color:$title;
+    ul {
+      font-family: $nav-font;
+      color: white;
+      display: flex;
+      list-style: none;
+      width: 700px;
+      justify-content: space-between;
+      #news {
+        color: $title;
+      }
     }
   }
 }
