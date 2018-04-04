@@ -13,6 +13,7 @@
   }
   h2 {
     font-size: $title-size;
+    font-weight:500;
     display: block;
     color: $title;
   }
@@ -53,7 +54,6 @@
   transform-origin: top left;
   font-size: 12px;
   font-family: $nav-font;
-  display: none;
   justify-content: space-between;
   align-items: center;
   h1 {
@@ -71,7 +71,7 @@
   }
 }
 @media (min-width: 1200px) {
-  .about, .co-founders, .community, .join_us {
+  .about, .co-founders, .community, .join_us, .spaces, .event {
     .section_title {
       display: flex;
     }

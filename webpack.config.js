@@ -40,6 +40,7 @@ module.exports = {
     },
     plugins: [
         extractSass, browserSync
-    ]
+    ],
+    mode: "development"
 };
 

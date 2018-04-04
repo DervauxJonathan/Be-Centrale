@@ -1,0 +1,119 @@
+@import "../modules/variables";
+@import "../base/base";
+
+.spaces {
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+  .subTitle {
+    @extend .title;
+    z-index: 5;
+    display: block;
+    margin: 0 auto;
+  }
+  .section_title {
+    @extend .section_title_style;
+  }
+  #room-gallery {
+    display: none;
+  }
+  .mobile-img {
+    width: 100%;
+    background: #000;
+    height: 380px;
+    overflow: hidden;
+    object-fit: cover;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .reg-paragraphe {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 576px) {
+  .section_title{
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .spaces {
+
+    margin-top: 250px;
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      .subTitle {
+        margin: 0;
+      }
+      .subContainer {
+        display: flex;
+        max-width: 950px;
+        position: relative;
+        .bg {
+          position: absolute;
+          max-width: 1000px;
+          top: -40px;
+          width: 150%;
+          left: -50px;
+          height: 500px;
+          background: #f9f9f9;
+          z-index: -5;
+        }
+        #room-gallery {
+          display: grid;
+          grid-template-columns: 240px 240px;
+          grid-column-gap: 20px;
+          grid-row-gap: 20px;
+          .item {
+            width: 240px;
+            height: 240px;
+            overflow: hidden;
+
+            img {
+              object-fit: cover;
+            }
+          }
+          .item.desc {
+            background: #6FCF97;
+            font-family: $nav-font;
+            font-size: 20px;
+            color: white;
+            line-height: 29px;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+        .mobile-img {
+          display: none;
+        }
+        .paragraphe {
+          margin-top: 20px;
+          margin-left: 40px;
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .join_us {
+    .container {
+      .subContainer {
+        .item {
+
+        }
+      }
+    }
+  }
+}
+

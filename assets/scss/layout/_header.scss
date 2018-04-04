@@ -1,13 +1,31 @@
 @import "../modules/variables";
 @import "../base/base";
 
-.header {
-  opacity: 0.9;
-  display: flex;
-  justify-content: space-between;
-  h1 {
-    font-size: $header-title-size;
-    font-family: $text-font;
+.headerVideo{
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+  -webkit-background-size: cover;
+  background-size: cover;
+  .content{
+    position: absolute;
+    z-index: 20;
+    top: 50%;
+    padding-left:40px;
+    transform: translateY(-50%);
     background: white;
+    display: flex;
+    align-items: center;
+    font-family: Roboto, sans-serif;
+    font-weight:bold;
+    font-size:30px;
+    width:70%;
+    max-width:800px;
+    height: 388px;
+    opacity: 0.9;
+    h1{
+      margin-left:40px;
+      max-width:553px;
+    }
   }
 }

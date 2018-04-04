@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="assets/scss/layout/_spaces.scss"/>
+    <link rel="stylesheet" type="text/css" href="assets/scss/layout/_join_us.scss"/>
+    <link rel="stylesheet" type="text/css" href="assets/scss/layout/_join_us.scss"/>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,7 +11,29 @@
     <title>Document</title>
 </head>
 <body>
-
+<nav class="main-nav">
+    <img src="images/becentralLogoVert.png" alt="" class="logo">
+    <ul>
+        <li>About</li>
+        <li>Co-founders</li>
+        <li>Community</li>
+        <li>Join us</li>
+        <li>Spaces</li>
+        <li>Event</li>
+        <li>Contact</li>
+        <li id="news">NewsLetter</li>
+    </ul>
+</nav>
+<header class="headerVideo">
+    <video autoplay loop>
+        <source src="./images/708213662.mp4" id="bgVideo">
+    </video>
+    <div class="content">
+        <img src="./images/becentralLogo.png" alt="">
+        <h1>Digital Campus <br>
+            Brussels Central Station</h1>
+    </div>
+</header>
 <div class="about section">
     <div class="section_title">
         <img src="images/bseclogo.png" alt="">
@@ -29,20 +54,18 @@
                     <hr class="line">
                     <h2>Ticket To Digital</h2>
                 </div>
-                <p class="reg-paragraphe">BeCentral is a vibrant Digital Campus located on top of Brussels Central
-                    Station.</p>
-                <br>
-                <p class="reg-paragraphe">Co-founded by a group of passionate entrepreneurs, our mission of closing the
-                    digital skills gap and
-                    accelerate Belgium’s digital transformation came to life in October 2017.</p>
-                <p class="reg-paragraphe">Our awesome community of 25+ digital initiatives – or 200+ residents on campus
-                    every day –
-                    contribute to our mission by exchanging their insights and experiences.</p>
+
+
                 <p class="reg-paragraphe">
-                    Since October, we welcomed 100+ events to bring digital closer to people (meetups, inspirational or
-                    educational talks) or to companies (trainings, workshops, seminars, bootcamps).We’re on a mission to
-                    bring digital close to you. So, are you ready to jump onboard?
+                    BeCentral is a new digital campus located in Brussels Central Station. <br>
+                    Cofounded & backed-up by more than 40 entrepreneurs, we’re on a mission to close the digital skills
+                    gap and help to accelerate Belgium’s Digital Transformation.
+                    How do we do this ? <br>
+                    By hosting digital schools or workshops in an
+                    entrepreneurial ecosystem. Check out our fantastic 30+ initiatives, our next events and available
+                    workshops below!
                 </p>
+
             </div>
         </div>
 
@@ -67,10 +90,10 @@
                 </div>
             </div>
             <p class="reg-paragraphe">
-                Late 2016, 28 passionate members of the Belgium's tech community got an idea: create a new digital
-                campus that would be as accessible as possible.
-                They needed to find a place where Digital Transformation would be more approchable, a place where people
-                could share, meet and connect. </p>
+                Late 2016, a group of passionate entrepreneurs had an idea: create a central hub where digital could
+                become accessible to everyone. And guess what? They found the absolute must: Brussels Central Station.
+                With more than 60.000 travellers passing through the station every day, the location was ideal to
+                develop their mission. Nothing would have been possible without them!</p>
         </div>
         <div class="img_container desktop">
             <div class="bg"></div>
@@ -99,10 +122,9 @@
                 <h2>Community</h2>
             </div>
             <p class="reg-paragraphe">
-                workspace for independent contractors, small businesses, non-profits, and creative professionals looking
-                for a place to build, create, develop, and collaborate.
-                Located on Cherokee Street, Nebula opened in 2010 as the first coworking space in St. Louis, providing
-            </p>
+                Our campus welcomes every day 30+ initiatives (200+ tech enthusiasts) – including educational programs,
+                startups and NGO’s – working together to reduce the digital skills gap in a vibrant entrepreneurial
+                setup. </p>
         </div>
     </div>
 </div>
@@ -112,74 +134,428 @@
         <img src="images/bseclogo.png" alt="">
         <h1>04 Join Us</h1>
     </div>
-    <div class="subTitle">
-        <hr class="line">
-        <h2>Join Be Central</h2>
+
+    <div class="container">
+        <div class="subTitle  ">
+            <hr class="line">
+            <h2>Join Be Central</h2>
+        </div>
+        <div class="subContainer">
+            <div class="bg"></div>
+            <div class="paragraphe">
+                <p class="reg-paragraphe">
+                    Are you looking for a physical desk or office in a digital community?
+                    We have what you’re looking for: the most central place in town, surrounded by a unique community
+                    Book a tour to discover the campus here!
+
+                </p>
+            </div>
+            <div id="items-list">
+                <div class="item">
+                    <img src="./images/wifi.png" class="join_us_icons" alt="">
+                    <div class="item-text">
+                        <h3>Wifi </h3>
+                    </div>
+                    <div class="green-line"></div>
+                </div>
+                <div class="item">
+                    <img src="./images/room.png" class="join_us_icons" alt="">
+                    <div class="item-text">
+                        <h3>Rooms</h3>
+                    </div>
+                    <div class="green-line"></div>
+                </div>
+                <div class="item">
+                    <img src="./images/placeholder.png" class="join_us_icons" alt="">
+                    <div class="item-text">
+                        <h3>Location </h3>
+                    </div>
+                    <div class="green-line"></div>
+                </div>
+                <div class="item">
+                    <img src="./images/spaces.png" class="join_us_icons" alt="">
+                    <div class="item-text">
+                        <h3>Community </h3>
+                    </div>
+                    <div class="green-line"></div>
+                </div>
+                <div class="item">
+                    <img src="./images/coffee-cup.png" class="join_us_icons" alt="">
+                    <div class="item-text">
+                        <h3>Drink</h3>
+                    </div>
+                    <div class="green-line"></div>
+                </div>
+                <div class="item">
+                    <img src="./images/24h.png" class="join_us_icons" alt="">
+                    <div class="item-text">
+                        <h3>Hours </h3>
+                    </div>
+                    <div class="green-line"></div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="spaces section">
+    <div class="section_title">
+        <img src="images/bseclogo.png" alt="">
+        <h1>05 Spaces</h1>
+    </div>
+
     <div class="container">
         <div class="subContainer">
             <div class="bg"></div>
-            <div class="item">
-                <img src="./images/wifi.png" class="join_us_icons" alt="">
-                <div class="item-text">
-                    <h3>Wifi </h3>
-                    <p>
-                        Powerful wifi sed ut perspiciatis unde omnis iste natus error sit.
-                    </p>
-                </div>
+            <div id="room-gallery">
+                <div class="item desc">Book An <br>Available <br>Room</div>
+                <div class="item"><img src="./images/room1.png" alt=""></div>
+                <div class="item"><img src="./images/room2.png" alt=""></div>
+                <div class="item"><img src="./images/room3.png" alt=""></div>
             </div>
-            <div class="item">
-                <img src="./images/room.png" class="join_us_icons" alt="">
-                <div class="item-text">
-                    <h3>Rooms</h3>
-                    <p>
-                        Rooms for everyone ut perspiciatis sit voluptatem accusantium doloremque.
-                    </p>
+            <div class="paragraphe">
+                <div class="subTitle  ">
+                    <hr class="line">
+                    <h2>Spaces</h2>
                 </div>
+                <div class="mobile-img"><img src="./images/room2.png" alt=""></div>
+                <p class="reg-paragraphe">
+                    Are you looking for a central place to host your digital event? Our campus has plenty of rooms for
+                    trainings, workshops, meetings or even fancy award ceremonies!
+                    Fill in the questionnaire to check availability & rates. We can’t wait to connect with you.
+                </p>
             </div>
-            <div class="item">
-                <img src="./images/placeholder.png" class="join_us_icons" alt="">
-                <div class="item-text">
-                    <h3>Location </h3>
-                    <p>
-                        Brusells centrum audantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
-                        quasi
-                        a
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="./images/spaces.png" class="join_us_icons" alt="">
-                <div class="item-text">
-                    <h3>Spaces </h3>
-                    <p>
-                        Co working space ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                        doloremque
+        </div>
+    </div>
+</div>
 
-                    </p>
+<div class="event section">
+    <div class="section_title">
+        <img src="images/bseclogo.png" alt="">
+        <h1>06 Events</h1>
+    </div>
+
+    <div class="container">
+        <div class="subTitle  ">
+            <hr class="line">
+            <h2>Events</h2>
+        </div>
+        <div class="subContainer">
+            <div class="bg"></div>
+            <div id="event-list">
+                <div class="item">
+                    <div class="img-container">
+                        <div class="overlay"></div>
+                        <img src="images/Union.png" alt="">
+                    </div>
+                    <div class="desc">
+                        <p>
+                            <span class="date">5 FEB - BeCode</span>
+                            <span class="title">Block Chain for dummies</span>
+                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-container">
+                        <div class="overlay"></div>
+                        <img src="images/Union.png" alt="">
+                    </div>
+                    <div class="desc">
+                        <p>
+                            <span class="date">5 FEB - BeCode</span>
+                            <span class="title">Block Chain for dummies</span>
+                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-container">
+                        <div class="overlay"></div>
+                        <img src="images/Union.png" alt="">
+                    </div>
+                    <div class="desc">
+                        <p>
+                            <span class="date">5 FEB - BeCode</span>
+                            <span class="title">Block Chain for dummies</span>
+                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-container">
+                        <div class="overlay"></div>
+                        <img src="images/Union.png" alt="">
+                    </div>
+                    <div class="desc">
+                        <p>
+                            <span class="date">5 FEB - BeCode</span>
+                            <span class="title">Block Chain for dummies</span>
+                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-container">
+                        <div class="overlay"></div>
+                        <img src="images/Union.png" alt="">
+                    </div>
+                    <div class="desc">
+                        <p>
+                            <span class="date">5 FEB - BeCode</span>
+                            <span class="title">Block Chain for dummies</span>
+                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-container">
+                        <div class="overlay"></div>
+                        <img src="images/Union.png" alt="">
+                    </div>
+                    <div class="desc">
+                        <p>
+                            <span class="date">5 FEB - BeCode</span>
+                            <span class="title">Block Chain for dummies</span>
+                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="item">
-                <img src="./images/coffee-cup.png" class="join_us_icons" alt="">
-                <div class="item-text">
-                    <h3>Drink</h3>
-                    <p>
-                        Unlimited coffee rchitecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem .
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="./images/24h.png" class="join_us_icons" alt="">
-                <div class="item-text">
-                    <h3>Hours </h3>
-                    <p>
-                        Open 24 / 7 voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
-                    </p>
-                </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="contact section">
+    <div class="section_title">
+        <img src="images/bseclogo.png" alt="">
+        <h1>07 Contact</h1>
+    </div>
+
+    <div class="container">
+        <div class="subTitle  ">
+            <hr class="line">
+            <h2>Contact</h2>
+        </div>
+        <div class="subContainer">
+            <div id="map"></div>
+            <div id="info">
+                <h1>BeCentral</h1>
+                <p class="head">
+                    <span> Cantersteen 10, 1000 Brussels</span><br>
+                    <span class="regular-p">yourock@becentral.org</span>
+                </p>
+                <p>
+                    <span class="bold">You can find us in the heart of Brussels, on top of the Central Station.</span><span
+                        class="green-txt">important note</span>
+                    As our entry doors are kept closed for security reasons, it is best to call the person you are
+                    visiting. Make sure to have his or her telephone number at hand.
+                    In case you don’t have it, you can call +32 488 45 42 62.
+                </p>
+                <p>
+                    <span class="green-txt">in case you arrive by train</span>
+                    Go to the main hall of the Brussels Central Station, take the stairs next to/to the left hand side
+                    of the Starbucks café.
+                </p>
             </div>
         </div>
     </div>
 </div>
 </body>
 <script src="app.js"></script>
+<script>
+    function initMap() {
+        var uluru = {lat: 50.8455713, lng: 4.355293717};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 18,
+            center: uluru,
+            styles: [
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#e9e9e9"
+                        },
+                        {
+                            "lightness": 17
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        },
+                        {
+                            "lightness": 20
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 17
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 29
+                        },
+                        {
+                            "weight": 0.2
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 18
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 16
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        },
+                        {
+                            "lightness": 21
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dedede"
+                        },
+                        {
+                            "lightness": 21
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 16
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "saturation": 36
+                        },
+                        {
+                            "color": "#333333"
+                        },
+                        {
+                            "lightness": 40
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f2f2f2"
+                        },
+                        {
+                            "lightness": 19
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#fefefe"
+                        },
+                        {
+                            "lightness": 20
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#fefefe"
+                        },
+                        {
+                            "lightness": 17
+                        },
+                        {
+                            "weight": 1.2
+                        }
+                    ]
+                }
+            ]
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1J-2g_6PXGZzdyRGLqXayPGg3ZdYjKXg&callback=initMap">
+
+</script>
+
 </html>
