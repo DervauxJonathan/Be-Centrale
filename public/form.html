@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Contact</title>
+</head>
+<body>
+
+  <div class="form">
+    <div class="title">
+      <hr class="line"/>
+      <h2>Book a room</h2>
+    </div>
+    <div class="container">
+      <div class="form_contact">
+          <!-- <h3>Contact us</h3> -->
+        <form id="contact-form" class="form" action="#" method="POST" role="form">
+          <div id="first-group">
+            <div class="form-group">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Name" tabindex="1" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="first-name" name="name" placeholder="First-Name" tabindex="2" required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" tabindex="3" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="company" name="company" placeholder="Company" tabindex="4" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="name-event" name="name-event" placeholder="Name of event" tabindex="5" required>
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" id="attendees" name="attendees" placeholder="Number of attendees" tabindex="8" required>
+            </div>
+              <div class="form-group">
+                <input id="date" type="text" placeholder="date"  onfocus="(this.type='date')">
+              </div>
+              <div class="form-group">
+              <input id="time" type="text" onfocus="(this.type='time')" placeholder="time">
+              </div>
+          </div>
+
+          <div id="second-group">
+            <div class="checkbox">
+              <h4>Catering</h4>
+              <div class="contain">
+                <div class="form-group">
+                  <input type="checkbox" class="form-control" id="checkbox" name="breakfast" placeholder="Breakfast" tabindex="9" required> <span>Breakfast</span> <span class="checkmark"></span>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" class="form-control" id="checkbox" name="lunch" placeholder="Lunch" tabindex="10" required> <span>Lunch</span> <span class="checkmark"></span>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" class="form-control" id="checkbox" name="dinner" placeholder="Dinner" tabindex="11" required> <span>Dinner</span> <span class="checkmark"></span>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" class="form-control" id="checkbox" name="reception" placeholder="Reception" tabindex="12" required> <span>Reception</span> <span class="checkmark"></span>
+                </div>
+              </div>
+              <div class="send_msg">
+                <h4>Message</h4>
+                <div class="msg">
+                  <textarea name="message" class="form-control" id="message" placeholder="..." tabindex="13" required></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="button">
+          <button type="button" name="button">send</button>
+          </div>
+        </form>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      // Test for placeholder support
+      $.support.placeholder = (function() {
+        var i = document.createElement('input');
+        return 'placeholder' in i;
+      })();
+      // Hide labels by default if placeholders are supported
+      if ($.support.placeholder) {
+        $('.form-label').each(function() {
+          $(this).addClass('js-hide-label');
+        });
+        // Code for adding/removing classes here
+        $('.form-group').find('input, textarea').on('keyup blur focus', function(e) {
+          // Cache our selectors
+          var $this = $(this),
+            $parent = $this.parent().find("label");
+          if (e.type == 'keyup') {
+            if ($this.val() == '') {
+              $parent.addClass('js-hide-label');
+            } else {
+              $parent.removeClass('js-hide-label');
+            }
+          } else if (e.type == 'blur') {
+            if ($this.val() == '') {
+              $parent.addClass('js-hide-label');
+            } else {
+              $parent.removeClass('js-hide-label').addClass('js-unhighlight-label');
+            }
+          } else if (e.type == 'focus') {
+            if ($this.val() !== '') {
+              $parent.removeClass('js-unhighlight-label');
+            }
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>
