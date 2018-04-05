@@ -16,12 +16,18 @@
     }
     .subContainer {
       position: relative;
+      left: 50%;
+      transform: translateX(-50%);
       max-width: 900px;
       #map {
-        width: 100%;
-        height: 400px;
+        width: 70%;
+        height: 540px;
+        position: absolute;
+        right:0;
       }
       #info {
+        border: 5px solid #f9f9f9;
+        padding: 20px;
         margin-top: 20px;
         margin-left:20px;
         background: white;
@@ -29,6 +35,9 @@
         top: 0;
         width: 400px;
         font-family:Roboto,sans-serif;
+        p{
+          margin-bottom:40px;
+        }
         .head{
           margin-bottom: 20px;
         }
@@ -36,6 +45,13 @@
           font-weight:bold;
           display: block;
           margin-bottom: 20px;
+        }
+        .green-txt{
+          color: $title;
+          text-transform: uppercase;
+          display: block;
+          font-weight:bold;
+          margin-bottom: 16px;
         }
       }
     }
