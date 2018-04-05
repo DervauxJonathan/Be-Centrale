@@ -2,29 +2,41 @@
 @import "../base/base";
 
 .main-nav {
-  margin: 0 auto;
-  position: fixed;
-  z-index: 50;
-  width: 100%;
-  background: #333333;
-  align-items: center;
-  display: flex;
-  height: 77px;
   .container {
-    width:98%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: none;
     ul {
-      font-family: $nav-font;
-      color: white;
-      display: flex;
-      list-style: none;
-      width: 700px;
-      justify-content: space-between;
       #news {
-        color: $title;
+      }
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .main-nav {
+    margin: 0 auto;
+    position: fixed;
+    z-index: 50;
+    width: 100%;
+    background: #333333;
+    align-items: center;
+    display: flex;
+    height: 77px;
+    .container {
+      width: 98%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      ul {
+        font-family: $nav-font;
+        color: white;
+        display: flex;
+        list-style: none;
+        width: 700px;
+        justify-content: space-between;
+        #news {
+          color: $title;
+        }
       }
     }
   }
