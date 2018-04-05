@@ -1,13 +1,6 @@
 @import "../modules/variables";
 @import "../base/base";
 
-a{
-  text-decoration: none;
-  color: #fff;
-  &:hover{
-    color: $purple;
-  }
-}
 .rooms {
   position: relative;
   font-family: $text-font;
@@ -18,15 +11,29 @@ a{
   .room_box {
     display: none;
   }
+
+  .green_overlay{
+    background-color:$title;
+    height: 100%;
+    width:100%;
+    position: absolute;
+    
+  }
   .img_container_room {
     height: 100%;
+ 
+  
+    
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+     
+      
     }
   }
 }
+
 @media (min-width: 992px) {
   .rooms {
     .container {
@@ -47,7 +54,16 @@ a{
             line-height: $txt-lh;
             font-size: $text-font;
             max-width: 360px;
+            overflow: hidden;
+           
+            .float{
+              min-width: 400px;
+              
+             
+            }
           }
+
+
           .btn {
             margin-left: 75px;
             margin-top: 42px;
@@ -56,7 +72,6 @@ a{
             color: $title;
             padding: 10px;
           }
-
         }
         .specs {
           width: 90%;
@@ -84,6 +99,8 @@ a{
       .right {
         width: 60%;
         position: relative;
+        overflow: hidden;
+        background-color:$purple;
         .shaddow {
           display: none;
         }
@@ -99,6 +116,7 @@ a{
           font-size: 22px;
           list-style: none;
           justify-content: space-between;
+          z-index: 7;
           li {
             text-align: right;
             margin-bottom: 20px;
@@ -113,6 +131,8 @@ a{
           position: absolute;
           bottom: 0;
           left: 0;
+          overflow: hidden;
+          z-index: 10;
           .name {
             width:350px;
             position: absolute;
@@ -122,9 +142,21 @@ a{
             color: white;
             top: 40px;
             left: 60px;
+            z-index:100;
           }
+        }
+        .grey_overlay{
+          display: block;
+          background:grey;
+          width: 204px;
+          height: 165px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index:10;
         }
       }
     }
   }
 }
+
