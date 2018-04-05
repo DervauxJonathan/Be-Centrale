@@ -11,6 +11,9 @@ import axios from "axios";
 
 $(document).ready(function(){
 //animation on scroll//
+
+var controller = new ScrollMagic.Controller();
+
 $('.section').each(function(){
     var timeline = new TimelineMax();
     var p = $(this).find('paragraphe');
@@ -28,7 +31,7 @@ $('.section').each(function(){
           .from(bg,0.5,{width:0});
   
     
-    var animaiton = new ScrollMagic.Scene({
+    var animation = new ScrollMagic.Scene({
       triggerElement:this,
       triggerHook:'0.75',
       reverse:false
