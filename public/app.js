@@ -60,11 +60,324 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var bind = __webpack_require__(6);
+var isBuffer = __webpack_require__(24);
+
+/*global toString:true*/
+
+// utils is a library of generic helper functions non-specific to axios
+
+var toString = Object.prototype.toString;
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+function isArray(val) {
+  return toString.call(val) === '[object Array]';
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+function isArrayBuffer(val) {
+  return toString.call(val) === '[object ArrayBuffer]';
+}
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+function isFormData(val) {
+  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+}
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  var result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+function isString(val) {
+  return typeof val === 'string';
+}
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+function isNumber(val) {
+  return typeof val === 'number';
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+function isObject(val) {
+  return val !== null && typeof val === 'object';
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+function isDate(val) {
+  return toString.call(val) === '[object Date]';
+}
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+function isFile(val) {
+  return toString.call(val) === '[object File]';
+}
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+function isBlob(val) {
+  return toString.call(val) === '[object Blob]';
+}
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+function isFunction(val) {
+  return toString.call(val) === '[object Function]';
+}
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+function isStream(val) {
+  return isObject(val) && isFunction(val.pipe);
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+function isURLSearchParams(val) {
+  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+}
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ * @returns {String} The String freed of excess whitespace
+ */
+function trim(str) {
+  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+}
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ */
+function isStandardBrowserEnv() {
+  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+    return false;
+  }
+  return (
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined'
+  );
+}
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ */
+function forEach(obj, fn) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object') {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (var i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        fn.call(null, obj[key], key, obj);
+      }
+    }
+  }
+}
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = merge(result[key], val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ * @return {Object} The resulting value of object a
+ */
+function extend(a, b, thisArg) {
+  forEach(b, function assignValue(val, key) {
+    if (thisArg && typeof val === 'function') {
+      a[key] = bind(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  });
+  return a;
+}
+
+module.exports = {
+  isArray: isArray,
+  isArrayBuffer: isArrayBuffer,
+  isBuffer: isBuffer,
+  isFormData: isFormData,
+  isArrayBufferView: isArrayBufferView,
+  isString: isString,
+  isNumber: isNumber,
+  isObject: isObject,
+  isUndefined: isUndefined,
+  isDate: isDate,
+  isFile: isFile,
+  isBlob: isBlob,
+  isFunction: isFunction,
+  isStream: isStream,
+  isURLSearchParams: isURLSearchParams,
+  isStandardBrowserEnv: isStandardBrowserEnv,
+  forEach: forEach,
+  merge: merge,
+  extend: extend,
+  trim: trim
+};
+
+
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*** IMPORTS FROM imports-loader ***/
@@ -2853,7 +3166,7 @@ var define = false;
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports) {
 
 /*** IMPORTS FROM imports-loader ***/
@@ -2884,7 +3197,110 @@ module.exports = g;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(26);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(8);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(8);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 /*** IMPORTS FROM imports-loader ***/
@@ -13258,7 +13674,7 @@ return jQuery;
 
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*** IMPORTS FROM imports-loader ***/
@@ -21242,48 +21658,531 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenMax");
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 4 */
+/* 6 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+var settle = __webpack_require__(27);
+var buildURL = __webpack_require__(29);
+var parseHeaders = __webpack_require__(30);
+var isURLSameOrigin = __webpack_require__(31);
+var createError = __webpack_require__(9);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(32);
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+    var loadEvent = 'onreadystatechange';
+    var xDomain = false;
+
+    // For IE 8/9 CORS support
+    // Only supports POST and GET calls and doesn't returns the response headers.
+    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+    if (process.env.NODE_ENV !== 'test' &&
+        typeof window !== 'undefined' &&
+        window.XDomainRequest && !('withCredentials' in request) &&
+        !isURLSameOrigin(config.url)) {
+      request = new window.XDomainRequest();
+      loadEvent = 'onload';
+      xDomain = true;
+      request.onprogress = function handleProgress() {};
+      request.ontimeout = function handleTimeout() {};
+    }
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    // Listen for ready state
+    request[loadEvent] = function handleLoad() {
+      if (!request || (request.readyState !== 4 && !xDomain)) {
+        return;
+      }
+
+      // The request errored out and we didn't get a response, this will be
+      // handled by onerror instead
+      // With one exception: request that using file: protocol, most browsers
+      // will return status as 0 even though it's a successful request
+      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+        return;
+      }
+
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
+        data: responseData,
+        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
+        status: request.status === 1223 ? 204 : request.status,
+        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      var cookies = __webpack_require__(33);
+
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+          cookies.read(config.xsrfCookieName) :
+          undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (config.withCredentials) {
+      request.withCredentials = true;
+    }
+
+    // Add responseType to request if needed
+    if (config.responseType) {
+      try {
+        request.responseType = config.responseType;
+      } catch (e) {
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+        if (config.responseType !== 'json') {
+          throw e;
+        }
+      }
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken) {
+      // Handle cancellation
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!request) {
+          return;
+        }
+
+        request.abort();
+        reject(cancel);
+        // Clean up request
+        request = null;
+      });
+    }
+
+    if (requestData === undefined) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var enhanceError = __webpack_require__(28);
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
+}
+
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
+
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_app_scss__ = __webpack_require__(5);
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_app_scss__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_app_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__scss_app_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_gsap__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_gsap__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_gsap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_scrollmagic__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_scrollmagic__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_scrollmagic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_scrollmagic__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_axios__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_axios__);
 /*** IMPORTS FROM imports-loader ***/
 var define = false;
 
 
 
 
-__webpack_require__(10);
-__webpack_require__(11);
-const TimelineMax = __webpack_require__(12);
-const ScrollMagic = __webpack_require__(0);
+__webpack_require__(18);
+__webpack_require__(19);
+const TimelineMax = __webpack_require__(20);
+const ScrollMagic = __webpack_require__(1);
+
+
+
+
+
 
 $(document).ready(function() {  
     var ticket = $('.ticket');        
     var h1 = $('h1');
     var logo = $('.logo');
     var images = $('.img_container');
-    
     var title = $('.title-animation');
-    
     var section = $('section')
-  //   var tl = new TimelineLite();  
+    var tl = new TimelineLite();  
 
-  // tl
-  // .from(ticket, 0.8, {width:0,ease:Power0.easeOut})
-  // .from(h1, 1, {autoAlpha:0},'+=0.05')
-  // .from(logo, 0.5, {opacity:0, x:-200,ease:Power0.easeOut},'-=0.25');
+   tl
+   .from(ticket, 0.8, {width:0,ease:Power0.easeOut})
+   .from(h1, 1, {autoAlpha:0},'+=0.05')
+   .from(logo, 0.5, {opacity:0, x:-200,ease:Power0.easeOut},'-=0.25');
   
     
  var controller = new ScrollMagic.Controller();
@@ -21297,8 +22196,7 @@ $(document).ready(function() {
   var green = $(this).find('.green');
   var grey = $(this).find('.grey');
   var title = $(this).find('.title-animation');
-    
-    var bg = $('.bg');
+  var bg = $('.bg');
     
   timeline
         .to(green, 0.5,{width:0, ease:__WEBPACK_IMPORTED_MODULE_2_gsap__["Power1"].easeInOut})
@@ -21323,25 +22221,102 @@ $(document).ready(function() {
       
      
     });
-// duration:(duration - window.innerHeight)
-//---------------------------hamburger Menu----------------------------- //
-    $(".hamburger").click(function() {
-        $('.menu').toggleClass('show')
-        $(".stick").toggleClass(function () {
-          return $(this).is('.open, .close') ? 'open close' : 'open';
-    });
-  });    
-}) 
-   
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
+
+
+// duration:(duration - window.innerHeigh
+
+//---------------------------hamburger Menu----------------------------- //
+$('#openMenu').click(function(){
+  $("#main").fadeIn(200);
+  $('#openMenu').animate({left:"-10%"});
+  $('#closeMenu').animate({left:"100%"});
+  var opening = new TimelineMax
+  opening    
+    .from($('#logoSection'),.2,{x:"-50%"})
+    .from($('#menuSection'),.2,{x:"-70%"})
+    .from($('#service'),0.1,{x:-350})
+    .staggerFrom($('.menu'), 0.15, {x:-290}, 0.1)
+});
+
+$('#closeMenu').click(function(){
+  $("#main").fadeOut(200);
+  $('#openMenu').animate({left:"2%"});
+  $('#closeMenu').animate({left:"110%"});
+  
+});
+ //-----------------------Page transition-------------------------------//
+
+  
+
+}); 
+
+
+function getDataFromRoom() {
+  return __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get('http://localhost:3002/room.json')
+}
+
+async function data(room) {
+  const res = await getDataFromRoom(room);
+  return res;
+}
+
+let link = document.querySelectorAll('.room_link');
+let roomName = document.querySelector('.room_box .name');
+let roomCapacity = document.querySelector('.values #capacity');
+let roomPeople = document.querySelector('.values #people');
+let roomMaterial = document.querySelector('.values #material');
+let roomImage = document.querySelector('.img_container_room #image');
+
+link = Array.from(link);
+link.forEach((element) => {
+  element.addEventListener('click', () => {
+      data().then(roomArray => {
+              let selectedRoom = roomArray.data.find(e => e.id === element.id);
+              roomName.innerHTML = selectedRoom.name;
+              roomCapacity.innerHTML = selectedRoom.capacity;
+              roomPeople.innerHTML = selectedRoom.people;
+              roomMaterial.innerHTML = selectedRoom.material;
+              roomImage.src = selectedRoom.image;
+          }
+      )
+
+    
+      var rooms = new TimelineMax();
+          rooms
+            .fromTo($('.green_overlay'),0.5,{width:0},{width:"100%",ease: __WEBPACK_IMPORTED_MODULE_2_gsap__["Power4"].easeInOut})
+            .fromTo($('.green_overlay'),0.5,{x:"0%"},{x:"100%",ease: __WEBPACK_IMPORTED_MODULE_2_gsap__["Power4"].easeInOut})
+            .add('controll')
+            .from(roomImage,0.25,{x:"-100%",ease: __WEBPACK_IMPORTED_MODULE_2_gsap__["Power4"].easeInOut},"-=0.5")
+            .fromTo($('.grey_overlay'),0.5,{width:0,},{width:"100%",ease: __WEBPACK_IMPORTED_MODULE_2_gsap__["Power4"].easeInOut},"-=0.5")
+            .fromTo($('.grey_overlay'),0.5,{x:"0%"},{x:"100%",ease: __WEBPACK_IMPORTED_MODULE_2_gsap__["Power4"].easeInOut},"-=0.5")
+            .fromTo(roomName,0.5,{x:-150},{x:0,ease: __WEBPACK_IMPORTED_MODULE_2_gsap__["Power4"].easeInOut})
+            .from([roomCapacity,roomPeople,roomMaterial],0.5,{autoAlpha:0,y:20},'tween-=0.75')
+            //.set([roomCapacity,roomPeople,roomMaterial],{autoAlpha:1})
+            .from($('.paragraphe'),0.5,{width:0,ease:__WEBPACK_IMPORTED_MODULE_2_gsap__["Power1"].easeOut});
+            // TweenLite.from([roomCapacity,roomPeople,roomMaterial],0.7,{autoAlpha:0,y:20});
+             
+
+        
+          
+         
+          
+
+
+          
+  })
+});
+
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
 
 /***/ }),
-/* 5 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(6);
+var content = __webpack_require__(14);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -21355,7 +22330,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(8)(content, options);
+var update = __webpack_require__(16)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -21387,21 +22362,21 @@ if(false) {
 }
 
 /***/ }),
-/* 6 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(7)(false);
+exports = module.exports = __webpack_require__(15)(false);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat|Roboto);", ""]);
 
 // module
-exports.push([module.i, ".title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.nav {\n  position: fixed;\n  display: flex;\n  justify-content: space-between;\n  background-color: #0f001f;\n  z-index: 10;\n  width: 100%; }\n  .nav ul {\n    display: flex;\n    list-style: none;\n    color: #ffffff;\n    margin-right: 200px; }\n    .nav ul li {\n      font-family: \"Montserrat\";\n      font-size: 20px;\n      margin-right: 60px;\n      color: #ffffff;\n      cursor: pointer; }\n      .nav ul li:hover {\n        color: #00d991;\n        cursor: pointer; }\n\n@media screen and (max-width: 770px) {\n  .nav {\n    display: none; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.nav {\n  padding: 10px; }\n  .nav a {\n    text-decoration: none;\n    color: #fff; }\n    .nav a:hover {\n      color: #00d991; }\n  .nav img {\n    padding-left: 20px; }\n\nvideo {\n  position: relative;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n  width: 100%;\n  background-attachment: fixed; }\n\n.ticket {\n  position: absolute;\n  top: 300px;\n  width: 942px;\n  height: 388px;\n  background-color: rgba(255, 255, 255, 0.5);\n  opacity: 50%;\n  z-index: 2; }\n  .ticket .logo {\n    float: left;\n    margin: 45px; }\n  .ticket .title, .ticket .join_us .subTitle, .join_us .ticket .subTitle, .ticket .community .subTitle, .community .ticket .subTitle, .ticket .co-founders .subTitle, .co-founders .ticket .subTitle, .ticket .about .subTitle, .about .ticket .subTitle, .ticket #Event .subTitle, #Event .ticket .subTitle, .ticket .space .subTitle, .space .ticket .subTitle {\n    position: absolute;\n    display: block;\n    width: 600px;\n    height: 200px;\n    left: 201px;\n    top: 115px; }\n    .ticket .title h1, .ticket .join_us .subTitle h1, .join_us .ticket .subTitle h1, .ticket .community .subTitle h1, .community .ticket .subTitle h1, .ticket .co-founders .subTitle h1, .co-founders .ticket .subTitle h1, .ticket .about .subTitle h1, .about .ticket .subTitle h1, .ticket #Event .subTitle h1, #Event .ticket .subTitle h1, .ticket .space .subTitle h1, .space .ticket .subTitle h1 {\n      width: 555px;\n      font-family: \"Roboto\";\n      font-size: 50px;\n      font-style: normal;\n      font-weight: bold;\n      line-height: normal;\n      margin-left: 45px;\n      color: #333333; }\n  .ticket .newsLetter {\n    position: absolute;\n    left: 30%; }\n    .ticket .newsLetter input {\n      background-color: rgba(255, 255, 255, 0);\n      border: 1px solid #00d991; }\n\n.btn {\n  position: absolute;\n  display: inline-block;\n  width: 200px;\n  height: 50px;\n  border: 1px solid #00d991;\n  cursor: pointer;\n  font-size: sans-serif;\n  font-weight: light;\n  letter-spacing: 1px;\n  color: #00d991;\n  transition: all 1s easeInOut .5s;\n  margin-top: 319px; }\n  .btn .line {\n    position: absolute;\n    width: 24px;\n    height: 2px;\n    background-color: #00d991;\n    top: 8px; }\n\n.btn:after {\n  content: \"\";\n  position: absolute;\n  transition: all 0.3s ease 0s; }\n\n.btn:hover .line,\n.btn:focus .line {\n  background-color: #fff; }\n\n.btn:hover p:focus,\n.btn:focus p:focus {\n  color: #f8f8f8; }\n\n.btn-a:after {\n  background: #00d991;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 100%; }\n\n.btn-a:hover,\n.btn-a:focus {\n  background-color: transparent; }\n\n.btn-a:hover:after,\n.btn-a:focus:after {\n  right: 0; }\n\np {\n  margin-top: 15px;\n  display: inline-block;\n  margin-left: 30px;\n  font-family: \"sans-serif\"; }\n\n@media screen and (max-width: 1250px) {\n  .ticket {\n    width: 400px;\n    display: block;\n    position: relative;\n    top: 0px; }\n    .ticket .title, .ticket .join_us .subTitle, .join_us .ticket .subTitle, .ticket .community .subTitle, .community .ticket .subTitle, .ticket .co-founders .subTitle, .co-founders .ticket .subTitle, .ticket .about .subTitle, .about .ticket .subTitle, .ticket #Event .subTitle, #Event .ticket .subTitle, .ticket .space .subTitle, .space .ticket .subTitle {\n      width: 400px; }\n      .ticket .title h1, .ticket .join_us .subTitle h1, .join_us .ticket .subTitle h1, .ticket .community .subTitle h1, .community .ticket .subTitle h1, .ticket .co-founders .subTitle h1, .co-founders .ticket .subTitle h1, .ticket .about .subTitle h1, .about .ticket .subTitle h1, .ticket #Event .subTitle h1, #Event .ticket .subTitle h1, .ticket .space .subTitle h1, .space .ticket .subTitle h1 {\n        width: 400px; } }\n\n@media screen and (max-width: 780px) {\n  video {\n    display: none; }\n  .ticket {\n    display: none; }\n    .ticket .title, .ticket .join_us .subTitle, .join_us .ticket .subTitle, .ticket .community .subTitle, .community .ticket .subTitle, .ticket .co-founders .subTitle, .co-founders .ticket .subTitle, .ticket .about .subTitle, .about .ticket .subTitle, .ticket #Event .subTitle, #Event .ticket .subTitle, .ticket .space .subTitle, .space .ticket .subTitle {\n      display: none; }\n      .ticket .title h1, .ticket .join_us .subTitle h1, .join_us .ticket .subTitle h1, .ticket .community .subTitle h1, .community .ticket .subTitle h1, .ticket .co-founders .subTitle h1, .co-founders .ticket .subTitle h1, .ticket .about .subTitle h1, .about .ticket .subTitle h1, .ticket #Event .subTitle h1, #Event .ticket .subTitle h1, .ticket .space .subTitle h1, .space .ticket .subTitle h1 {\n        display: none; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.join_us {\n  margin-top: 150px; }\n  .join_us .button {\n    right: 324px;\n    position: absolute;\n    bottom: -27px; }\n  .join_us .subTitle {\n    z-index: 5;\n    display: block;\n    margin: 0 auto; }\n  .join_us .item {\n    display: flex;\n    margin-bottom: 18px;\n    width: 90%;\n    max-width: 350px; }\n    .join_us .item .join_us_icons {\n      align-self: center;\n      margin-right: 20px; }\n    .join_us .item .item-text h3 {\n      color: #333333;\n      margin-bottom: 5px; }\n    .join_us .item .item-text p {\n      color: #4F4F4F;\n      font-weight: 100; }\n\n@media (min-width: 576px) {\n  .join_us .container {\n    display: flex;\n    justify-content: center;\n    width: 100%; }\n    .join_us .container .subContainer {\n      display: flex;\n      max-width: 950px;\n      flex-wrap: wrap; }\n      .join_us .container .subContainer .item {\n        margin: 0 10px 50px;\n        display: flex;\n        flex: 1 1 300px;\n        align-items: center; }\n        .join_us .container .subContainer .item .join_us_icons {\n          align-self: center;\n          margin-right: 20px; }\n        .join_us .container .subContainer .item .item-text h3 {\n          color: #333333;\n          margin-bottom: 5px; }\n        .join_us .container .subContainer .item .item-text p {\n          color: #4F4F4F;\n          font-weight: 100; } }\n\n@media (min-width: 992px) {\n  .join_us .container .subContainer .item {\n    flex: 1 1 280px; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.community {\n  margin-top: 150px; }\n  .community .subTitle {\n    z-index: 5; }\n  .community .subTitle.desktop {\n    display: none; }\n\n@media (min-width: 768px) {\n  .community .subTitle.mobile {\n    display: none; }\n  .community .button {\n    position: absolute;\n    bottom: -20px;\n    right: 480px; }\n  .community .container {\n    display: flex;\n    position: relative;\n    justify-content: center; }\n    .community .container .bg {\n      position: absolute;\n      max-width: 900px;\n      top: 130px;\n      width: 100%;\n      height: 70%;\n      background: #f9f9f9;\n      z-index: -5; }\n    .community .container .subTitle {\n      width: 380px;\n      display: flex;\n      position: absolute;\n      top: 80px;\n      margin-left: -50px; }\n    .community .container .img_container {\n      overflow: hidden;\n      width: 50%;\n      max-width: 350px;\n      margin-right: 20px;\n      margin-top: 85px; }\n    .community .container .paragraphe {\n      width: 50%;\n      margin-top: 145px;\n      max-width: 400px; }\n      .community .container .paragraphe .reg-paragraphe {\n        margin-left: 25px; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.co-founders .subTitle {\n  z-index: 5; }\n\n.co-founders .desktop {\n  display: none; }\n\n@media (min-width: 768px) {\n  .co-founders .button {\n    bottom: 0;\n    position: absolute;\n    left: 22%; }\n  .co-founders .container {\n    display: flex;\n    justify-content: center;\n    position: relative; }\n    .co-founders .container .paragraphe {\n      width: 50%;\n      max-width: 454px;\n      margin-right: 50px; }\n      .co-founders .container .paragraphe .subTitle {\n        position: absolute;\n        top: 70px; }\n    .co-founders .container .img_container {\n      width: auto;\n      height: auto;\n      margin-top: 130px;\n      max-width: 440px;\n      overflow: hidden;\n      display: block; }\n      .co-founders .container .img_container .bg {\n        background: #f9f9f9;\n        width: 100%;\n        max-width: 440px;\n        height: 60%;\n        margin-left: -30px;\n        margin-top: -60px;\n        position: absolute;\n        z-index: -5; }\n    .co-founders .container .img_container.mobile {\n      display: none;\n      overflow: hidden; }\n    .co-founders .container .img_container.desktop {\n      overflow: hidden;\n      display: block; }\n    .co-founders .container .reg-paragraphe {\n      margin-top: 140px;\n      overflow: hidden; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.about .subTitle {\n  z-index: 5; }\n\n.about .desktop {\n  display: none; }\n\n@media (min-width: 768px) {\n  .about {\n    margin-top: 150px; }\n    .about .container {\n      display: flex;\n      flex-direction: column;\n      position: relative; }\n      .about .container .subContainer {\n        display: flex;\n        justify-content: center; }\n        .about .container .subContainer .bg {\n          position: absolute;\n          max-width: 1050px;\n          top: 150px;\n          width: 100%;\n          height: 70%;\n          background: #f9f9f9;\n          z-index: -5; }\n        .about .container .subContainer .subTitle {\n          width: 380px;\n          display: flex;\n          position: absolute;\n          top: 80px;\n          margin-left: -85px; }\n        .about .container .subContainer .img_container {\n          overflow: hidden;\n          width: 50%;\n          max-width: 475px;\n          margin-right: 20px;\n          margin-top: 85px; }\n        .about .container .subContainer .paragraphe {\n          width: 50%;\n          margin-top: 145px;\n          max-width: 400px; }\n        .about .container .subContainer .mobile {\n          display: none; } }\n\n.menu {\n  display: none; }\n  .menu .show {\n    width: 100vh;\n    height: 100vh;\n    background-color: #f9f9f9; }\n    .menu .show .menu-list {\n      width: 320px;\n      height: auto;\n      margin: 0 auto;\n      text-decoration: none;\n      list-style: none;\n      font-family: \"Roboto\";\n      padding: 20%;\n      top: 50%; }\n      .menu .show .menu-list .menu-item {\n        margin-top: 15px; }\n        .menu .show .menu-list .menu-item:hover {\n          color: #0f001f; }\n        .menu .show .menu-list .menu-item .img-list {\n          display: block;\n          height: 50px;\n          width: 50px;\n          position: relative;\n          float: left; }\n        .menu .show .menu-list .menu-item a {\n          position: relative;\n          color: #00d991;\n          text-decoration: none;\n          font-size: 42px; }\n          .menu .show .menu-list .menu-item a:hover:before {\n            visibility: visible;\n            -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n            color: #0f001f; }\n          .menu .show .menu-list .menu-item a:before {\n            content: \"\";\n            position: absolute;\n            width: 100%;\n            height: 2px;\n            bottom: 0;\n            left: 0;\n            color: #0f001f;\n            background-color: #0f001f;\n            visibility: hidden;\n            -webkit-transform: scaleX(0);\n            transform: scaleX(0);\n            -webkit-transition: all 0.3s ease-in-out 0s;\n            transition: all 0.3s ease-in-out 0s; }\n          .menu .show .menu-list .menu-item a:hover {\n            color: #0f001f;\n            transition: 0.25s ease-in-out; }\n\n@media screen and (max-width: 770px) {\n  .hamburger {\n    width: 80px;\n    height: 80px;\n    position: fixed;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    cursor: pointer;\n    z-index: 4; }\n  .stick {\n    width: 80px;\n    height: 8px;\n    border-radius: 4px;\n    margin-bottom: 15px;\n    background-color: #00d991;\n    display: inline-block;\n    z-index: 5; }\n  .stick:last-child {\n    margin-bottom: 0px;\n    z-index: 5; }\n  .stick-1.open {\n    animation: stick-1-open .6s ease-out forwards;\n    z-index: 5; }\n  .stick-2.open {\n    animation: stick-2-open .6s linear forwards;\n    z-index: 5; }\n  .stick-3.open {\n    animation: stick-3-open .6s linear forwards;\n    z-index: 5; }\n  @keyframes stick-1-open {\n    0% {\n      width: 80px; }\n    40% {\n      background-color: #0f001f;\n      width: 8px;\n      transform: translate(40px, 0px); }\n    75%, 80% {\n      width: 8px;\n      transform: translate(40px, -50px);\n      animation-timing-function: cubic-bezier(0, 1, 1, 1); }\n    100% {\n      background-color: #0f001f;\n      width: 8px;\n      transform: translate(35px, 46px); } }\n  @keyframes stick-2-open {\n    80% {\n      background-color: #00d991;\n      transform: translate(0px, 0px) rotate(0deg); }\n    100% {\n      background-color: #0f001f;\n      transform: translate(8px, 0px) rotate(40deg); } }\n  @keyframes stick-3-open {\n    80% {\n      background-color: #00d991;\n      transform: translate(0px, 0px) rotate(0deg); }\n    100% {\n      background-color: #0f001f;\n      transform: translate(8px, -23px) rotate(-40deg); } }\n  .stick-1.close {\n    width: 8px;\n    transform: translate(27px, 26px);\n    animation: stick-1-close .6s ease-out forwards;\n    z-index: 5; }\n  .stick-2.close {\n    transform: translate(0px, 0px) rotate(40deg);\n    animation: stick-2-close .6s ease-out forwards;\n    z-index: 5; }\n  .stick-3.close {\n    transform: translate(0px, -23px) rotate(-40deg);\n    animation: stick-3-close .6s ease-out forwards;\n    z-index: 5; }\n  @keyframes stick-1-close {\n    0%, 70% {\n      width: 0px; }\n    100% {\n      width: 80px;\n      transform: translate(0, 0); } }\n  @keyframes stick-2-close {\n    0% {\n      background-color: #0f001f;\n      width: 80px; }\n    20% {\n      background-color: #0f001f;\n      width: 8px;\n      transform: translate(0, 0px) rotate(40deg); }\n    40% {\n      background-color: #00d991;\n      width: 0px; }\n    65% {\n      transform: translate(0, -70px);\n      animation-timing-function: cubic-bezier(0, 1, 1, 1); }\n    80% {\n      width: 0px; }\n    100% {\n      width: 80px;\n      transform: translate(0, 0px); } }\n  @keyframes stick-3-close {\n    0% {\n      background-color: #0f001f;\n      width: 80px; }\n    20% {\n      background-color: #0f001f;\n      width: 8px;\n      transform: translate(0, -23px) rotate(-40deg); }\n    40% {\n      background-color: #00d991; }\n    65% {\n      transform: translate(0, -93px);\n      animation-timing-function: cubic-bezier(0, 1, 1, 1); }\n    90% {\n      width: 8px; }\n    100% {\n      width: 80px;\n      transform: translate(0, 0px); } } }\n\n.map {\n  height: 0;\n  overflow: hidden;\n  padding-bottom: 60%;\n  /* aspect ratio */\n  position: relative;\n  margin: auto auto;\n  min-height: 320px; }\n\n.formulaire {\n  width: 440px;\n  height: 515px;\n  display: block;\n  background-color: #fff;\n  position: absolute;\n  left: 50%;\n  transform: translateX(-50%); }\n\ninput {\n  width: 295px;\n  height: 30px;\n  margin-bottom: 50px;\n  border-radius: 0;\n  border-color: #ccc;\n  border-width: 0 0 2px 0;\n  display: flex;\n  flex-direction: column;\n  margin-left: 30px; }\n\n.adress {\n  width: 222px;\n  height: 19px;\n  font-size: 16px;\n  color: #4f4f4f; }\n\n.info {\n  font-size: 16px;\n  line-height: 30px;\n  font-weight: 100; }\n\n.set-title {\n  font-size: 28px;\n  font-weight: 400; }\n\nform {\n  margin-top: 60px; }\n\n.contact {\n  margin-top: 150px; }\n\n.contact-container {\n  display: flex; }\n\n.google-maps iframe {\n  border: 0;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%; }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n#Event .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: block;\n  justify-content: space-between;\n  align-items: center; }\n  #Event .section_title img {\n    margin-bottom: -30px;\n    margin-left: -24px; }\n  #Event .section_title h1 {\n    display: block;\n    margin-left: 30px;\n    margin-top: -49px; }\n  #Event .section_title .events {\n    margin-left: 25%; }\n\n#Event .subTitle {\n  margin-left: 300px;\n  z-index: 5;\n  display: content; }\n\n.agenda-container {\n  display: flex;\n  max-width: 960px;\n  margin: 0 auto;\n  justify-content: center;\n  flex-wrap: wrap; }\n\n.card {\n  margin: 20px;\n  width: 280px;\n  height: 350px;\n  font-family: \"Roboto\"; }\n  .card:hover.state {\n    transform: translateX(0px);\n    visibility: visible;\n    -webkit-transition: 2000ms;\n    transition: 2000ms ease-in-out; }\n  .card .event-img {\n    width: 280px;\n    height: 230px;\n    background-color: rgba(58, 0, 120, 0.2); }\n  .card .event-describe {\n    display: block;\n    height: 120px;\n    width: 280px;\n    background-color: #0f001f;\n    color: #ffffff; }\n  .card .state {\n    margin-top: -19px;\n    width: 124px;\n    height: 56px;\n    background-color: #00d991;\n    color: #ffffff;\n    font-weight: bold;\n    font-family: \"Montserrat\";\n    transform: translateX(-120px);\n    visibility: hidden; }\n    .card .state .white-line {\n      background-color: #ffffff;\n      float: left;\n      width: 20px;\n      height: 0.5px;\n      margin-top: 10px; }\n  .card h5 {\n    font-size: 16px;\n    color: #00d991;\n    font-weight: 100;\n    margin-left: 16px; }\n  .card .event-title {\n    margin-left: 30px;\n    font-family: \"Roboto\";\n    font-weight: bold;\n    font-size: 16px; }\n  .card .event-sub {\n    margin-left: 30px;\n    font-size: 13px;\n    font-weight: 200; }\n\n.bg-lock {\n  position: relative;\n  width: 960px;\n  height: auto;\n  margin-top: 150px; }\n  .bg-lock .greybg {\n    position: absolute;\n    width: 971px;\n    height: 748px;\n    left: 60%;\n    margin-top: 120px;\n    margin-left: 250px;\n    background: #F7F7F7;\n    z-index: -5; }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.space .section_title {\n  display: block;\n  margin-top: -55px; }\n  .space .section_title img {\n    margin-bottom: -30px;\n    margin-left: -24px; }\n  .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n\n.space .subTitle {\n  margin-left: 300px;\n  z-index: 5;\n  display: content; }\n\n.space .space-container {\n  padding: 39px;\n  display: flex;\n  max-width: 960px;\n  margin: 0 auto;\n  justify-content: center;\n  flex-wrap: wrap; }\n  .space .space-container p {\n    padding: 20px;\n    font-family: \"Montserrat\";\n    color: #00d991;\n    font-size: 20px;\n    font-weight: 500;\n    line-height: 29px;\n    text-transform: uppercase; }\n  .space .space-container .thumbnail {\n    width: 220px;\n    height: 230px;\n    margin-left: 10px;\n    margin-top: 10px;\n    overflow: hidden; }\n    .space .space-container .thumbnail:hover img {\n      transform: scale(1.1);\n      transition: 0.5s ease-in-out; }\n    .space .space-container .thumbnail .add {\n      margin-top: 20px;\n      text-align: center;\n      margin: 0 auto; }\n  .space .space-container .large {\n    width: 440px; }\n  .space .space-container .more-details {\n    text-align: center; }\n\nfooter {\n  width: 100%;\n  height: 291px;\n  bottom: 0;\n  background: #333333;\n  position: relative; }\n  footer .content {\n    margin: 0 auto;\n    width: 140px;\n    bottom: 0;\n    left: 50%;\n    transform: translateX(-50%);\n    margin-bottom: 40px; }\n    footer .content ul {\n      display: flex;\n      justify-content: space-between;\n      color: #fff; }\n      footer .content ul li {\n        list-style: none; }\n    footer .content .copyright {\n      color: #fff;\n      text-align: center;\n      margin-top: 20px;\n      font-family: \"Roboto\";\n      font-size: 13px; }\n\n.community_page .container {\n  margin-top: 119px;\n  width: 100%;\n  display: -webkit-flex;\n  display: -ms-flex;\n  display: flex; }\n\n.community_page .title, .community_page .join_us .subTitle, .join_us .community_page .subTitle, .community_page .community .subTitle, .community .community_page .subTitle, .community_page .co-founders .subTitle, .co-founders .community_page .subTitle, .community_page .about .subTitle, .about .community_page .subTitle, .community_page #Event .subTitle, #Event .community_page .subTitle, .community_page .space .subTitle, .space .community_page .subTitle {\n  left: 50%;\n  position: relative;\n  width: 400px;\n  margin-bottom: 50px;\n  text-align: center;\n  transform: translateX(-50%);\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .community_page .title hr, .community_page .join_us .subTitle hr, .join_us .community_page .subTitle hr, .community_page .community .subTitle hr, .community .community_page .subTitle hr, .community_page .co-founders .subTitle hr, .co-founders .community_page .subTitle hr, .community_page .about .subTitle hr, .about .community_page .subTitle hr, .community_page #Event .subTitle hr, #Event .community_page .subTitle hr, .community_page .space .subTitle hr, .space .community_page .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none;\n    display: block; }\n  .community_page .title h2, .community_page .join_us .subTitle h2, .join_us .community_page .subTitle h2, .community_page .community .subTitle h2, .community .community_page .subTitle h2, .community_page .co-founders .subTitle h2, .co-founders .community_page .subTitle h2, .community_page .about .subTitle h2, .about .community_page .subTitle h2, .community_page #Event .subTitle h2, #Event .community_page .subTitle h2, .community_page .space .subTitle h2, .space .community_page .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.community_page .left {\n  width: 30%; }\n\n.community_page .bg {\n  width: 80%;\n  height: 300px;\n  min-width: 200px;\n  margin-left: 20px;\n  background-color: #f9f9f9; }\n\n.community_page .text {\n  margin-top: -240px;\n  margin-left: 50px;\n  min-width: 250px;\n  font-family: \"Roboto\";\n  font-size: 16px; }\n\n.community_page .right {\n  display: flex;\n  width: 70%;\n  flex-wrap: wrap;\n  justify-content: center; }\n\n.community_page .img-ctn {\n  width: 174px;\n  border: 2px;\n  border-color: #00d991;\n  border-style: solid;\n  margin-left: 30px;\n  height: 174px;\n  margin-bottom: 20px;\n  transition: 100ms background-color ease-in; }\n\n.community_page .img-ctn:hover {\n  background-color: #fafafa; }\n\n@media screen and (max-width: 790px) {\n  .community_page .container {\n    margin-top: 0;\n    flex-direction: column;\n    justify-content: center; }\n  .community_page .right {\n    width: 100%; }\n  .community_page .title, .community_page .join_us .subTitle, .join_us .community_page .subTitle, .community_page .community .subTitle, .community .community_page .subTitle, .community_page .co-founders .subTitle, .co-founders .community_page .subTitle, .community_page .about .subTitle, .about .community_page .subTitle, .community_page #Event .subTitle, #Event .community_page .subTitle, .community_page .space .subTitle, .space .community_page .subTitle {\n    left: 60%;\n    position: absolute; } }\n\n.cofunders_page .bg {\n  width: 893px;\n  height: 354px;\n  background: #f9f9f9;\n  position: absolute;\n  left: 200px;\n  bottom: 0;\n  margin-top: 0;\n  z-index: -2;\n  top: 0; }\n\n.cofunders_page .description {\n  position: relative;\n  font-family: \"Roboto\";\n  line-height: 30px;\n  left: 45%; }\n  .cofunders_page .description p {\n    max-width: 675px; }\n\n.cofunders_page header,\n.cofunders_page section {\n  margin-bottom: 100px; }\n\n.cofunders_page .amb {\n  display: flex;\n  width: 98%;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  margin: 0 auto;\n  padding: 10px; }\n  .cofunders_page .amb .img-block {\n    display: -webkit-flex;\n    display: -ms-flex;\n    display: flex;\n    flex-direction: column;\n    position: relative;\n    margin-bottom: 20px;\n    width: 230px; }\n    .cofunders_page .amb .img-block .img {\n      height: 250px;\n      width: 100%; }\n      .cofunders_page .amb .img-block .img img {\n        width: 100%; }\n      .cofunders_page .amb .img-block .img .more {\n        color: #00d991;\n        position: absolute;\n        top: 10px;\n        right: 10px;\n        font-size: 25px;\n        z-index: 5; }\n        .cofunders_page .amb .img-block .img .more a {\n          text-decoration: none;\n          color: #00d991; }\n    .cofunders_page .amb .img-block .text {\n      background: #0F001F;\n      height: 80px;\n      color: white;\n      margin-top: 20px;\n      text-transform: uppercase;\n      font-family: \"Montserrat\"; }\n      .cofunders_page .amb .img-block .text p {\n        padding: 20px; }\n\n.cofunders_page .title, .cofunders_page .join_us .subTitle, .join_us .cofunders_page .subTitle, .cofunders_page .community .subTitle, .community .cofunders_page .subTitle, .cofunders_page .co-founders .subTitle, .co-founders .cofunders_page .subTitle, .cofunders_page .about .subTitle, .about .cofunders_page .subTitle, .cofunders_page #Event .subTitle, #Event .cofunders_page .subTitle, .cofunders_page .space .subTitle, .space .cofunders_page .subTitle {\n  left: 30%;\n  position: relative;\n  width: 400px;\n  margin-bottom: 50px;\n  text-align: center;\n  transform: translateX(-50%);\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center;\n  top: 40px; }\n  .cofunders_page .title hr, .cofunders_page .join_us .subTitle hr, .join_us .cofunders_page .subTitle hr, .cofunders_page .community .subTitle hr, .community .cofunders_page .subTitle hr, .cofunders_page .co-founders .subTitle hr, .co-founders .cofunders_page .subTitle hr, .cofunders_page .about .subTitle hr, .about .cofunders_page .subTitle hr, .cofunders_page #Event .subTitle hr, #Event .cofunders_page .subTitle hr, .cofunders_page .space .subTitle hr, .space .cofunders_page .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none;\n    display: block; }\n  .cofunders_page .title h2, .cofunders_page .join_us .subTitle h2, .join_us .cofunders_page .subTitle h2, .cofunders_page .community .subTitle h2, .community .cofunders_page .subTitle h2, .cofunders_page .co-founders .subTitle h2, .co-founders .cofunders_page .subTitle h2, .cofunders_page .about .subTitle h2, .about .cofunders_page .subTitle h2, .cofunders_page #Event .subTitle h2, #Event .cofunders_page .subTitle h2, .cofunders_page .space .subTitle h2, .space .cofunders_page .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.cofunders_page .cofunders {\n  display: flex;\n  width: 98%;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  margin: 0 auto;\n  padding: 10px; }\n  .cofunders_page .cofunders .img-block-1 {\n    display: -webkit-flex;\n    display: -ms-flex;\n    display: flex;\n    flex-direction: column;\n    position: relative;\n    margin-bottom: 20px;\n    width: 230px; }\n  .cofunders_page .cofunders .img {\n    height: 250px;\n    width: 100%; }\n    .cofunders_page .cofunders .img img {\n      width: 100%;\n      transform: scale(1.1);\n      transition: 0.5s ease-in-out; }\n    .cofunders_page .cofunders .img .more {\n      color: #00d991;\n      position: absolute;\n      top: 10px;\n      right: 10px;\n      font-size: 25px;\n      z-index: 5; }\n      .cofunders_page .cofunders .img .more a {\n        text-decoration: none;\n        color: #00d991; }\n  .cofunders_page .cofunders .text {\n    background: #0F001F;\n    height: 80px;\n    color: white;\n    text-transform: uppercase;\n    font-family: \"Montserrat\"; }\n    .cofunders_page .cofunders .text p {\n      padding: 20px; }\n\n.titles {\n  left: 50%;\n  position: relative;\n  width: 400px;\n  margin-bottom: 50px;\n  text-align: center;\n  transform: translateX(-50%);\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .titles hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none;\n    display: block; }\n  .titles h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\ntextarea {\n  resize: none;\n  font-family: \"roboto\"; }\n\n.form {\n  width: 100%; }\n  .form :focus {\n    outline: none; }\n  .form .form a {\n    outline: none; }\n  .form .titles {\n    left: 20%;\n    position: relative;\n    width: 400px;\n    margin-bottom: 50px;\n    text-align: center;\n    transform: translateX(-50%);\n    font-family: \"Roboto\";\n    display: flex;\n    align-items: center; }\n    .form .titles hr {\n      background: #00d991;\n      height: 5px;\n      width: 50px;\n      margin-right: 25px;\n      border: none;\n      display: block; }\n    .form .titles h2 {\n      font-size: 40px;\n      display: block;\n      color: #00d991; }\n  .form .container {\n    width: 80%;\n    display: flex;\n    justify-content: space-around;\n    margin: 0 auto; }\n    .form .container .form_contact {\n      width: 45%;\n      border: 1px solid;\n      border-color: #00d991;\n      padding: 30px;\n      box-sizing: border-box; }\n      .form .container .form_contact input {\n        width: 400px; }\n      .form .container .form_contact h3 {\n        font-family: \"Roboto\";\n        color: #757575;\n        text-align: center; }\n      .form .container .form_contact h4 {\n        font-size: 11.5px;\n        font-family: \"roboto\";\n        font-weight: 100;\n        color: #757575;\n        margin-bottom: 20px;\n        width: 50px; }\n      .form .container .form_contact .number {\n        width: 80%;\n        display: flex;\n        align-content: flex-end;\n        justify-content: space-between;\n        flex-wrap: wrap; }\n        .form .container .form_contact .number input {\n          width: 100%; }\n        .form .container .form_contact .number h4 {\n          font-size: 11.5px;\n          font-family: \"roboto\";\n          font-weight: 100;\n          color: #757575;\n          width: 100%;\n          border: none;\n          margin-top: -5px; }\n      .form .container .form_contact .form-group_number input {\n        width: 32%; }\n      .form .container .form_contact .checkbox {\n        width: 100%;\n        margin-top: 30px;\n        margin-bottom: 30px; }\n        .form .container .form_contact .checkbox .contain {\n          width: 90%;\n          display: flex;\n          justify-content: space-between; }\n          .form .container .form_contact .checkbox .contain input[type=\"checkbox\"] {\n            height: 11px;\n            width: 11px;\n            border: none; }\n          .form .container .form_contact .checkbox .contain span {\n            font-size: 10px;\n            font-family: 'roboto'; }\n          .form .container .form_contact .checkbox .contain .form-group {\n            display: -webkit-flex;\n            display: -ms-flex;\n            display: flex;\n            justify-content: space-between; }\n            .form .container .form_contact .checkbox .contain .form-group input {\n              width: 25px; }\n    .form .container .form-label {\n      font-size: 12px;\n      color: #5e9bfc;\n      line-height: 30px;\n      margin: 0;\n      display: block;\n      opacity: 1;\n      -webkit-transition: 0.333s ease top, 0.333s ease opacity;\n      transition: 0.333s ease top, 0.333s ease opacity; }\n    .form .container .form-control {\n      border-radius: 0;\n      border-color: #ccc;\n      border-width: 0 0 1px 0;\n      border-style: none none solid none;\n      box-shadow: none; }\n    .form .container .form-control:focus {\n      box-shadow: none;\n      border-color: #5e9bfc; }\n    .form .container .js-hide-label {\n      opacity: 0; }\n    .form .container .js-unhighlight-label {\n      color: red; }\n    .form .container .btn-start-order {\n      background: 0 0 #ffffff;\n      border: 1px solid #00d991;\n      color: #333333;\n      font-family: \"roboto\";\n      font-size: 14px;\n      line-height: inherit;\n      margin: 10px 0;\n      padding: 10px 20px;\n      text-transform: uppercase;\n      transition: all 0.25s ease 0s; }\n    .form .container .btn-start-order:active,\n    .form .container .btn-start-order:focus,\n    .form .container .btn-start-order:hover {\n      border-color: #5e9bfc;\n      color: #5e9bfc; }\n    .form .container .msg textarea {\n      width: 400px;\n      height: 100px;\n      border: none; }\n\n* {\n  margin: 0;\n  padding: 0; }\n", ""]);
+exports.push([module.i, ".title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.nav {\n  position: fixed;\n  display: flex;\n  justify-content: space-between;\n  background-color: #0f001f;\n  z-index: 10;\n  width: 100%; }\n  .nav ul {\n    display: flex;\n    list-style: none;\n    color: #ffffff;\n    margin-right: 200px; }\n    .nav ul li {\n      font-family: \"Montserrat\";\n      font-size: 20px;\n      margin-right: 60px;\n      color: #ffffff;\n      cursor: pointer; }\n      .nav ul li:hover {\n        color: #00d991;\n        cursor: pointer; }\n\n@media screen and (max-width: 770px) {\n  .nav {\n    display: none; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.nav {\n  padding: 10px; }\n  .nav a {\n    text-decoration: none;\n    color: #fff; }\n    .nav a:hover {\n      color: #00d991; }\n  .nav img {\n    padding-left: 20px; }\n\nvideo {\n  position: relative;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n  width: 100%;\n  background-attachment: fixed; }\n\n.ticket {\n  position: absolute;\n  top: 300px;\n  width: 942px;\n  height: 388px;\n  background-color: rgba(255, 255, 255, 0.5);\n  opacity: 50%;\n  z-index: 2; }\n  .ticket .logo {\n    float: left;\n    margin: 45px; }\n  .ticket .title, .ticket .join_us .subTitle, .join_us .ticket .subTitle, .ticket .community .subTitle, .community .ticket .subTitle, .ticket .co-founders .subTitle, .co-founders .ticket .subTitle, .ticket .about .subTitle, .about .ticket .subTitle, .ticket #Event .subTitle, #Event .ticket .subTitle, .ticket .space .subTitle, .space .ticket .subTitle, .ticket .rooms .subTitle, .rooms .ticket .subTitle {\n    position: absolute;\n    display: block;\n    width: 600px;\n    height: 200px;\n    left: 201px;\n    top: 115px; }\n    .ticket .title h1, .ticket .join_us .subTitle h1, .join_us .ticket .subTitle h1, .ticket .community .subTitle h1, .community .ticket .subTitle h1, .ticket .co-founders .subTitle h1, .co-founders .ticket .subTitle h1, .ticket .about .subTitle h1, .about .ticket .subTitle h1, .ticket #Event .subTitle h1, #Event .ticket .subTitle h1, .ticket .space .subTitle h1, .space .ticket .subTitle h1, .ticket .rooms .subTitle h1, .rooms .ticket .subTitle h1 {\n      width: 555px;\n      font-family: \"Roboto\";\n      font-size: 50px;\n      font-style: normal;\n      font-weight: bold;\n      line-height: normal;\n      margin-left: 45px;\n      color: #333333; }\n  .ticket .newsLetter {\n    position: absolute;\n    left: 30%; }\n    .ticket .newsLetter input {\n      background-color: rgba(255, 255, 255, 0);\n      border: 1px solid #00d991; }\n\n.btn {\n  position: absolute;\n  display: inline-block;\n  width: 200px;\n  height: 50px;\n  border: 1px solid #00d991;\n  cursor: pointer;\n  font-size: sans-serif;\n  font-weight: light;\n  letter-spacing: 1px;\n  color: #00d991;\n  transition: all 1s easeInOut .5s;\n  margin-top: 319px; }\n  .btn .line {\n    position: absolute;\n    width: 24px;\n    height: 2px;\n    background-color: #00d991;\n    top: 8px; }\n\n.btn:after {\n  content: \"\";\n  position: absolute;\n  transition: all 0.3s ease 0s; }\n\n.btn:hover .line,\n.btn:focus .line {\n  background-color: #fff; }\n\n.btn:hover p:focus,\n.btn:focus p:focus {\n  color: #f8f8f8; }\n\n.btn-a:after {\n  background: #00d991;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 100%; }\n\n.btn-a:hover,\n.btn-a:focus {\n  background-color: transparent; }\n\n.btn-a:hover:after,\n.btn-a:focus:after {\n  right: 0; }\n\np {\n  margin-top: 15px;\n  display: inline-block;\n  margin-left: 30px;\n  font-family: \"sans-serif\"; }\n\n@media screen and (max-width: 1250px) {\n  .ticket {\n    width: 400px;\n    display: block;\n    position: relative;\n    top: 0px; }\n    .ticket .title, .ticket .join_us .subTitle, .join_us .ticket .subTitle, .ticket .community .subTitle, .community .ticket .subTitle, .ticket .co-founders .subTitle, .co-founders .ticket .subTitle, .ticket .about .subTitle, .about .ticket .subTitle, .ticket #Event .subTitle, #Event .ticket .subTitle, .ticket .space .subTitle, .space .ticket .subTitle, .ticket .rooms .subTitle, .rooms .ticket .subTitle {\n      width: 400px; }\n      .ticket .title h1, .ticket .join_us .subTitle h1, .join_us .ticket .subTitle h1, .ticket .community .subTitle h1, .community .ticket .subTitle h1, .ticket .co-founders .subTitle h1, .co-founders .ticket .subTitle h1, .ticket .about .subTitle h1, .about .ticket .subTitle h1, .ticket #Event .subTitle h1, #Event .ticket .subTitle h1, .ticket .space .subTitle h1, .space .ticket .subTitle h1, .ticket .rooms .subTitle h1, .rooms .ticket .subTitle h1 {\n        width: 400px; } }\n\n@media screen and (max-width: 780px) {\n  video {\n    display: none; }\n  .ticket {\n    display: none; }\n    .ticket .title, .ticket .join_us .subTitle, .join_us .ticket .subTitle, .ticket .community .subTitle, .community .ticket .subTitle, .ticket .co-founders .subTitle, .co-founders .ticket .subTitle, .ticket .about .subTitle, .about .ticket .subTitle, .ticket #Event .subTitle, #Event .ticket .subTitle, .ticket .space .subTitle, .space .ticket .subTitle, .ticket .rooms .subTitle, .rooms .ticket .subTitle {\n      display: none; }\n      .ticket .title h1, .ticket .join_us .subTitle h1, .join_us .ticket .subTitle h1, .ticket .community .subTitle h1, .community .ticket .subTitle h1, .ticket .co-founders .subTitle h1, .co-founders .ticket .subTitle h1, .ticket .about .subTitle h1, .about .ticket .subTitle h1, .ticket #Event .subTitle h1, #Event .ticket .subTitle h1, .ticket .space .subTitle h1, .space .ticket .subTitle h1, .ticket .rooms .subTitle h1, .rooms .ticket .subTitle h1 {\n        display: none; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.join_us {\n  margin-top: 150px; }\n  .join_us .button {\n    right: 324px;\n    position: absolute;\n    bottom: -27px; }\n  .join_us .subTitle {\n    z-index: 5;\n    display: block;\n    margin: 0 auto; }\n  .join_us .item {\n    display: flex;\n    margin-bottom: 18px;\n    width: 90%;\n    max-width: 350px; }\n    .join_us .item .join_us_icons {\n      align-self: center;\n      margin-right: 20px; }\n    .join_us .item .item-text h3 {\n      color: #333333;\n      margin-bottom: 5px; }\n    .join_us .item .item-text p {\n      color: #4F4F4F;\n      font-weight: 100; }\n\n@media (min-width: 576px) {\n  .join_us .container {\n    display: flex;\n    justify-content: center;\n    width: 100%; }\n    .join_us .container .subContainer {\n      display: flex;\n      max-width: 950px;\n      flex-wrap: wrap; }\n      .join_us .container .subContainer .item {\n        margin: 0 10px 50px;\n        display: flex;\n        flex: 1 1 300px;\n        align-items: center; }\n        .join_us .container .subContainer .item .join_us_icons {\n          align-self: center;\n          margin-right: 20px; }\n        .join_us .container .subContainer .item .item-text h3 {\n          color: #333333;\n          margin-bottom: 5px; }\n        .join_us .container .subContainer .item .item-text p {\n          color: #4F4F4F;\n          font-weight: 100; } }\n\n@media (min-width: 992px) {\n  .join_us .container .subContainer .item {\n    flex: 1 1 280px; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.community {\n  margin-top: 150px; }\n  .community .subTitle {\n    z-index: 5; }\n  .community .subTitle.desktop {\n    display: none; }\n\n@media (min-width: 768px) {\n  .community .subTitle.mobile {\n    display: none; }\n  .community .button {\n    position: absolute;\n    bottom: -20px;\n    right: 480px; }\n  .community .container {\n    display: flex;\n    position: relative;\n    justify-content: center; }\n    .community .container .bg {\n      position: absolute;\n      max-width: 900px;\n      top: 130px;\n      width: 100%;\n      height: 70%;\n      background: #f9f9f9;\n      z-index: -5; }\n    .community .container .subTitle {\n      width: 380px;\n      display: flex;\n      position: absolute;\n      top: 80px;\n      margin-left: -50px; }\n    .community .container .img_container {\n      overflow: hidden;\n      width: 50%;\n      max-width: 350px;\n      margin-right: 20px;\n      margin-top: 85px; }\n    .community .container .paragraphe {\n      width: 50%;\n      margin-top: 145px;\n      max-width: 400px; }\n      .community .container .paragraphe .reg-paragraphe {\n        margin-left: 25px; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.co-founders .subTitle {\n  z-index: 5; }\n\n.co-founders .desktop {\n  display: none; }\n\n@media (min-width: 768px) {\n  .co-founders .button {\n    bottom: 0;\n    position: absolute;\n    left: 22%; }\n  .co-founders .container {\n    display: flex;\n    justify-content: center;\n    position: relative; }\n    .co-founders .container .paragraphe {\n      width: 50%;\n      max-width: 454px;\n      margin-right: 50px; }\n      .co-founders .container .paragraphe .subTitle {\n        position: absolute;\n        top: 70px; }\n    .co-founders .container .img_container {\n      width: auto;\n      height: auto;\n      margin-top: 130px;\n      max-width: 440px;\n      overflow: hidden;\n      display: block; }\n      .co-founders .container .img_container .bg {\n        background: #f9f9f9;\n        width: 100%;\n        max-width: 440px;\n        height: 60%;\n        margin-left: -30px;\n        margin-top: -60px;\n        position: absolute;\n        z-index: -5; }\n    .co-founders .container .img_container.mobile {\n      display: none;\n      overflow: hidden; }\n    .co-founders .container .img_container.desktop {\n      overflow: hidden;\n      display: block; }\n    .co-founders .container .reg-paragraphe {\n      margin-top: 140px;\n      overflow: hidden; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.about .subTitle {\n  z-index: 5; }\n\n.about .desktop {\n  display: none; }\n\n@media (min-width: 768px) {\n  .about {\n    margin-top: 150px; }\n    .about .container {\n      display: flex;\n      flex-direction: column;\n      position: relative; }\n      .about .container .subContainer {\n        display: flex;\n        justify-content: center; }\n        .about .container .subContainer .bg {\n          position: absolute;\n          max-width: 1050px;\n          top: 150px;\n          width: 100%;\n          height: 70%;\n          background: #f9f9f9;\n          z-index: -5; }\n        .about .container .subContainer .subTitle {\n          width: 380px;\n          display: flex;\n          position: absolute;\n          top: 80px;\n          margin-left: -85px; }\n        .about .container .subContainer .img_container {\n          overflow: hidden;\n          width: 50%;\n          max-width: 475px;\n          margin-right: 20px;\n          margin-top: 85px; }\n        .about .container .subContainer .paragraphe {\n          width: 50%;\n          margin-top: 145px;\n          max-width: 400px; }\n        .about .container .subContainer .mobile {\n          display: none; } }\n\n.menu {\n  display: none; }\n  .menu .show {\n    width: 100vh;\n    height: 100vh;\n    background-color: #f9f9f9; }\n    .menu .show .menu-list {\n      width: 320px;\n      height: auto;\n      margin: 0 auto;\n      text-decoration: none;\n      list-style: none;\n      font-family: \"Roboto\";\n      padding: 20%;\n      top: 50%; }\n      .menu .show .menu-list .menu-item {\n        margin-top: 15px; }\n        .menu .show .menu-list .menu-item:hover {\n          color: #0f001f; }\n        .menu .show .menu-list .menu-item .img-list {\n          display: block;\n          height: 50px;\n          width: 50px;\n          position: relative;\n          float: left; }\n        .menu .show .menu-list .menu-item a {\n          position: relative;\n          color: #00d991;\n          text-decoration: none;\n          font-size: 42px; }\n          .menu .show .menu-list .menu-item a:hover:before {\n            visibility: visible;\n            -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n            color: #0f001f; }\n          .menu .show .menu-list .menu-item a:before {\n            content: \"\";\n            position: absolute;\n            width: 100%;\n            height: 2px;\n            bottom: 0;\n            left: 0;\n            color: #0f001f;\n            background-color: #0f001f;\n            visibility: hidden;\n            -webkit-transform: scaleX(0);\n            transform: scaleX(0);\n            -webkit-transition: all 0.3s ease-in-out 0s;\n            transition: all 0.3s ease-in-out 0s; }\n          .menu .show .menu-list .menu-item a:hover {\n            color: #0f001f;\n            transition: 0.25s ease-in-out; }\n\n@media screen and (max-width: 770px) {\n  .hamburger {\n    width: 80px;\n    height: 80px;\n    position: fixed;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    cursor: pointer;\n    z-index: 4; }\n  .stick {\n    width: 80px;\n    height: 8px;\n    border-radius: 4px;\n    margin-bottom: 15px;\n    background-color: #00d991;\n    display: inline-block;\n    z-index: 5; }\n  .stick:last-child {\n    margin-bottom: 0px;\n    z-index: 5; }\n  .stick-1.open {\n    animation: stick-1-open .6s ease-out forwards;\n    z-index: 5; }\n  .stick-2.open {\n    animation: stick-2-open .6s linear forwards;\n    z-index: 5; }\n  .stick-3.open {\n    animation: stick-3-open .6s linear forwards;\n    z-index: 5; }\n  @keyframes stick-1-open {\n    0% {\n      width: 80px; }\n    40% {\n      background-color: #0f001f;\n      width: 8px;\n      transform: translate(40px, 0px); }\n    75%, 80% {\n      width: 8px;\n      transform: translate(40px, -50px);\n      animation-timing-function: cubic-bezier(0, 1, 1, 1); }\n    100% {\n      background-color: #0f001f;\n      width: 8px;\n      transform: translate(35px, 46px); } }\n  @keyframes stick-2-open {\n    80% {\n      background-color: #00d991;\n      transform: translate(0px, 0px) rotate(0deg); }\n    100% {\n      background-color: #0f001f;\n      transform: translate(8px, 0px) rotate(40deg); } }\n  @keyframes stick-3-open {\n    80% {\n      background-color: #00d991;\n      transform: translate(0px, 0px) rotate(0deg); }\n    100% {\n      background-color: #0f001f;\n      transform: translate(8px, -23px) rotate(-40deg); } }\n  .stick-1.close {\n    width: 8px;\n    transform: translate(27px, 26px);\n    animation: stick-1-close .6s ease-out forwards;\n    z-index: 5; }\n  .stick-2.close {\n    transform: translate(0px, 0px) rotate(40deg);\n    animation: stick-2-close .6s ease-out forwards;\n    z-index: 5; }\n  .stick-3.close {\n    transform: translate(0px, -23px) rotate(-40deg);\n    animation: stick-3-close .6s ease-out forwards;\n    z-index: 5; }\n  @keyframes stick-1-close {\n    0%, 70% {\n      width: 0px; }\n    100% {\n      width: 80px;\n      transform: translate(0, 0); } }\n  @keyframes stick-2-close {\n    0% {\n      background-color: #0f001f;\n      width: 80px; }\n    20% {\n      background-color: #0f001f;\n      width: 8px;\n      transform: translate(0, 0px) rotate(40deg); }\n    40% {\n      background-color: #00d991;\n      width: 0px; }\n    65% {\n      transform: translate(0, -70px);\n      animation-timing-function: cubic-bezier(0, 1, 1, 1); }\n    80% {\n      width: 0px; }\n    100% {\n      width: 80px;\n      transform: translate(0, 0px); } }\n  @keyframes stick-3-close {\n    0% {\n      background-color: #0f001f;\n      width: 80px; }\n    20% {\n      background-color: #0f001f;\n      width: 8px;\n      transform: translate(0, -23px) rotate(-40deg); }\n    40% {\n      background-color: #00d991; }\n    65% {\n      transform: translate(0, -93px);\n      animation-timing-function: cubic-bezier(0, 1, 1, 1); }\n    90% {\n      width: 8px; }\n    100% {\n      width: 80px;\n      transform: translate(0, 0px); } } }\n\n.map {\n  height: 0;\n  overflow: hidden;\n  padding-bottom: 60%;\n  /* aspect ratio */\n  position: relative;\n  margin: auto auto;\n  min-height: 320px; }\n\n.formulaire {\n  width: 440px;\n  height: 515px;\n  display: block;\n  background-color: #fff;\n  position: absolute;\n  left: 50%;\n  transform: translateX(-50%); }\n\ninput {\n  width: 295px;\n  height: 30px;\n  margin-bottom: 50px;\n  border-radius: 0;\n  border-color: #ccc;\n  border-width: 0 0 2px 0;\n  display: flex;\n  flex-direction: column;\n  margin-left: 30px; }\n\n.adress {\n  width: 222px;\n  height: 19px;\n  font-size: 16px;\n  color: #4f4f4f; }\n\n.info {\n  font-size: 16px;\n  line-height: 30px;\n  font-weight: 100; }\n\n.set-title {\n  font-size: 28px;\n  font-weight: 400; }\n\nform {\n  margin-top: 60px; }\n\n.contact {\n  margin-top: 150px; }\n\n.contact-container {\n  display: flex; }\n\n.google-maps iframe {\n  border: 0;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%; }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n#Event .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: block;\n  justify-content: space-between;\n  align-items: center; }\n  #Event .section_title img {\n    margin-bottom: -30px;\n    margin-left: -24px; }\n  #Event .section_title h1 {\n    display: block;\n    margin-left: 30px;\n    margin-top: -49px; }\n  #Event .section_title .events {\n    margin-left: 25%; }\n\n#Event .subTitle {\n  margin-left: 300px;\n  z-index: 5;\n  display: content; }\n\n.agenda-container {\n  display: flex;\n  max-width: 960px;\n  margin: 0 auto;\n  justify-content: center;\n  flex-wrap: wrap; }\n\n.card {\n  margin: 20px;\n  width: 280px;\n  height: 350px;\n  font-family: \"Roboto\"; }\n  .card:hover.state {\n    transform: translateX(0px);\n    visibility: visible;\n    -webkit-transition: 2000ms;\n    transition: 2000ms ease-in-out; }\n  .card .event-img {\n    width: 280px;\n    height: 230px;\n    background-color: rgba(58, 0, 120, 0.2); }\n  .card .event-describe {\n    display: block;\n    height: 120px;\n    width: 280px;\n    background-color: #0f001f;\n    color: #ffffff; }\n  .card .state {\n    margin-top: -19px;\n    width: 124px;\n    height: 56px;\n    background-color: #00d991;\n    color: #ffffff;\n    font-weight: bold;\n    font-family: \"Montserrat\";\n    transform: translateX(-120px);\n    visibility: hidden; }\n    .card .state .white-line {\n      background-color: #ffffff;\n      float: left;\n      width: 20px;\n      height: 0.5px;\n      margin-top: 10px; }\n  .card h5 {\n    font-size: 16px;\n    color: #00d991;\n    font-weight: 100;\n    margin-left: 16px; }\n  .card .event-title {\n    margin-left: 30px;\n    font-family: \"Roboto\";\n    font-weight: bold;\n    font-size: 16px; }\n  .card .event-sub {\n    margin-left: 30px;\n    font-size: 13px;\n    font-weight: 200; }\n\n.bg-lock {\n  position: relative;\n  width: 960px;\n  height: auto;\n  margin-top: 150px; }\n  .bg-lock .greybg {\n    position: absolute;\n    width: 971px;\n    height: 748px;\n    left: 60%;\n    margin-top: 120px;\n    margin-left: 250px;\n    background: #F7F7F7;\n    z-index: -5; }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.space .section_title {\n  display: block;\n  margin-top: -55px; }\n  .space .section_title img {\n    margin-bottom: -30px;\n    margin-left: -24px; }\n  .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n\n.space .subTitle {\n  margin-left: 300px;\n  z-index: 5;\n  display: content; }\n\n.space .space-container {\n  padding: 39px;\n  display: flex;\n  max-width: 960px;\n  margin: 0 auto;\n  justify-content: center;\n  flex-wrap: wrap; }\n  .space .space-container p {\n    padding: 20px;\n    font-family: \"Montserrat\";\n    color: #00d991;\n    font-size: 20px;\n    font-weight: 500;\n    line-height: 29px;\n    text-transform: uppercase; }\n  .space .space-container .thumbnail {\n    width: 220px;\n    height: 230px;\n    margin-left: 10px;\n    margin-top: 10px;\n    overflow: hidden; }\n    .space .space-container .thumbnail:hover img {\n      transform: scale(1.1);\n      transition: 0.5s ease-in-out; }\n    .space .space-container .thumbnail .add {\n      margin-top: 20px;\n      text-align: center;\n      margin: 0 auto; }\n  .space .space-container .large {\n    width: 440px; }\n  .space .space-container .more-details {\n    text-align: center; }\n\nfooter {\n  width: 100%;\n  height: 291px;\n  bottom: 0;\n  background: #333333;\n  position: relative; }\n  footer .content {\n    margin: 0 auto;\n    width: 140px;\n    bottom: 0;\n    left: 50%;\n    transform: translateX(-50%);\n    margin-bottom: 40px; }\n    footer .content ul {\n      display: flex;\n      justify-content: space-between;\n      color: #fff; }\n      footer .content ul li {\n        list-style: none; }\n    footer .content .copyright {\n      color: #fff;\n      text-align: center;\n      margin-top: 20px;\n      font-family: \"Roboto\";\n      font-size: 13px; }\n\n.community_page .container {\n  margin-top: 119px;\n  width: 100%;\n  display: -webkit-flex;\n  display: -ms-flex;\n  display: flex; }\n\n.community_page .title, .community_page .join_us .subTitle, .join_us .community_page .subTitle, .community_page .community .subTitle, .community .community_page .subTitle, .community_page .co-founders .subTitle, .co-founders .community_page .subTitle, .community_page .about .subTitle, .about .community_page .subTitle, .community_page #Event .subTitle, #Event .community_page .subTitle, .community_page .space .subTitle, .space .community_page .subTitle, .community_page .rooms .subTitle, .rooms .community_page .subTitle {\n  left: 50%;\n  position: relative;\n  width: 400px;\n  margin-bottom: 50px;\n  text-align: center;\n  transform: translateX(-50%);\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .community_page .title hr, .community_page .join_us .subTitle hr, .join_us .community_page .subTitle hr, .community_page .community .subTitle hr, .community .community_page .subTitle hr, .community_page .co-founders .subTitle hr, .co-founders .community_page .subTitle hr, .community_page .about .subTitle hr, .about .community_page .subTitle hr, .community_page #Event .subTitle hr, #Event .community_page .subTitle hr, .community_page .space .subTitle hr, .space .community_page .subTitle hr, .community_page .rooms .subTitle hr, .rooms .community_page .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none;\n    display: block; }\n  .community_page .title h2, .community_page .join_us .subTitle h2, .join_us .community_page .subTitle h2, .community_page .community .subTitle h2, .community .community_page .subTitle h2, .community_page .co-founders .subTitle h2, .co-founders .community_page .subTitle h2, .community_page .about .subTitle h2, .about .community_page .subTitle h2, .community_page #Event .subTitle h2, #Event .community_page .subTitle h2, .community_page .space .subTitle h2, .space .community_page .subTitle h2, .community_page .rooms .subTitle h2, .rooms .community_page .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.community_page .left {\n  width: 30%; }\n\n.community_page .bg {\n  width: 80%;\n  height: 300px;\n  min-width: 200px;\n  margin-left: 20px;\n  background-color: #f9f9f9; }\n\n.community_page .text {\n  margin-top: -240px;\n  margin-left: 50px;\n  min-width: 250px;\n  font-family: \"Roboto\";\n  font-size: 16px; }\n\n.community_page .right {\n  display: flex;\n  width: 70%;\n  flex-wrap: wrap;\n  justify-content: center; }\n\n.community_page .img-ctn {\n  width: 174px;\n  border: 2px;\n  border-color: #00d991;\n  border-style: solid;\n  margin-left: 30px;\n  height: 174px;\n  margin-bottom: 20px;\n  transition: 100ms background-color ease-in; }\n\n.community_page .img-ctn:hover {\n  background-color: #fafafa; }\n\n@media screen and (max-width: 790px) {\n  .community_page .container {\n    margin-top: 0;\n    flex-direction: column;\n    justify-content: center; }\n  .community_page .right {\n    width: 100%; }\n  .community_page .title, .community_page .join_us .subTitle, .join_us .community_page .subTitle, .community_page .community .subTitle, .community .community_page .subTitle, .community_page .co-founders .subTitle, .co-founders .community_page .subTitle, .community_page .about .subTitle, .about .community_page .subTitle, .community_page #Event .subTitle, #Event .community_page .subTitle, .community_page .space .subTitle, .space .community_page .subTitle, .community_page .rooms .subTitle, .rooms .community_page .subTitle {\n    left: 60%;\n    position: absolute; } }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.cofunders_page .bg {\n  width: 893px;\n  height: 384px;\n  background: #f9f9f9;\n  position: absolute;\n  left: 200px;\n  bottom: 0;\n  margin-top: 0;\n  z-index: -2;\n  top: 0; }\n\n.cofunders_page .description {\n  position: relative;\n  line-height: 30px;\n  left: 45%;\n  padding: 10px; }\n  .cofunders_page .description p {\n    max-width: 675px;\n    width: 50%;\n    font-family: \"Roboto\"; }\n\n.cofunders_page header,\n.cofunders_page section {\n  margin-bottom: 100px; }\n\n.cofunders_page .cofunders {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  grid-gap: 25px;\n  justify-content: space-between; }\n  .cofunders_page .cofunders .img-block-1 {\n    margin-right: 10px;\n    display: inline-block;\n    position: relative;\n    margin-bottom: 20px;\n    max-width: 250px;\n    overflow: hidden;\n    width: 100%; }\n  .cofunders_page .cofunders .img img {\n    width: 100%;\n    transform: scale(1.1);\n    transition: 0.5s ease-in-out; }\n  .cofunders_page .cofunders .img .more {\n    color: #00d991;\n    position: absolute;\n    top: 10px;\n    right: 10px;\n    font-size: 20px;\n    z-index: 5; }\n    .cofunders_page .cofunders .img .more a {\n      text-decoration: none;\n      color: #00d991; }\n  .cofunders_page .cofunders .text {\n    background: #0F001F;\n    height: 80px;\n    color: white;\n    width: 100%;\n    text-transform: uppercase; }\n    .cofunders_page .cofunders .text p {\n      padding: 10px;\n      font-family: \"Montserrat\";\n      font-size: 13px; }\n\n.amb {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  grid-gap: 20px; }\n  .amb .img-block {\n    margin-right: 10px;\n    display: inline-block;\n    position: relative;\n    margin-bottom: 20px;\n    max-width: 250px;\n    overflow: hidden;\n    width: 100%; }\n    .amb .img-block .img {\n      width: 100%; }\n      .amb .img-block .img img {\n        width: 100%;\n        transform: scale(1.1);\n        transition: 0.5s ease-in-out; }\n      .amb .img-block .img .more {\n        color: #00d991;\n        position: absolute;\n        top: 10px;\n        right: 10px;\n        font-size: 20px;\n        z-index: 5; }\n        .amb .img-block .img .more a {\n          text-decoration: none;\n          color: #00d991; }\n    .amb .img-block .text {\n      background: #0F001F;\n      height: 80px;\n      color: white;\n      text-transform: uppercase; }\n      .amb .img-block .text p {\n        padding: 10px;\n        font-family: \"Montserrat\";\n        font-size: 13px; }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  left: 30%;\n  position: relative;\n  width: 400px;\n  margin-bottom: 50px;\n  text-align: center;\n  transform: translateX(-50%);\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center;\n  top: 40px; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none;\n    display: block; }\n\n.titles {\n  left: 50%;\n  position: relative;\n  width: 400px;\n  margin-bottom: 50px;\n  text-align: center;\n  transform: translateX(-50%);\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .titles hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none;\n    display: block; }\n  .titles h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n@media screen and (max-width: 440px) {\n  .description {\n    left: 0 !important; }\n    .description p {\n      min-width: 300px;\n      padding: 20px; }\n    .description .titles {\n      margin-bottom: 10px; }\n  .img-block-1 {\n    left: 20%; }\n  .img-block {\n    left: 20%; } }\n\ntextarea {\n  resize: none;\n  font-family: \"roboto\"; }\n\n.form {\n  width: 100%; }\n  .form :focus {\n    outline: none; }\n  .form .form a {\n    outline: none; }\n  .form .titles {\n    left: 20%;\n    position: relative;\n    width: 400px;\n    margin-bottom: 50px;\n    text-align: center;\n    transform: translateX(-50%);\n    font-family: \"Roboto\";\n    display: flex;\n    align-items: center; }\n    .form .titles hr {\n      background: #00d991;\n      height: 5px;\n      width: 50px;\n      margin-right: 25px;\n      border: none;\n      display: block; }\n    .form .titles h2 {\n      font-size: 40px;\n      display: block;\n      color: #00d991; }\n  .form .container {\n    width: 80%;\n    display: flex;\n    justify-content: space-around;\n    margin: 0 auto; }\n    .form .container .form_contact {\n      width: 45%;\n      border: 1px solid;\n      border-color: #00d991;\n      padding: 30px;\n      box-sizing: border-box; }\n      .form .container .form_contact input {\n        width: 400px; }\n      .form .container .form_contact h3 {\n        font-family: \"Roboto\";\n        color: #757575;\n        text-align: center; }\n      .form .container .form_contact h4 {\n        font-size: 11.5px;\n        font-family: \"roboto\";\n        font-weight: 100;\n        color: #757575;\n        margin-bottom: 20px;\n        width: 50px; }\n      .form .container .form_contact .number {\n        width: 80%;\n        display: flex;\n        align-content: flex-end;\n        justify-content: space-between;\n        flex-wrap: wrap; }\n        .form .container .form_contact .number input {\n          width: 100%; }\n        .form .container .form_contact .number h4 {\n          font-size: 11.5px;\n          font-family: \"roboto\";\n          font-weight: 100;\n          color: #757575;\n          width: 100%;\n          border: none;\n          margin-top: -5px; }\n      .form .container .form_contact .form-group_number input {\n        width: 32%; }\n      .form .container .form_contact .checkbox {\n        width: 100%;\n        margin-top: 30px;\n        margin-bottom: 30px; }\n        .form .container .form_contact .checkbox .contain {\n          width: 90%;\n          display: flex;\n          justify-content: space-between; }\n          .form .container .form_contact .checkbox .contain input[type=\"checkbox\"] {\n            height: 11px;\n            width: 11px;\n            border: none; }\n          .form .container .form_contact .checkbox .contain span {\n            font-size: 10px;\n            font-family: 'roboto'; }\n          .form .container .form_contact .checkbox .contain .form-group {\n            display: -webkit-flex;\n            display: -ms-flex;\n            display: flex;\n            justify-content: space-between; }\n            .form .container .form_contact .checkbox .contain .form-group input {\n              width: 25px; }\n    .form .container .form-label {\n      font-size: 12px;\n      color: #5e9bfc;\n      line-height: 30px;\n      margin: 0;\n      display: block;\n      opacity: 1;\n      -webkit-transition: 0.333s ease top, 0.333s ease opacity;\n      transition: 0.333s ease top, 0.333s ease opacity; }\n    .form .container .form-control {\n      border-radius: 0;\n      border-color: #ccc;\n      border-width: 0 0 1px 0;\n      border-style: none none solid none;\n      box-shadow: none; }\n    .form .container .form-control:focus {\n      box-shadow: none;\n      border-color: #5e9bfc; }\n    .form .container .js-hide-label {\n      opacity: 0; }\n    .form .container .js-unhighlight-label {\n      color: red; }\n    .form .container .btn-start-order {\n      background: 0 0 #ffffff;\n      border: 1px solid #00d991;\n      color: #333333;\n      font-family: \"roboto\";\n      font-size: 14px;\n      line-height: inherit;\n      margin: 10px 0;\n      padding: 10px 20px;\n      text-transform: uppercase;\n      transition: all 0.25s ease 0s; }\n    .form .container .btn-start-order:active,\n    .form .container .btn-start-order:focus,\n    .form .container .btn-start-order:hover {\n      border-color: #5e9bfc;\n      color: #5e9bfc; }\n    .form .container .msg textarea {\n      width: 400px;\n      height: 100px;\n      border: none; }\n\n.title, .join_us .subTitle, .community .subTitle, .co-founders .subTitle, .about .subTitle, #Event .subTitle, .space .subTitle, .rooms .subTitle {\n  position: relative;\n  margin-bottom: 25px;\n  font-family: \"Roboto\";\n  display: flex;\n  align-items: center; }\n  .title hr, .join_us .subTitle hr, .community .subTitle hr, .co-founders .subTitle hr, .about .subTitle hr, #Event .subTitle hr, .space .subTitle hr, .rooms .subTitle hr {\n    background: #00d991;\n    height: 5px;\n    width: 50px;\n    margin-right: 25px;\n    border: none; }\n  .title h2, .join_us .subTitle h2, .community .subTitle h2, .co-founders .subTitle h2, .about .subTitle h2, #Event .subTitle h2, .space .subTitle h2, .rooms .subTitle h2 {\n    font-size: 40px;\n    display: block;\n    color: #00d991; }\n\n.subTitle.mobile {\n  justify-content: center; }\n\n.img_container {\n  width: 100%;\n  overflow: hidden; }\n  .img_container img {\n    width: 100%;\n    margin-bottom: 25px;\n    overflow: hidden; }\n\n.section {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  padding: 0 20px;\n  margin-bottom: 100px;\n  position: relative; }\n  .section .section_title {\n    display: none; }\n  .section h3, .section p {\n    font-family: \"Roboto\"; }\n  .section .reg-paragraphe {\n    font-size: 16px;\n    line-height: 31px; }\n\n.section_title_style, .join_us .section_title, .community .section_title, .co-founders .section_title, .about .section_title, #Event .section_title, .space .section_title {\n  position: absolute;\n  top: 50%;\n  left: 100px;\n  transform: rotate(90deg) translateX(-50%);\n  transform-origin: top left;\n  font-size: 12px;\n  font-family: \"Montserrat\";\n  display: none;\n  justify-content: space-between;\n  align-items: center; }\n  .section_title_style h1, .join_us .section_title h1, .community .section_title h1, .co-founders .section_title h1, .about .section_title h1, #Event .section_title h1, .space .section_title h1 {\n    display: block;\n    margin-left: 30px; }\n  .section_title_style img, .join_us .section_title img, .community .section_title img, .co-founders .section_title img, .about .section_title img, #Event .section_title img, .space .section_title img {\n    transform: rotate(-90deg) translateX(-50%);\n    margin-bottom: 20px; }\n\n@media (min-width: 576px) and (max-width: 767px) {\n  .section {\n    padding: 0 80px; } }\n\n@media (min-width: 1200px) {\n  .about .section_title, .co-founders .section_title, .community .section_title, .join_us .section_title {\n    display: flex; } }\n\n.button {\n  position: relative;\n  float: left; }\n\na.animated-button:link, a.animated-button:visited {\n  font-family: sans-serif;\n  width: 150px;\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #000;\n  border: 1px solid #00d991;\n  font-size: 14px;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: lowercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  border-radius: 0;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out; }\n\na.animated-button:link:after, a.animated-button:visited:after {\n  content: \"\";\n  position: absolute;\n  height: 0%;\n  left: 50%;\n  top: 50%;\n  width: 150%;\n  z-index: -1;\n  -webkit-transition: all 0.75s ease 0s;\n  -moz-transition: all 0.75s ease 0s;\n  -o-transition: all 0.75s ease 0s;\n  transition: all 0.75s ease 0s; }\n\na.animated-button:link:hover, a.animated-button:visited:hover {\n  color: #FFF;\n  text-shadow: none; }\n\na.animated-button:link:hover:after, a.animated-button:visited:hover:after {\n  height: 450%; }\n\na.animated-button:link, a.animated-button:visited {\n  position: relative;\n  display: block;\n  margin: 30px auto 0;\n  padding: 14px 15px;\n  color: #00d991;\n  font-size: 14px;\n  border-radius: 0;\n  font-weight: bold;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  overflow: hidden;\n  letter-spacing: .08em;\n  -webkit-transition: all 1s ease;\n  -moz-transition: all 1s ease;\n  -o-transition: all 1s ease;\n  transition: all 1s ease; }\n\na.animated-button:hover {\n  color: #fff !important;\n  background-color: transparent;\n  text-shadow: nthree; }\n\na.animated-button:hover:before {\n  left: 0%;\n  right: auto;\n  width: 100%; }\n\na.animated-button:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #00d991;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n#bg-title {\n  width: 700px;\n  height: 60px;\n  position: absolute; }\n\n.grey {\n  background-color: rgba(22, 196, 138, 0.2); }\n\n.green {\n  background-color: #00d991; }\n\n.rooms {\n  position: relative;\n  font-family: \"Roboto\"; }\n  .rooms .subTitle {\n    z-index: 5; }\n  .rooms .room_box {\n    display: none; }\n  .rooms .green_overlay {\n    background-color: #00d991;\n    height: 100%;\n    width: 100%;\n    position: absolute; }\n  .rooms .img_container_room {\n    height: 100%; }\n    .rooms .img_container_room img {\n      width: 100%;\n      height: 100%;\n      object-fit: cover; }\n\n@media (min-width: 992px) {\n  .rooms .container {\n    overflow: hidden;\n    display: flex;\n    width: 100%;\n    height: 100vh; }\n    .rooms .container .left {\n      position: relative;\n      width: 40%; }\n      .rooms .container .left .description {\n        margin-left: 65px;\n        margin-top: 65px;\n        padding-right: 20px; }\n        .rooms .container .left .description .paragraphe {\n          margin-left: 75px;\n          margin-top: 50px;\n          line-height: 30px;\n          font-size: \"Roboto\";\n          max-width: 360px;\n          overflow: hidden; }\n          .rooms .container .left .description .paragraphe .float {\n            min-width: 400px; }\n        .rooms .container .left .description .btn {\n          margin-left: 75px;\n          margin-top: 42px;\n          border: 1px solid #00d991;\n          width: 100px;\n          color: #00d991;\n          padding: 10px; }\n      .rooms .container .left .specs {\n        width: 90%;\n        height: 166px;\n        position: absolute;\n        bottom: 0;\n        background: #f9f9f9;\n        padding: 30px 30px 30px 65px; }\n        .rooms .container .left .specs .content {\n          display: flex; }\n          .rooms .container .left .specs .content ul {\n            list-style: none; }\n            .rooms .container .left .specs .content ul li {\n              margin-bottom: 42px; }\n          .rooms .container .left .specs .content .values {\n            margin-left: 50px;\n            color: #00d991;\n            font-weight: 400; }\n    .rooms .container .right {\n      width: 60%;\n      position: relative;\n      overflow: hidden;\n      background-color: #0f001f; }\n      .rooms .container .right .shaddow {\n        display: none; }\n      .rooms .container .right .rooms_list {\n        left: 50%;\n        transform: translateX(-50%);\n        position: absolute;\n        top: 20px;\n        width: 550px;\n        display: flex;\n        color: #F2F2F2;\n        font-weight: 400;\n        font-size: 22px;\n        list-style: none;\n        justify-content: space-between;\n        z-index: 7; }\n        .rooms .container .right .rooms_list li {\n          text-align: right;\n          margin-bottom: 20px;\n          cursor: pointer; }\n      .rooms .container .right .room_box {\n        display: block;\n        background: rgba(0, 217, 145, 0.81);\n        width: 204px;\n        height: 165px;\n        position: absolute;\n        bottom: 0;\n        left: 0;\n        overflow: hidden;\n        z-index: 10; }\n        .rooms .container .right .room_box .name {\n          width: 350px;\n          position: absolute;\n          line-height: 84px;\n          font-size: 45px;\n          word-break: normal;\n          color: white;\n          top: 40px;\n          left: 60px;\n          z-index: 100; }\n      .rooms .container .right .grey_overlay {\n        display: block;\n        background: grey;\n        width: 204px;\n        height: 165px;\n        position: absolute;\n        bottom: 0;\n        left: 0;\n        z-index: 10; } }\n\n#main {\n  height: 100vh;\n  width: 100%;\n  position: fixed;\n  z-index: 8;\n  display: none; }\n  #main #logoSection {\n    height: 100%;\n    width: 50%;\n    background-color: #f9f9f9;\n    box-shadow: 10px 0px 30px rgba(0, 0, 0, 0.4);\n    position: absolute;\n    z-index: 999; }\n    #main #logoSection img {\n      position: absolute;\n      top: 50%;\n      left: 50%;\n      transform: translate(-50%, -50%);\n      width: 150px; }\n\n#menuSection {\n  height: 100%;\n  width: 50%;\n  background-color: #0F001F;\n  position: absolute;\n  left: 50%;\n  z-index: 8; }\n  #menuSection ul {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    position: absolute;\n    top: 10%;\n    left: -1%; }\n    #menuSection ul li {\n      height: 100px;\n      width: 350px;\n      font-family: sans-serif;\n      font-size: 20px;\n      line-height: 100px;\n      cursor: pointer;\n      color: #fff;\n      transition: all .5s; }\n      #menuSection ul li a {\n        text-decoration: none;\n        color: #fff; }\n      #menuSection ul li .menu {\n        height: 100px;\n        width: 320px;\n        display: flex;\n        position: absolute;\n        left: 2%;\n        transition: all .5s ease-in-out; }\n\n.menu:hover {\n  color: #00d991; }\n\n#menuSection ul li:hover .menu {\n  width: 350px; }\n\n#openMenu, #closeMenu {\n  height: 100px;\n  width: 100px;\n  position: fixed;\n  top: 50%;\n  left: 2%;\n  transform: translateX(-50%);\n  z-index: 999;\n  cursor: pointer; }\n\n#closeMenu {\n  left: 110%; }\n\n.menuTitle {\n  color: #fff; }\n  .menuTitle:hover {\n    color: #00d991; }\n\n* {\n  margin: 0;\n  padding: 0; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 7 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /*** IMPORTS FROM imports-loader ***/
@@ -21487,7 +22462,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 8 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -21553,7 +22528,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(9);
+var	fixUrls = __webpack_require__(17);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -21869,7 +22844,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 9 */
+/* 17 */
 /***/ (function(module, exports) {
 
 /*** IMPORTS FROM imports-loader ***/
@@ -21968,7 +22943,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 10 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*** IMPORTS FROM imports-loader ***/
@@ -22008,8 +22983,8 @@ var define = false;
 	} else if (true) {
 		// CommonJS
 		// Loads whole gsap package onto global scope.
-		__webpack_require__(3);
-		factory(__webpack_require__(0), TweenMax, TimelineMax);
+		__webpack_require__(5);
+		factory(__webpack_require__(1), TweenMax, TimelineMax);
 	} else {
 		// Browser globals
 		factory(root.ScrollMagic || (root.jQuery && root.jQuery.ScrollMagic), root.TweenMax || root.TweenLite, root.TimelineMax || root.TimelineLite);
@@ -22287,7 +23262,7 @@ var define = false;
 
 
 /***/ }),
-/* 11 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*** IMPORTS FROM imports-loader ***/
@@ -22319,7 +23294,7 @@ var define = false;
 		define(['ScrollMagic'], factory);
 	} else if (true) {
 		// CommonJS
-		factory(__webpack_require__(0));
+		factory(__webpack_require__(1));
 	} else {
 		// no browser global export needed, just execute
 		factory(root.ScrollMagic || (root.jQuery && root.jQuery.ScrollMagic));
@@ -22968,7 +23943,7 @@ var define = false;
 
 
 /***/ }),
-/* 12 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*** IMPORTS FROM imports-loader ***/
@@ -24284,17 +25259,17 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		return (_gsScope.GreenSockGlobals || _gsScope)[name];
 	};
 	if (typeof(module) !== "undefined" && module.exports) { //node
-		__webpack_require__(13); //dependency
+		__webpack_require__(21); //dependency
 		module.exports = getGlobal();
 	} else if (typeof(define) === "function" && define.amd) { //AMD
 		define(["gsap/TweenLite"], getGlobal);
 	}
 }("TimelineMax"));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 13 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*** IMPORTS FROM imports-loader ***/
@@ -26243,7 +27218,956 @@ var define = false;
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenLite");
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+module.exports = __webpack_require__(23);
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+var bind = __webpack_require__(6);
+var Axios = __webpack_require__(25);
+var defaults = __webpack_require__(3);
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ * @return {Axios} A new instance of Axios
+ */
+function createInstance(defaultConfig) {
+  var context = new Axios(defaultConfig);
+  var instance = bind(Axios.prototype.request, context);
+
+  // Copy axios.prototype to instance
+  utils.extend(instance, Axios.prototype, context);
+
+  // Copy context to instance
+  utils.extend(instance, context);
+
+  return instance;
+}
+
+// Create the default instance to be exported
+var axios = createInstance(defaults);
+
+// Expose Axios class to allow class inheritance
+axios.Axios = Axios;
+
+// Factory for creating new instances
+axios.create = function create(instanceConfig) {
+  return createInstance(utils.merge(defaults, instanceConfig));
+};
+
+// Expose Cancel & CancelToken
+axios.Cancel = __webpack_require__(11);
+axios.CancelToken = __webpack_require__(39);
+axios.isCancel = __webpack_require__(10);
+
+// Expose all/spread
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+axios.spread = __webpack_require__(40);
+
+module.exports = axios;
+
+// Allow use of default import syntax in TypeScript
+module.exports.default = axios;
+
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+// The _isBuffer check is for Safari 5-7 support, because it's missing
+// Object.prototype.constructor. Remove this eventually
+module.exports = function (obj) {
+  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
+}
+
+function isBuffer (obj) {
+  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
+
+// For Node v0.10 support. Remove this eventually.
+function isSlowBuffer (obj) {
+  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
+}
+
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var defaults = __webpack_require__(3);
+var utils = __webpack_require__(0);
+var InterceptorManager = __webpack_require__(34);
+var dispatchRequest = __webpack_require__(35);
+
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ */
+function Axios(instanceConfig) {
+  this.defaults = instanceConfig;
+  this.interceptors = {
+    request: new InterceptorManager(),
+    response: new InterceptorManager()
+  };
+}
+
+/**
+ * Dispatch a request
+ *
+ * @param {Object} config The config specific for this request (merged with this.defaults)
+ */
+Axios.prototype.request = function request(config) {
+  /*eslint no-param-reassign:0*/
+  // Allow for axios('example/url'[, config]) a la fetch API
+  if (typeof config === 'string') {
+    config = utils.merge({
+      url: arguments[0]
+    }, arguments[1]);
+  }
+
+  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
+  config.method = config.method.toLowerCase();
+
+  // Hook up interceptors middleware
+  var chain = [dispatchRequest, undefined];
+  var promise = Promise.resolve(config);
+
+  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+    chain.push(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  while (chain.length) {
+    promise = promise.then(chain.shift(), chain.shift());
+  }
+
+  return promise;
+};
+
+// Provide aliases for supported request methods
+utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url
+    }));
+  };
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, data, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url,
+      data: data
+    }));
+  };
+});
+
+module.exports = Axios;
+
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+
+module.exports = function normalizeHeaderName(headers, normalizedName) {
+  utils.forEach(headers, function processHeader(value, name) {
+    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+      headers[normalizedName] = value;
+      delete headers[name];
+    }
+  });
+};
+
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var createError = __webpack_require__(9);
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+module.exports = function settle(resolve, reject, response) {
+  var validateStatus = response.config.validateStatus;
+  // Note: status is not exposed by XDomainRequest
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(createError(
+      'Request failed with status code ' + response.status,
+      response.config,
+      null,
+      response.request,
+      response
+    ));
+  }
+};
+
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+module.exports = function enhanceError(error, config, code, request, response) {
+  error.config = config;
+  if (code) {
+    error.code = code;
+  }
+  error.request = request;
+  error.response = response;
+  return error;
+};
+
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+
+function encode(val) {
+  return encodeURIComponent(val).
+    replace(/%40/gi, '@').
+    replace(/%3A/gi, ':').
+    replace(/%24/g, '$').
+    replace(/%2C/gi, ',').
+    replace(/%20/g, '+').
+    replace(/%5B/gi, '[').
+    replace(/%5D/gi, ']');
+}
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @returns {string} The formatted url
+ */
+module.exports = function buildURL(url, params, paramsSerializer) {
+  /*eslint no-param-reassign:0*/
+  if (!params) {
+    return url;
+  }
+
+  var serializedParams;
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params);
+  } else if (utils.isURLSearchParams(params)) {
+    serializedParams = params.toString();
+  } else {
+    var parts = [];
+
+    utils.forEach(params, function serialize(val, key) {
+      if (val === null || typeof val === 'undefined') {
+        return;
+      }
+
+      if (utils.isArray(val)) {
+        key = key + '[]';
+      }
+
+      if (!utils.isArray(val)) {
+        val = [val];
+      }
+
+      utils.forEach(val, function parseValue(v) {
+        if (utils.isDate(v)) {
+          v = v.toISOString();
+        } else if (utils.isObject(v)) {
+          v = JSON.stringify(v);
+        }
+        parts.push(encode(key) + '=' + encode(v));
+      });
+    });
+
+    serializedParams = parts.join('&');
+  }
+
+  if (serializedParams) {
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url;
+};
+
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} headers Headers needing to be parsed
+ * @returns {Object} Headers parsed into an object
+ */
+module.exports = function parseHeaders(headers) {
+  var parsed = {};
+  var key;
+  var val;
+  var i;
+
+  if (!headers) { return parsed; }
+
+  utils.forEach(headers.split('\n'), function parser(line) {
+    i = line.indexOf(':');
+    key = utils.trim(line.substr(0, i)).toLowerCase();
+    val = utils.trim(line.substr(i + 1));
+
+    if (key) {
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
+    }
+  });
+
+  return parsed;
+};
+
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs have full support of the APIs needed to test
+  // whether the request URL is of the same origin as current location.
+  (function standardBrowserEnv() {
+    var msie = /(msie|trident)/i.test(navigator.userAgent);
+    var urlParsingNode = document.createElement('a');
+    var originURL;
+
+    /**
+    * Parse a URL to discover it's components
+    *
+    * @param {String} url The URL to be parsed
+    * @returns {Object}
+    */
+    function resolveURL(url) {
+      var href = url;
+
+      if (msie) {
+        // IE needs attribute set twice to normalize properties
+        urlParsingNode.setAttribute('href', href);
+        href = urlParsingNode.href;
+      }
+
+      urlParsingNode.setAttribute('href', href);
+
+      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+      return {
+        href: urlParsingNode.href,
+        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+        host: urlParsingNode.host,
+        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+        hostname: urlParsingNode.hostname,
+        port: urlParsingNode.port,
+        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+                  urlParsingNode.pathname :
+                  '/' + urlParsingNode.pathname
+      };
+    }
+
+    originURL = resolveURL(window.location.href);
+
+    /**
+    * Determine if a URL shares the same origin as the current location
+    *
+    * @param {String} requestURL The URL to test
+    * @returns {boolean} True if URL shares the same origin, otherwise false
+    */
+    return function isURLSameOrigin(requestURL) {
+      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+      return (parsed.protocol === originURL.protocol &&
+            parsed.host === originURL.host);
+    };
+  })() :
+
+  // Non standard browser envs (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return function isURLSameOrigin() {
+      return true;
+    };
+  })()
+);
+
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
+
+var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+function E() {
+  this.message = 'String contains an invalid character';
+}
+E.prototype = new Error;
+E.prototype.code = 5;
+E.prototype.name = 'InvalidCharacterError';
+
+function btoa(input) {
+  var str = String(input);
+  var output = '';
+  for (
+    // initialize result and counter
+    var block, charCode, idx = 0, map = chars;
+    // if the next str index does not exist:
+    //   change the mapping table to "="
+    //   check if d has no fractional digits
+    str.charAt(idx | 0) || (map = '=', idx % 1);
+    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+  ) {
+    charCode = str.charCodeAt(idx += 3 / 4);
+    if (charCode > 0xFF) {
+      throw new E();
+    }
+    block = block << 8 | charCode;
+  }
+  return output;
+}
+
+module.exports = btoa;
+
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs support document.cookie
+  (function standardBrowserEnv() {
+    return {
+      write: function write(name, value, expires, path, domain, secure) {
+        var cookie = [];
+        cookie.push(name + '=' + encodeURIComponent(value));
+
+        if (utils.isNumber(expires)) {
+          cookie.push('expires=' + new Date(expires).toGMTString());
+        }
+
+        if (utils.isString(path)) {
+          cookie.push('path=' + path);
+        }
+
+        if (utils.isString(domain)) {
+          cookie.push('domain=' + domain);
+        }
+
+        if (secure === true) {
+          cookie.push('secure');
+        }
+
+        document.cookie = cookie.join('; ');
+      },
+
+      read: function read(name) {
+        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+        return (match ? decodeURIComponent(match[3]) : null);
+      },
+
+      remove: function remove(name) {
+        this.write(name, '', Date.now() - 86400000);
+      }
+    };
+  })() :
+
+  // Non standard browser env (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return {
+      write: function write() {},
+      read: function read() { return null; },
+      remove: function remove() {}
+    };
+  })()
+);
+
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+
+function InterceptorManager() {
+  this.handlers = [];
+}
+
+/**
+ * Add a new interceptor to the stack
+ *
+ * @param {Function} fulfilled The function to handle `then` for a `Promise`
+ * @param {Function} rejected The function to handle `reject` for a `Promise`
+ *
+ * @return {Number} An ID used to remove interceptor later
+ */
+InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+  this.handlers.push({
+    fulfilled: fulfilled,
+    rejected: rejected
+  });
+  return this.handlers.length - 1;
+};
+
+/**
+ * Remove an interceptor from the stack
+ *
+ * @param {Number} id The ID that was returned by `use`
+ */
+InterceptorManager.prototype.eject = function eject(id) {
+  if (this.handlers[id]) {
+    this.handlers[id] = null;
+  }
+};
+
+/**
+ * Iterate over all the registered interceptors
+ *
+ * This method is particularly useful for skipping over any
+ * interceptors that may have become `null` calling `eject`.
+ *
+ * @param {Function} fn The function to call for each interceptor
+ */
+InterceptorManager.prototype.forEach = function forEach(fn) {
+  utils.forEach(this.handlers, function forEachHandler(h) {
+    if (h !== null) {
+      fn(h);
+    }
+  });
+};
+
+module.exports = InterceptorManager;
+
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+var transformData = __webpack_require__(36);
+var isCancel = __webpack_require__(10);
+var defaults = __webpack_require__(3);
+var isAbsoluteURL = __webpack_require__(37);
+var combineURLs = __webpack_require__(38);
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ * @returns {Promise} The Promise to be fulfilled
+ */
+module.exports = function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  // Support baseURL config
+  if (config.baseURL && !isAbsoluteURL(config.url)) {
+    config.url = combineURLs(config.baseURL, config.url);
+  }
+
+  // Ensure headers exist
+  config.headers = config.headers || {};
+
+  // Transform request data
+  config.data = transformData(
+    config.data,
+    config.headers,
+    config.transformRequest
+  );
+
+  // Flatten headers
+  config.headers = utils.merge(
+    config.headers.common || {},
+    config.headers[config.method] || {},
+    config.headers || {}
+  );
+
+  utils.forEach(
+    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+    function cleanHeaderConfig(method) {
+      delete config.headers[method];
+    }
+  );
+
+  var adapter = config.adapter || defaults.adapter;
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = transformData(
+      response.data,
+      response.headers,
+      config.transformResponse
+    );
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = transformData(
+          reason.response.data,
+          reason.response.headers,
+          config.transformResponse
+        );
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+};
+
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var utils = __webpack_require__(0);
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+module.exports = function transformData(data, headers, fns) {
+  /*eslint no-param-reassign:0*/
+  utils.forEach(fns, function transform(fn) {
+    data = fn(data, headers);
+  });
+
+  return data;
+};
+
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+module.exports = function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ * @returns {string} The combined URL
+ */
+module.exports = function combineURLs(baseURL, relativeURL) {
+  return relativeURL
+    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+    : baseURL;
+};
+
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+var Cancel = __webpack_require__(11);
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @class
+ * @param {Function} executor The executor function.
+ */
+function CancelToken(executor) {
+  if (typeof executor !== 'function') {
+    throw new TypeError('executor must be a function.');
+  }
+
+  var resolvePromise;
+  this.promise = new Promise(function promiseExecutor(resolve) {
+    resolvePromise = resolve;
+  });
+
+  var token = this;
+  executor(function cancel(message) {
+    if (token.reason) {
+      // Cancellation has already been requested
+      return;
+    }
+
+    token.reason = new Cancel(message);
+    resolvePromise(token.reason);
+  });
+}
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+  if (this.reason) {
+    throw this.reason;
+  }
+};
+
+/**
+ * Returns an object that contains a new `CancelToken` and a function that, when called,
+ * cancels the `CancelToken`.
+ */
+CancelToken.source = function source() {
+  var cancel;
+  var token = new CancelToken(function executor(c) {
+    cancel = c;
+  });
+  return {
+    token: token,
+    cancel: cancel
+  };
+};
+
+module.exports = CancelToken;
+
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+/*** IMPORTS FROM imports-loader ***/
+var define = false;
+
+'use strict';
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+module.exports = function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+};
+
+
 
 /***/ })
 /******/ ]);
