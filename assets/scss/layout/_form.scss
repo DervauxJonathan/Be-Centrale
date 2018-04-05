@@ -58,7 +58,6 @@
       display: -ms-flex;
       display: flex;
       justify-content: center;
-
       width: 400px;
 
 
@@ -67,7 +66,7 @@
         display: grid;
         grid-template-columns: 129px 129px;
         grid-column-gap: 40px;
-        grid-row-gap: 20px;
+        grid-row-gap: 40px;
       }
 
       #second-group {
@@ -90,10 +89,11 @@
 
       .checkbox {
         width: 100%;
+        margin-top: 20px;
 
 
         h4 {
-          font-size: 11.5px;
+          font-size: 11px;
           font-family: "roboto";
           color: #757575;
           width: 30%;
@@ -107,15 +107,15 @@
 
           input[type="checkbox"] {
             height: 11px;
-            width: 11px;
             border: none;
-            width: 28px;
+
           }
 
           span {
             font-size: 10px;
             font-family: 'roboto';
-            margin-left: 5px;
+            color:#757575;
+            margin-right: 13px;
           }
 
           .form-group {
@@ -130,7 +130,6 @@
     }
 
     .send_msg {
-      margin-top: 60px;
       margin: 0 auto;
 
 
@@ -138,7 +137,7 @@
         border: none;
         border-bottom: 1px solid $darkgrey;
         padding-bottom: 50px;
-        width: 100%;
+        width: 250px;
       }
 
       h4 {
@@ -146,7 +145,7 @@
         font-family: "roboto";
         color: #757575;
         border-bottom: 1px solid #cccccc;
-        margin-top: 20px;
+        margin-top: 40px;
       }
     }
 
