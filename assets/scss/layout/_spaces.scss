@@ -42,33 +42,33 @@
 
 @media (min-width: 768px) {
   .spaces {
-
-    margin-top: 250px;
+    margin-top: 200px;
     .container {
       max-width: 900px;
       margin: 0 auto;
       .subTitle {
         margin: 0;
+        left: -55px;
       }
       .subContainer {
         display: flex;
         max-width: 950px;
         position: relative;
-        .bg {
-          position: absolute;
-          max-width: 1000px;
-          top: -40px;
-          width: 150%;
-          left: -50px;
-          height: 500px;
-          background: #f9f9f9;
-          z-index: -5;
-        }
         #room-gallery {
           display: grid;
           grid-template-columns: 240px 240px;
           grid-column-gap: 20px;
           grid-row-gap: 20px;
+          .bg {
+            position: absolute;
+            max-width: 1000px;
+            top: -40px;
+            width: 55%;
+            left: -50px;
+            height: 500px;
+            background: #f9f9f9;
+            z-index: -5;
+          }
           .item {
             width: 240px;
             height: 240px;
@@ -90,6 +90,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            a{
+              text-decoration: none;
+              &:visited{
+                color: white;
+              }
+            }
           }
         }
         .mobile-img {
@@ -100,6 +106,12 @@
           margin-left: 40px;
           flex: 1;
         }
+      }
+    }
+    .button{
+      .animated-button{
+        top: -150px;
+        left: 175px;
       }
     }
   }

@@ -23,34 +23,48 @@
       .subContainer {
         display: flex;
         justify-content: center;
-        .bg {
-          position: absolute;
-          max-width: 1050px;
-          top: 50px;
-          width: 100%;
-          height: 90%;
-          background: $ligthgrey;
-          z-index: -5;
-        }
         .subTitle {
           width: 380px;
           display: flex;
           position: absolute;
-          top: 80px;
-          margin-left: -85px;
+          top: 70px;
+          margin-left: -100px;
         }
         .img_container {
           width: 50%;
           max-width: 475px;
           margin-right: 20px;
-          margin-top: 85px;
+          margin-top: 120px;
+          position: relative;
+          .bg {
+            position: absolute;
+            max-width: 500px;
+            top: -50px;
+            left: -30px;
+            width: 100%;
+            height: 90%;
+            background: $ligthgrey;
+            z-index: -5;
+          }
+          .img-subContainer {
+            width: 100%;
+            overflow: hidden;
+            img {
+              object-fit: cover;
+              width: 480px;
+            }
+          }
         }
         .paragraphe {
           width: 50%;
-          margin-top: 145px;
+          margin-top: 130px;
+          margin-left: 5px;
           max-width: 420px;
-          padding-top:20px;
-          padding-left:10px;
+          padding-top: 20px;
+          padding-left: 10px;
+          .reg-paragraphe{
+            margin-top:-20px;
+          }
         }
         .mobile {
           display: none;

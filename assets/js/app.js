@@ -53,7 +53,7 @@ $(document).ready(function(){
         })
             .setTween(timeline)
 
-            .addIndicators()
+
             .addTo(controller)
 
 

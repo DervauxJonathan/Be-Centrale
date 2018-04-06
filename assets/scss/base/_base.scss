@@ -29,11 +29,11 @@
   }
 }
 .section {
+  margin-bottom: 100px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   padding: 0 20px;
-  margin-bottom: 100px;
   position: relative;
   .section_title {
     display: none;
@@ -147,7 +147,6 @@ a.animated-button:link, a.animated-button:visited {
 a.animated-button:hover {
 	color: #fff !important;
 	background-color: transparent;
-	text-shadow: nthree;
 }
 a.animated-button:hover:before {
 	left: 0%;
@@ -166,4 +165,8 @@ a.animated-button:before {
 	color: #000 !important;
 	background: $title;
 	transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+body{
+  overflow-x: hidden;
 }
