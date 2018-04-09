@@ -2,27 +2,42 @@
 @import "../base/base";
 
 .cofunders_page {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .titles {
+    width: 400px;
+    text-align: center;
+    font-family: $text-font;
+    display: flex;
+    margin-top:20px;
+    margin-bottom:50px;
+    align-items: center;
+
+    hr {
+      background: $title;
+      height: 5px;
+      width: 50px;
+      margin-right: 25px;
+      border: none;
+      display: block;
+    }
+
+    h2 {
+      font-size: $title-size;
+      display: block;
+      color: $title;
+    }
+  }
   .bg {
-    width: 893px;
-    height: 384px;
-    background: $ligthgrey;
-    position: absolute;
-    left: 200px;
-    bottom: 0;
-    margin-top: 0;
-    z-index: -2;
-    top: 0;
+    display: none;
   }
 
   .description {
-    position: relative;
+    margin: 0 20px;
+    max-width:1100px;
     line-height: $txt-lh;
-    left: 45%;
-    padding: 10px;
-
     p {
-      max-width: 675px;
-      width: 50%;
       font-family: $text-font;
     }
   }
@@ -34,40 +49,43 @@
 
   .cofunders {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
-    grid-gap: 25px;
-    justify-content: space-between;
-
+    grid-template-columns: 1fr;
+    margin: 0 20px;
     .img-block-1 {
-      margin-right: 10px;
       display: inline-block;
       position: relative;
       margin-bottom: 20px;
-      max-width: 250px;
       overflow: hidden;
-      width: 100%;
+
     }
 
     .img {
-      // height: 100%;
-
       img {
-        width: 100%;
         transform: scale(1.1);
-        transition: 0.5s ease-in-out;
       }
 
       .more {
+        border: 1px $title solid;
+        padding: 0 6px;
         color: $title;
         position: absolute;
         top: 10px;
         right: 10px;
         font-size: 20px;
         z-index: 5;
-
+        :hover{
+          color: white;
+          cursor: pointer;
+        }
         a {
+          font-weight: bold;
+          font-size: 25px;
           text-decoration: none;
           color: $title;
+          :hover{
+            color: white;
+            cursor: pointer;
+          }
         }
       }
     }
@@ -80,7 +98,7 @@
       text-transform: uppercase;
 
       p {
-        padding: 10px;
+        padding: 25px 10px 10px 15px;
         font-family: $nav-font;
         font-size: 13px;
       }
@@ -90,17 +108,14 @@
 
 .amb {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
-  grid-gap: 20px;
+  grid-template-columns: 1fr;
+  margin: 0 20px;
 
   .img-block {
-    margin-right: 10px;
     display: inline-block;
     position: relative;
     margin-bottom: 20px;
-    max-width: 250px;
     overflow: hidden;
-    width: 100%;
 
     .img {
       width: 100%;
@@ -112,16 +127,27 @@
       }
 
       .more {
+        border: 1px $title solid;
+        padding: 0 6px;
         color: $title;
         position: absolute;
         top: 10px;
         right: 10px;
         font-size: 20px;
         z-index: 5;
-
+        :hover{
+          color: white;
+          cursor: pointer;
+        }
         a {
+          font-weight: bold;
+          font-size: 25px;
           text-decoration: none;
-          color: #00d991;
+          color: $title;
+          :hover{
+            color: white;
+            cursor: pointer;
+          }
         }
       }
     }
@@ -133,7 +159,7 @@
       text-transform: uppercase;
 
       p {
-        padding: 10px;
+        padding: 25px 10px 10px 15px;
         font-family: $nav-font;
         font-size: 13px;
       }
@@ -141,7 +167,166 @@
   }
 }
 
+@media (min-width: 500px) {
 
+  .cofunders_page {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .bg {
+      width: 893px;
+      height: 384px;
+      background: $ligthgrey;
+      position: absolute;
+      left: 200px;
+      bottom: 0;
+      margin-top: 0;
+      z-index: -2;
+      top: 0;
+    }
+
+    .description {
+      position: relative;
+      line-height: $txt-lh;
+      left: 0;
+      margin-top:30px;
+      padding: 10px;
+
+      p {
+        max-width: 675px;
+        width: 50%;
+        font-family: $text-font;
+      }
+    }
+
+    header,
+    section {
+      margin-bottom: 100px;
+    }
+
+    .cofunders {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-gap: 25px;
+      justify-content: space-between;
+
+      .img-block-1 {
+        margin-right: 10px;
+        display: inline-block;
+        position: relative;
+        margin-bottom: 20px;
+        max-width: 250px;
+        min-width: 200px;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .img {
+        // height: 100%;
+
+        img {
+          width: 100%;
+          transform: scale(1.1);
+          transition: 0.5s ease-in-out;
+        }
+
+        .more {
+          border: 1px $title solid;
+          padding: 0 6px;
+          color: $title;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 20px;
+          z-index: 5;
+          a {
+            font-weight: bold;
+            font-size: 25px;
+            text-decoration: none;
+            color: $title;
+            :hover{
+              color: white;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .text {
+        background: #0F001F;
+        height: 80px;
+        color: white;
+        width: 100%;
+        text-transform: uppercase;
+
+        p {
+          padding: 25px 10px 10px 15px;
+          font-family: $nav-font;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  .amb {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+
+    .img-block {
+      margin-right: 10px;
+      display: inline-block;
+      position: relative;
+      margin-bottom: 20px;
+      max-width: 250px;
+      overflow: hidden;
+      width: 100%;
+
+      .img {
+        width: 100%;
+
+        img {
+          width: 100%;
+          transform: scale(1.1);
+          transition: 0.5s ease-in-out;
+        }
+
+        .more {
+          border: 1px $title solid;
+          padding: 0 6px;
+          color: $title;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 20px;
+          z-index: 5;
+          a {
+            font-weight: bold;
+            font-size: 25px;
+            text-decoration: none;
+            color: $title;
+            :hover{
+              color: white;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .text {
+        background: #0F001F;
+        height: 80px;
+        color: white;
+        text-transform: uppercase;
+
+        p {
+          padding: 25px 10px 10px 15px;
+          font-family: $nav-font;
+          font-size: 13px;
+        }
+      }
+    }
+  }
 
   hr {
     background: $title;
@@ -151,52 +336,23 @@
     border: none;
     display: block;
   }
-
-
-.titles {
-  left: 50%;
-  position: relative;
-  width: 400px;
-  margin-bottom: 50px;
-  text-align: center;
-  transform: translateX(-50%);
-  font-family: $text-font;
-  display: flex;
-  align-items: center;
-
-  hr {
-    background: $title;
-    height: 5px;
-    width: 50px;
-    margin-right: 25px;
-    border: none;
-    display: block;
-  }
-
-  h2 {
-    font-size: $title-size;
-    display: block;
-    color: $title;
-  }
 }
-@media screen and(max-width:440px) {
+/*
+@media screen and(max-width: 440px) {
 
-.description{
-  left: 0 !important;
-p{
-  min-width: 300px;
-  padding: 20px;
+  .description {
+    left: 0 !important;
+    p {
+      min-width: 300px;
+      padding: 20px;
 
-}
-.titles{
-  margin-bottom: 10px;
-}
+    }
   }
   .img-block-1 {
-  left: 20%;
+    left: 20%;
   }
-  .img-block{
-  left: 20%;
-}
+  .img-block {
+    left: 20%;
+  }
 
-}
+}*/

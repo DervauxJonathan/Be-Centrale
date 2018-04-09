@@ -17,7 +17,6 @@
 
 @media (min-width: 768px) {
   .community {
-    margin-top: -80px;
     .subTitle.mobile {
       display: none;
     }
@@ -29,8 +28,8 @@
         width: 380px;
         display: flex;
         position: absolute;
-        top: 70px;
-        margin-left: -80px;
+        top: -70px;
+        margin-left: -100px;
       }
       .img_container {
         width: 50%;
@@ -58,18 +57,10 @@
       }
       .paragraphe {
         width: 50%;
-        margin-left:20px;
+        margin-left: 40px;
         margin-top: 140px;
         max-width: 400px;
-        .reg-paragraphe {
-          margin-left: 10px;
-        }
-      }
-    }
-    .button{
-      .animated-button{
-        top: -120px;
-        left: 150px;
+        position: relative;
       }
     }
   }

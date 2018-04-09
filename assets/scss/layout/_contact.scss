@@ -17,6 +17,7 @@
     .subContainer {
       position: relative;
       left: 50%;
+      align-items: center;
       transform: translateX(-50%);
       max-width: 900px;
       display: flex;

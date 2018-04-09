@@ -21,12 +21,17 @@
       justify-content: center;
       position: relative;
       .paragraphe {
+        position: relative;
         width: 50%;
         max-width: 454px;
         margin-right: 50px;
         .subTitle {
           position: absolute;
           top: 70px;
+          width: 900px;
+        }
+        .animated-button{
+          left: 0;
         }
       }
       .img_container {
@@ -52,12 +57,6 @@
       }
       .reg-paragraphe {
         margin-top: 140px;
-      }
-    }
-    .button{
-      .animated-button{
-        top: -100px;
-        left: -380px;
       }
     }
   }

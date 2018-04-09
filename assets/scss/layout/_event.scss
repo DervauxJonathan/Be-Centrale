@@ -13,41 +13,46 @@
   .section_title {
     @extend .section_title_style;
   }
-  #event-list {
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-row-gap: 20px;
-    .item {
-      .img-container {
-        position: relative;
-        img {
-          width: 100%;
+  .subContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #event-list {
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-row-gap: 20px;
+      .item {
+        .img-container {
+          position: relative;
+          img {
+            width: 100%;
+          }
+          .overlay {
+            position: absolute;
+            z-index: 5;
+            background: #3A0078;
+            height: 99%;
+            margin: 0;
+            width: 100%;
+            opacity: 0.3;
+          }
         }
-        .overlay {
-          position: absolute;
-          z-index: 5;
-          background: #3A0078;
-          height: 99%;
-          margin: 0;
-          width: 100%;
-          opacity: 0.3;
-        }
-      }
-      .desc {
-        z-index: 10;
-        background: #0F001F;
-        color: white;
-        margin-top: -5px;
-        padding: 15px;
-        height: 140px;
-        .date {
-          color: $title;
-          margin-bottom: 8px;
-          display: block;
-        }
-        .desctxt{
-          font-size:14px;
+        .desc {
+          z-index: 10;
+          background: #0F001F;
+          color: white;
+          margin-top: -5px;
+          padding: 15px;
+          height: 140px;
+          .date {
+            color: $title;
+            margin-bottom: 8px;
+            display: block;
+          }
+          .desctxt{
+            font-size:14px;
+          }
         }
       }
     }

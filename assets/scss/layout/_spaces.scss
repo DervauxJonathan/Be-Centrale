@@ -35,7 +35,7 @@
 }
 
 @media (min-width: 576px) {
-  .section_title{
+  .section_title {
     display: block;
   }
 }
@@ -66,17 +66,14 @@
             width: 55%;
             left: -50px;
             height: 500px;
-            background: #f9f9f9;
+            background: $ligthgrey;
             z-index: -5;
           }
           .item {
             width: 240px;
             height: 240px;
             overflow: hidden;
-
-            img {
-              object-fit: cover;
-            }
+            background-size: cover;
           }
           .item.desc {
             background: #6FCF97;
@@ -90,13 +87,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            a{
+            a {
               text-decoration: none;
-              &:visited{
+              &:visited {
                 color: white;
               }
             }
           }
+        }
+        .one{
+          background: url("./images/openspace.jpg") center center;
+        }
+        .two{
+          background: url("./images/boardroom.jpg") center center;
+        }
+        .three{
+          background: url("./images/studioC.jpg") center center;
         }
         .mobile-img {
           display: none;
@@ -105,13 +111,8 @@
           margin-top: 20px;
           margin-left: 40px;
           flex: 1;
+          position: relative;
         }
-      }
-    }
-    .button{
-      .animated-button{
-        top: -150px;
-        left: 175px;
       }
     }
   }

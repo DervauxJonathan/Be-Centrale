@@ -14,6 +14,7 @@
     display: none;
   }
   .content {
+    width: 100%;
     background: #f2f2f2;
     margin-top: 50px;
     display: flex;
@@ -28,7 +29,7 @@
   }
 }
 
-@media (min-width: 576px) {
+@media (min-width:768px) {
   .headerVideo {
     video {
       display: block;

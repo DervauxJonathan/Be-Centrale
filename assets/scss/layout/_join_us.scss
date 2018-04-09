@@ -17,7 +17,9 @@
   }
   #items-list {
     margin-top: 50px;
-    width: 80%;
+    width: 100%;
+    padding: 50px;
+    box-sizing: border-box;
     .item {
       display: flex;
       align-items: center;
@@ -54,12 +56,6 @@
       }
     }
   }
-  .button {
-    .animated-button {
-      top: -105px;
-      left: -360px;
-    }
-  }
 }
 
 @media (min-width: 576px) {
@@ -68,7 +64,7 @@
 
 @media (min-width: 768px) {
   .join_us {
-    margin-top:-20px;
+    margin-top:150px;
     .container {
       display: flex;
       flex-direction: column;
@@ -90,7 +86,7 @@
           right: -10px;
           width: 45%;
           height: 340px;
-          background: #f9f9f9;
+          background: $ligthgrey;
           z-index: -5;
         }
         .paragraphe {
@@ -98,7 +94,7 @@
           flex: 1;
         }
         #items-list {
-          margin-top: 0;
+          margin-top: -50px;
           margin-left: 50px;
           flex: 1;
           display: grid;
