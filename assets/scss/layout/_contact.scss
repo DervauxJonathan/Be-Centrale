@@ -8,6 +8,7 @@
   .container {
     display: flex;
     flex-direction: column;
+
     .subTitle {
       @extend .title;
       z-index: 5;
@@ -22,6 +23,7 @@
       max-width: 900px;
       display: flex;
       flex-direction: column;
+
       #map {
         width: 100%;
         height: 542px;
@@ -36,6 +38,8 @@
         width: 100%;
         line-height: 28px;
         font-family: Roboto, sans-serif;
+        overflow-y: scroll;
+        height: 492px;
         p:not(p:last-child) {
           margin-bottom: 40px;
         }
@@ -76,4 +80,3 @@
 
   }
 }
-
