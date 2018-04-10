@@ -73,13 +73,13 @@
     <div class="container">
         <img src="images/becentralLogoVert.png" alt="" class="logo">
         <ul>
-            <li><a href="#">About </a></li>
-            <li><a href="#">Co-founders</a></li>
-            <li><a href="#">Community</a></li>
-            <li><a href="#">Join us</a></li>
-            <li><a href="#">Spaces</a></li>
-            <li><a href="#">Event</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#" id='aboutbtn'>About</a></li>
+            <li><a href="#" id='cofoundersbtn'>Co-founders</a></li>
+            <li><a href="#" id='communitybtn'>Community</a></li>
+            <li><a href="#" id='joinusbtn'>Join us</a></li>
+            <li><a href="#" id='spacesbtn'>Spaces</a></li>
+            <li><a href="#" id='evmtbtn'>Event</a></li>
+            <li><a href="#" id='contactbtn'>Contact</a></li>
             <li id="news">NewsLetter</li>
         </ul>
     </div>
@@ -406,7 +406,7 @@
         </div>
         <div class="subContainer">
             <div id="info">
-                <h1>BeCentral</h1>
+                <h1>BeCentral</h1><br>
                 <p class="head">
                     <span> Cantersteen 10, 1000 Brussels</span><br>
                     <span class="regular-p">yourock@becentral.org</span>
@@ -459,7 +459,7 @@
 </body>
 <script>
     function initMap() {
-        var uluru = {lat: 50.8455713, lng: 4.355293717};
+        var uluru = {lat: 50.845355, lng: 4.357285};
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 18,
             center: uluru,
@@ -651,5 +651,21 @@
 
 </script>
 <script src="app.js"></script>
-<script></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#f2f2f2"
+    },
+    "button": {
+      "background": "transparent",
+      "border": "#00d991",
+      "text": "#00d991"
+    }
+  }
+})});
+</script>
 </html>
