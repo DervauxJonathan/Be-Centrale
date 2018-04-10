@@ -124,4 +124,20 @@ $(document).ready(function(){
     });
 
 
+    var facebookGraphURL = 'https://graph.facebook.com/EAAIHpFVCzVoBANT6SIJJoAX0krftz72i23RIgTc3ZAZBvFdgH3qbCbnhFdN045FEajO8qExZBIZBMyzxQo6EhAaaOd7EAco3MiYEZA1xOaHWNghcduGfEqVkyb9uSjsjUQXk5ZAZBNil9C9D7UG4k0wAbqFHZAGn42rnuo7CyBX454TZAF3FjlsAygMhfFJYH0fqGKpuHXHnQTQZDZD';
+    $.ajax({
+        url: facebookGraphURL,
+        dataType: 'json',
+        success: function (data, status) {
+            console.log(data);
+        },
+        error: function (data, e1, e2) {
+            console.log(data);
+        }
+    })
+
+
+    $( "#dialog" ).dialog();
+
+
 })

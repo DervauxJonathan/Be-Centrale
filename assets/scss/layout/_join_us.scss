@@ -16,6 +16,7 @@
     @extend .section_title_style;
   }
   #items-list {
+    display: none;
     margin-top: 50px;
     width: 100%;
     padding: 50px;
@@ -59,12 +60,16 @@
 }
 
 @media (min-width: 576px) {
-
+  .join_us {
+    #items-list {
+      display: block;
+    }
+  }
 }
 
 @media (min-width: 768px) {
   .join_us {
-    margin-top:150px;
+    margin-top: 150px;
     .container {
       display: flex;
       flex-direction: column;

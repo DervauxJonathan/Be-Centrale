@@ -6,6 +6,7 @@
   .subTitle {
     @extend .title;
     z-index: 5;
+    justify-content: center;
   }
   .desktop {
     display: none;
@@ -13,7 +14,7 @@
   .section_title {
     @extend .section_title_style;
   }
-  .subContainer{
+  .subContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,7 +36,7 @@
             height: 99%;
             margin: 0;
             width: 100%;
-            opacity: 0.3;
+            opacity: 0.15;
           }
         }
         .desc {
@@ -50,8 +51,8 @@
             margin-bottom: 8px;
             display: block;
           }
-          .desctxt{
-            font-size:14px;
+          .desctxt {
+            font-size: 14px;
           }
         }
       }
@@ -63,8 +64,11 @@
   .event {
     position: relative;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
+    .subTitle{
+      justify-content: flex-start;
+    }
     .container {
       margin: 0 auto;
       display: flex;
