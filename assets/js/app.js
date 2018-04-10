@@ -122,6 +122,53 @@ $(document).ready(function(){
         //Rooms Transition //
 
     });
+//scroll-nav//
+
+$("#aboutbtn").click(function() {
+$('html, body').animate({
+scrollTop: $(".about").offset().top -50
+}, 500);
+});
+
+
+$("#cofoundersbtn").click(function() {
+$('html, body').animate({
+scrollTop: $(".co-founders").offset().top -50
+}, 500);
+});
+
+
+$("#communitybtn").click(function() {
+$('html, body').animate({
+scrollTop: $(".community").offset().top -50
+}, 500);
+});
+
+$("#joinusbtn").click(function() {
+$('html, body').animate({
+scrollTop: $(".join_us").offset().top -100
+}, 500);
+});
+
+$("#spacesbtn").click(function() {
+$('html, body').animate({
+scrollTop: $(".spaces").offset().top -100
+}, 500);
+});
+$("#evmtbtn").click(function() {
+$('html, body').animate({
+scrollTop: $(".event").offset().top -100
+}, 500);
+});
+$("#contactbtn").click(function() {
+$('html, body').animate({
+scrollTop: $(".contact").offset().top -100
+}, 500);
+});
+
+
+//cookies//
+
 
 
 })
