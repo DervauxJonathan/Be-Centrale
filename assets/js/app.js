@@ -67,14 +67,13 @@ $(document).ready(function(){
         const res = await getDataFromRoom(room);
         return res;
     }
-
     let link = document.querySelectorAll('.room_link');
     let roomName = document.querySelector('.room_box .name');
     let roomCapacity = document.querySelector('.values #capacity');
     let roomPeople = document.querySelector('.values #people');
     let roomMaterial = document.querySelector('.values #material');
     let roomImage = document.querySelector('.img_container_room #image');
-
+    let overlay = document.querySelector('.green_overlay');
     link = Array.from(link);
     link.forEach((element) => {
         element.addEventListener('click', () => {
@@ -85,8 +84,13 @@ $(document).ready(function(){
                     roomPeople.innerHTML = selectedRoom.people;
                     roomMaterial.innerHTML = selectedRoom.material;
                     roomImage.src = selectedRoom.image;
+                    overlay.style.display='block';
                 }
             )
+
+            TweenLite.from($('.paragraphe'),0.5,{width:0,ease:Power1.easeOut});
+            TweenLite.from($('.name'),0.5,{x:-100,autoAlpha:0})
+
             var rooms = new TimelineMax();
             rooms
                 .fromTo($('.green_overlay'),0.5,{width:0},{width:"100%",ease: Power4.easeInOut})
@@ -98,7 +102,6 @@ $(document).ready(function(){
                 //   .fromTo(roomName,0.5,{x:-150},{x:0,ease: Power4.easeInOut})
                 .from([roomCapacity,roomPeople,roomMaterial],0.5,{autoAlpha:0,y:20},'tween-=0.75')
                 //.set([roomCapacity,roomPeople,roomMaterial],{autoAlpha:1})
-                .from($('.paragraphe'),0.5,{width:0,ease:Power1.easeOut});
             // TweenLite.from([roomCapacity,roomPeople,roomMaterial],0.7,{autoAlpha:0,y:20});
         })
     });
