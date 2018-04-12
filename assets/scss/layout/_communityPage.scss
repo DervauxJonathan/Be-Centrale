@@ -17,6 +17,7 @@
     font-family: $text-font;
     display: flex;
     align-items: center;
+    margin-top: -150px;
 
     hr {
       background: $title;
@@ -72,6 +73,8 @@
     height: 174px;
     margin-bottom: 20px;
     transition: 100ms background-color ease-in;
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
   }
   .img-ctn:hover {
     background-color: $lighter;
@@ -112,4 +115,3 @@
     }
   }
 }
-
