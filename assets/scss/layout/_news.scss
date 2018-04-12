@@ -1,0 +1,20 @@
+#container{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8)
+}
+#mc_embed_signup_scroll{
+  width: 30%;
+  height: 394px;
+  border: 1px solid $darkgrey;
+  margin: 0 auto;
+  background: white;
+
+
+}
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
