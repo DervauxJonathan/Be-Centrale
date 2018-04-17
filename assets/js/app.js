@@ -11,6 +11,7 @@ import axios from "axios";
 
 
 $(document).ready(function () {
+
 //animation ticket //
     var ticket = $('.ticket');
     var h1 = $('h1');
@@ -32,7 +33,7 @@ $(document).ready(function () {
         var timeline = new TimelineMax();
         var p = $(this).find('p');
         var line = $(this).find('.line');
-        var button = $(this).find('.button');
+        var button = $(this).find('.animated-button');
         var title = $(this).find('h2');
         var bg = $(this).find('.bg');
         var line = $(this).find('.line')
@@ -42,8 +43,11 @@ $(document).ready(function () {
             .from(title, 0.25, {opacity: 0, ease: Power0.easeInOut}, "-=0.15")
             .from(line, 0.25, {width: 0, ease: Power0.easeInOut})
             .from(p, 0.25, {opacity: 0, y: 50, ease: Power1.easeOut})
-            .from(button, 0.25, {opacity: 0, x: -200})
-            .from(bg, 0.5, {width: 0});
+            .from(bg, 0.5, {width: 0})
+            .from(button, 0.5, {opacity: 0, x: -200})
+            .add(function () {
+                button.addClass('animated')
+            });
 
 
         var animation = new ScrollMagic.Scene({
@@ -68,6 +72,7 @@ $(document).ready(function () {
         const res = await getDataFromRoom(room);
         return res;
     }
+
     let link = document.querySelectorAll('.room_link');
     let roomName = document.querySelector('.room_box .name');
     let roomCapacity = document.querySelector('.values #capacity');
@@ -85,12 +90,12 @@ $(document).ready(function () {
                     roomPeople.innerHTML = selectedRoom.people;
                     roomMaterial.innerHTML = selectedRoom.material;
                     roomImage.src = selectedRoom.image;
-                    overlay.style.display='block';
+                    overlay.style.display = 'block';
                 }
             )
 
-            TweenLite.from($('.paragraphe'),0.5,{width:0,ease:Power1.easeOut});
-            TweenLite.from($('.name'),0.5,{x:-100,autoAlpha:0})
+            TweenLite.from($('.paragraphe'), 0.5, {width: 0, ease: Power1.easeOut});
+            TweenLite.from($('.name'), 0.5, {x: -100, autoAlpha: 0})
 
             var rooms = new TimelineMax();
             rooms
@@ -170,9 +175,27 @@ $(document).ready(function () {
             scrollTop: $(".contact").offset().top - 100
         }, 500);
     });
+});
 
 
-//cookies//
 
 
-})
+formatGoogleCalendar.init({
+    calendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/becentral.org_e38ra8m0u4tgu03nipvtkvcca8@group.calendar.google.com/events?key=AIzaSyDm_lJBT0CIW7hDU38FmlblBbwpJALaqLg',
+    past: true,
+    upcoming: true,
+    sameDayTimes: true,
+    dayNames: true,
+    pastTopN: -1,
+    upcomingTopN: 6,
+    recurringEvents: true,
+    itemsTagName: 'li',
+    upcomingSelector: '#events-upcoming',
+    pastSelector: '#events-past',
+    upcomingHeading: "",
+    pastHeading: "",
+    format: ['*date*', '*summary*', '*description*'],
+});
+
+
+

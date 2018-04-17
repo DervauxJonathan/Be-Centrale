@@ -1,0 +1,52 @@
+@import "../modules/variables";
+@import "../base/base";
+
+.containerModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  .content {
+    font-family: Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    #mc_embed_signup_scroll {
+      width: 30vw;
+      min-width: 400px;
+      height: 394px;
+      border: 1px solid $darkgrey;
+      margin: 0 auto;
+      background: white;
+      #emailLabel{
+        margin-left:-5px;
+        margin-right:5px;
+      }
+      input[type="text"],input[type="email"] {
+        margin-bottom: 30px;
+        border-top: none;
+        width:200px;
+        border-left: none;
+        border-right: none;
+        border-width: 0.5px;
+        border-bottom-color: #d5d5d5;
+        outline:0;
+      }
+      label{
+        color: #413f42;
+        margin-right: 5px;
+      }
+      .indicates-required{
+        margin-top:30px;
+      }
+    }
+  }
+}
+

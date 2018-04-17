@@ -18,45 +18,41 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    #event-list {
+    #events-upcoming {
       margin: 0 auto;
       display: grid;
+      font-family: $text-font;
       grid-template-columns: 1fr;
       grid-row-gap: 20px;
-      .item {
-        .img-container {
-          position: relative;
-          img {
-            width: 100%;
-          }
-          .overlay {
-            position: absolute;
-            z-index: 5;
-            background: #3A0078;
-            height: 99%;
-            margin: 0;
-            width: 100%;
-            opacity: 0.15;
+      li {
+        border-top: 4px solid $title;
+        z-index: 10;
+        background: #0F001F;
+        color: white;
+        margin-top: -5px;
+        padding: 35px 15px 15px 15px;
+        height: 160px;
+        line-height:150%;
+        .date {
+          color: rgba(0, 217, 145, 0.8);
+          margin-bottom: 16px;
+          display: block;
+          max-width: 200px;
+        }
+        .description {
+          a {
+            margin-top:20px;
+            color: #E0E0E0;
           }
         }
-        .desc {
-          z-index: 10;
-          background: #0F001F;
+        .summary {
+          display: block;
           color: white;
-          margin-top: -5px;
-          padding: 15px;
-          height: 140px;
-          .date {
-            color: $title;
-            margin-bottom: 8px;
-            display: block;
-          }
-          .desctxt {
-            font-size: 14px;
-          }
+          margin-bottom: 15px;
         }
       }
     }
+
   }
 }
 
@@ -66,20 +62,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    .subTitle{
+    .subTitle {
       justify-content: flex-start;
     }
     .container {
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      #event-list {
+      #events-upcoming {
         display: grid;
-        grid-template-columns: 250px 250px;
+        grid-template-columns: 330px 330px;
         grid-column-gap: 20px;
-        .item {
-          overflow: hidden;
-        }
+        list-style: none;
       }
     }
   }
@@ -88,7 +82,7 @@
 @media (min-width: 980px) {
   .event {
     .container {
-      #event-list {
+      #events-upcoming {
         grid-template-columns: 297px 297px 297px;
       }
     }

@@ -84,6 +84,24 @@
   }
 }
 
+.buttonStyle {
+  font-family: sans-serif;
+  width: 150px;
+  display: block;
+  margin-top: 20px;
+  padding: 14px 15px;
+  background-color: white;
+  color: $title;
+  border: 1px solid $title;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  letter-spacing: .08em;
+}
+
 a.animated-button:link, a.animated-button:visited {
   font-family: sans-serif;
   width: 150px;
@@ -100,6 +118,9 @@ a.animated-button:link, a.animated-button:visited {
   overflow: hidden;
   letter-spacing: .08em;
   border-radius: 0;
+}
+
+.animated{
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
@@ -144,11 +165,6 @@ a.animated-button:link, a.animated-button:visited {
   text-transform: uppercase;
   overflow: hidden;
   letter-spacing: .08em;
-
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
 }
 
 a.animated-button:hover {
@@ -181,14 +197,14 @@ body {
 }
 
 @media (max-width: 768px) {
-  .paragraphe{
+  .paragraphe {
     text-align: center;
   }
   .title {
     hr {
       display: none;
     }
-    h2{
+    h2 {
       text-align: center;
     }
   }
@@ -198,27 +214,42 @@ body {
     transform: translateX(-50%);
   }
 
-  .section{
-    margin-bottom:200px;
+  .section {
+    margin-bottom: 200px;
   }
 }
-.back{
-    font-family: $text-font;
-    text-transform: uppercase;
-    font-size: 18px;
-    margin-bottom: 100px;
-    display: flex;
-    margin-left: 20px;
 
-  img{
+.back {
+  font-family: $text-font;
+  text-transform: uppercase;
+  font-size: 18px;
+  margin-bottom: 100px;
+  display: flex;
+  margin-left: 20px;
+
+  img {
     width: 20px;
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 20px;
   }
-  a{
-   text-decoration: none;
-   color: #4f4f4f;
-   margin-top: -5px;
+  a {
+    text-decoration: none;
+    color: #4f4f4f;
+    margin-top: -5px;
+  }
+}
+
+.containerModal {
+  display: none;
+  #close {
+    display: block;
+    font-size: 30px;
+    color: white;
+    margin-right: 30px;
+    margin-top: 90px;
+    position: absolute;
+    right: 20px;
+    font-family: Roboto, sans-serif;
   }
 }

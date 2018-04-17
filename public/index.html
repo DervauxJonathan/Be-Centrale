@@ -1,18 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="assets/scss/base/_base.scss"/>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    </head>
-    <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<title>Document</title>
 </head>
 <body>
 
 <div class="containerModal">
-    <h1 id="close" style="display: block;font-size: 50px;color: white;margin-top: 50px;position: absolute;right: 20px;font-family: Roboto;">close</h1>
+    <h1 id="close">&#10005;</h1>
     <div class="content">
         <div id="mc_embed_signup">
             <form action="https://becentral.us15.list-manage.com/subscribe/post?u=5de78d9d7cdaa7656f3ed3a1f&amp;id=13fb3e82ed"
@@ -24,12 +26,12 @@
                             <hr class="line">
                             <h2>Keep in touch</h2>
                         </div>
-                        <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
                         <div class="mc-field-group">
-                            <label for="mce-EMAIL">Email Address <span class="asterisk">*</span>
-                            </label>
-                            <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"
-                                   aria-required="true">
+                            <label for="mce-EMAIL" id="emailLabel">Email Address</label> <input type="email" value="" name="EMAIL"
+                                                                                class="required email" id="mce-EMAIL"
+                                                                                aria-required="true"> <span
+                                class="asterisk">*</span>
+
                         </div>
                         <div class="mc-field-group">
                             <label for="mce-FNAME">First Name </label>
@@ -49,8 +51,9 @@
                                                                                                   tabindex="-1"
                                                                                                   value=""></div>
                         <div class="clear"><input type="submit" value="Subscribe" name="subscribe"
-                                                  id="mc-embedded-subscribe"
-                                                  class="button"></div>
+                                                  id="mc-embedded-subscribe button"
+                                                  class="buttonStyle"></div>
+                        <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
                     </div>
                 </div>
             </form>
@@ -300,86 +303,8 @@
         </div>
         <div class="subContainer">
             <div class="bg"></div>
-            <div id="event-list">
-                <div class="item">
-                    <div class="img-container">
-                        <div class="overlay"></div>
-                        <img src="images/Union.png" alt="">
-                    </div>
-                    <div class="desc">
-                        <p>
-                            <span class="date">5 FEB - BeCode</span>
-                            <span class="title">Block Chain for dummies</span>
-                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="img-container">
-                        <div class="overlay"></div>
-                        <img src="images/Union.png" alt="">
-                    </div>
-                    <div class="desc">
-                        <p>
-                            <span class="date">5 FEB - BeCode</span>
-                            <span class="title">Block Chain for dummies</span>
-                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="img-container">
-                        <div class="overlay"></div>
-                        <img src="images/Union.png" alt="">
-                    </div>
-                    <div class="desc">
-                        <p>
-                            <span class="date">5 FEB - BeCode</span>
-                            <span class="title">Block Chain for dummies</span>
-                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="img-container">
-                        <div class="overlay"></div>
-                        <img src="images/Union.png" alt="">
-                    </div>
-                    <div class="desc">
-                        <p>
-                            <span class="date">5 FEB - BeCode</span>
-                            <span class="title">Block Chain for dummies</span>
-                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="img-container">
-                        <div class="overlay"></div>
-                        <img src="images/Union.png" alt="">
-                    </div>
-                    <div class="desc">
-                        <p>
-                            <span class="date">5 FEB - BeCode</span>
-                            <span class="title">Block Chain for dummies</span>
-                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="img-container">
-                        <div class="overlay"></div>
-                        <img src="images/Union.png" alt="">
-                    </div>
-                    <div class="desc">
-                        <p>
-                            <span class="date">5 FEB - BeCode</span>
-                            <span class="title">Block Chain for dummies</span>
-                            <span class="desctxt">Lorem ipsum dolor sit amet, consectetur smot ipsum dolor sit amet, consectetu</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <ul id="events-upcoming">
+            </ul>
         </div>
     </div>
 </div>
@@ -442,19 +367,21 @@
 
     </div>
 </div>
-<!-- footer -->
+
 <footer>
-  <div class="content">
-<ul>
-  <li> <a href="https://www.linkedin.com/company/be-central-brussels/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-  <li> <a href="https://www.facebook.com/becentral/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-  <li> <a href="https://twitter.com/becentralbxl"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-  <li> <a href="https://www.instagram.com/becentral/?hl=fr"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-</ul>
-<div class='copyright'>
-  © Becentral - 2018
-</div>
-</div>
+    <div class="content">
+        <ul>
+            <li><a href="https://www.linkedin.com/company/be-central-brussels/"><i class="fa fa-linkedin"
+                                                                                   aria-hidden="true"></i></a></li>
+            <li><a href="https://www.facebook.com/becentral/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+            <li><a href="https://twitter.com/becentralbxl"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.instagram.com/becentral/?hl=fr"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            </li>
+        </ul>
+        <div class='copyright'>
+            © Becentral - 2018
+        </div>
+    </div>
 </footer>
 </body>
 <script>
@@ -650,6 +577,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1J-2g_6PXGZzdyRGLqXayPGg3ZdYjKXg&callback=initMap">
 
 </script>
+<script src="calendar.min.js"></script>
 <script src="app.js"></script>
 <link rel="stylesheet" type="text/css"
       href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"/>

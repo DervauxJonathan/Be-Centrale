@@ -6,9 +6,13 @@
     display: none;
     ul {
       #news {
+        margin-top: -5px;
+        padding: 5px 8px;
+        border: 2px solid $title;
+        color: $title;
       }
     }
-    img{
+    img {
       width: 30px;
       height: 35px;
     }
@@ -38,13 +42,10 @@
         list-style: none;
         width: 700px;
         justify-content: space-between;
-        #news {
-          color: $title;
-        }
-        li{
-          a{
+        li {
+          a {
             text-decoration: none;
-            &:visited{
+            &:visited {
               color: white;
             }
           }
