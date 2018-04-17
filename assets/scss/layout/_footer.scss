@@ -1,6 +1,6 @@
 footer {
   min-width: 100%;
-  height: 80px;
+  height: 150px;
   bottom: 0;
   background: $darkgrey;
   margin-top: 50px;
@@ -27,12 +27,22 @@ footer {
         text-decoration: none;
       }
     }
+    h2{
+      // font-family: $text-font;
+      border: 2px solid $title;
+      color: $title;
+      font-family: $nav-font;
+      font-size: $par-size;
+      padding: 10px;
+      text-align: center;
+      margin: 20px;
+    }
     .copyright {
       color: #fff;
       text-align: center;
-      margin-top: 20px;
       font-family: $text-font;
       font-size: $small-txt-size;
+      padding: 10px;
     }
   }
 }
