@@ -96,7 +96,6 @@ $(document).ready(function () {
                 }
             )
 
-           /* TweenLite.from($('.paragraphe'), 0.5, {width: 0, ease: Power1.easeOut});
             TweenLite.from($('.name'), 0.5, {x: -100, autoAlpha: 0})
 
             var rooms = new TimelineMax();
@@ -110,8 +109,7 @@ $(document).ready(function () {
                 //   .fromTo(roomName,0.5,{x:-150},{x:0,ease: Power4.easeInOut})
                 .from([roomCapacity, roomPeople, roomMaterial], 0.5, {autoAlpha: 0, y: 20}, 'tween-=0.75')
                 //.set([roomCapacity,roomPeople,roomMaterial],{autoAlpha:1})
-                .from($('.paragraphe'), 0.5, {width: 0, ease: Power1.easeOut});
-            // TweenLite.from([roomCapacity,roomPeople,roomMaterial],0.7,{autoAlpha:0,y:20});*/
+            // TweenLite.from([roomCapacity,roomPeople,roomMaterial],0.7,{autoAlpha:0,y:20});
         })
     });
     $('#openMenu').click(function () {
