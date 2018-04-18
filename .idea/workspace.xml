@@ -5,29 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55f45f36-ae59-4be9-b8cf-e73be7f1b668" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/Cofounders1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/CWF.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/Google.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/Proximus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/beangels.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/bemaker.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/dc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/demo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/digitalent.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/solvay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/sortlist.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/logos/spring.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/tickettodigital.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/co-funders/Frank-Maene.jpg" afterPath="$PROJECT_DIR$/public/images/co-funders/Frank-Maene.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/co-funders/Roald-Sieberath.jpg" afterPath="$PROJECT_DIR$/public/images/co-funders/Roald-Sieberath.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/logos/Duval.png" afterPath="$PROJECT_DIR$/public/images/logos/Duval.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/calendar.min.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/app.js" afterPath="$PROJECT_DIR$/assets/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/scss/layout/_footer.scss" afterPath="$PROJECT_DIR$/assets/scss/layout/_footer.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/scss/layout/_form.scss" afterPath="$PROJECT_DIR$/assets/scss/layout/_form.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/scss/layout/_header.scss" afterPath="$PROJECT_DIR$/assets/scss/layout/_header.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/scss/layout/_nav.scss" afterPath="$PROJECT_DIR$/assets/scss/layout/_nav.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app.js" afterPath="$PROJECT_DIR$/public/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/community.html" afterPath="$PROJECT_DIR$/public/community.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/footer.html" afterPath="$PROJECT_DIR$/public/footer.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,100 +39,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="190" column="26" lean-forward="false" selection-start-line="190" selection-start-column="26" selection-end-line="190" selection-end-column="26" />
-              <folding />
-            </state>
+      <file leaf-file-name="BECENTRAL-logo-2.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/images/BECENTRAL-logo-2.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendar.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/calendar.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="4836" lean-forward="false" selection-start-line="0" selection-start-column="4836" selection-end-line="0" selection-end-column="4836" />
-              <folding />
-            </state>
+      <file leaf-file-name="BECENTRAL_21032018_web_960p-16.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/images/BECENTRAL_21032018_web_960p-16.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_contact.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/scss/layout/_contact.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="30" column="7" lean-forward="false" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-              <folding>
-                <marker date="1523539062381" expanded="false" signature="66:70" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_event.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/scss/layout/_event.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
-              <folding />
-            </state>
+      <file leaf-file-name="BECENTRAL_21032018_web_960p-7.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/images/BECENTRAL_21032018_web_960p-7.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-18">
-              <caret line="365" column="67" lean-forward="true" selection-start-line="365" selection-start-column="67" selection-end-line="374" selection-end-column="25" />
+            <state relative-caret-position="142">
+              <caret line="276" column="44" lean-forward="true" selection-start-line="276" selection-start-column="44" selection-end-line="276" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#4;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#22973#23336#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_base.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/scss/base/_base.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="122" column="10" lean-forward="false" selection-start-line="122" selection-start-column="10" selection-end-line="122" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/scss/app.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_nav.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/scss/layout/_nav.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-              <folding>
-                <marker date="1523957059668" expanded="true" signature="67:71" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_newsletter.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/scss/layout/_newsletter.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -161,12 +82,48 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="tiketToDigital.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/images/tiketToDigital.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tickettodigital.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/images/tickettodigital.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="studioC.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/images/studioC.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="openspace.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/images/openspace.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_spaces.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/scss/layout/_spaces.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="107" column="9" lean-forward="false" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>200</find>
-      <find>max</find>
       <find>mobi</find>
       <find>none</find>
       <find>min</find>
@@ -195,6 +152,8 @@
       <find>anima</find>
       <find>eve</find>
       <find>even</find>
+      <find>click</find>
+      <find>spaces</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -241,10 +200,11 @@
         <option value="$PROJECT_DIR$/assets/scss/app.scss" />
         <option value="$PROJECT_DIR$/assets/scss/layout/_newsletter.scss" />
         <option value="$PROJECT_DIR$/assets/scss/base/_base.scss" />
-        <option value="$PROJECT_DIR$/public/calendar.min.js" />
-        <option value="$PROJECT_DIR$/assets/scss/layout/_nav.scss" />
-        <option value="$PROJECT_DIR$/assets/js/app.js" />
         <option value="$PROJECT_DIR$/assets/scss/layout/_event.scss" />
+        <option value="$PROJECT_DIR$/public/calendar.min.js" />
+        <option value="$PROJECT_DIR$/assets/js/app.js" />
+        <option value="$PROJECT_DIR$/assets/scss/layout/_footer.scss" />
+        <option value="$PROJECT_DIR$/assets/scss/layout/_nav.scss" />
         <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
@@ -273,7 +233,7 @@
     <option name="height" value="1086" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -286,7 +246,32 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Be-Centrale2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Be-Centrale2" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Be-Centrale2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Be-Centrale2" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Be-Centrale2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Be-Centrale2" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="images" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
@@ -296,7 +281,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Js-Nodejs-Workshop" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
-    <property name="SearchEverywhereHistoryKey" value="even&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_event.scss&#10;base&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/base/_base.scss&#10;#close&#9;null&#9;null&#10;news&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_newsletter.scss&#10;nes&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_newsletter.scss&#10;in&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/index.html&#10;bas&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/base/_base.scss&#10;animate&#9;null&#9;null&#10;inde&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/index.html&#10;i&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/index.html&#10;nav&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_nav.scss&#10;union&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/images/Union.png&#10;app&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/app.scss&#10;join&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_join_us.scss&#10;eve&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_event.scss&#10;space&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_spaces.scss&#10;header&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_header.scss&#10;ev&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_event.scss&#10;joi&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_join_us.scss&#10;about&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_about.scss&#10;comm&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_community.scss&#10;spaces7&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_spaces.scss&#10;var&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/modules/variables.scss&#10;spa&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_spaces.scss&#10;cof&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_co-founders.scss&#10;com&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_community.scss&#10;anima&#9;null&#9;null&#10;co&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_co-founders.scss&#10;animated&#9;null&#9;null&#10;abou&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_about.scss&#10;NAV&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_nav.scss&#10;contac&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_contact.scss&#10;ab&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_about.scss&#10;cofo&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_co-founders.scss&#10;ap&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/js/app.js&#10;index&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/index.html&#10;room&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_rooms.scss&#10;INDEX&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/public/index.html&#10;JOIN&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/layout/_join_us.scss&#10;rooms&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/layout/_rooms.scss&#10;foun&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/layout/_co-founders.scss&#10;web&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/webpack.config.js&#10;app/&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/app.scss&#10;varia&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/modules/variables.scss&#10;terminal&#9;ACTION&#9;ActivateTerminalToolWindow" />
+    <property name="SearchEverywhereHistoryKey" value="in&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/index.html&#10;.mobile-&#9;null&#9;null&#10;inde&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/index.html&#10;space&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_spaces.scss&#10;nav&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_nav.scss&#10;footer&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_footer.scss&#10;even&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_event.scss&#10;base&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/base/_base.scss&#10;#close&#9;null&#9;null&#10;news&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_newsletter.scss&#10;nes&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_newsletter.scss&#10;bas&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/base/_base.scss&#10;animate&#9;null&#9;null&#10;i&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/index.html&#10;union&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/images/Union.png&#10;app&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/app.scss&#10;join&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_join_us.scss&#10;eve&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_event.scss&#10;header&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_header.scss&#10;ev&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_event.scss&#10;joi&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_join_us.scss&#10;about&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_about.scss&#10;comm&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_community.scss&#10;spaces7&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_spaces.scss&#10;var&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/modules/variables.scss&#10;spa&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_spaces.scss&#10;cof&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_co-founders.scss&#10;com&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_community.scss&#10;anima&#9;null&#9;null&#10;co&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_co-founders.scss&#10;animated&#9;null&#9;null&#10;abou&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_about.scss&#10;NAV&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_nav.scss&#10;contac&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_contact.scss&#10;ab&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_about.scss&#10;cofo&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_co-founders.scss&#10;ap&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/js/app.js&#10;index&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/public/index.html&#10;room&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale2/assets/scss/layout/_rooms.scss&#10;INDEX&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/public/index.html&#10;JOIN&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/layout/_join_us.scss&#10;rooms&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/layout/_rooms.scss&#10;foun&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/layout/_co-founders.scss&#10;web&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/webpack.config.js&#10;app/&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/app.scss&#10;varia&#9;FILE&#9;file://D:/laragoon/www/Be-Centrale/assets/scss/modules/variables.scss&#10;terminal&#9;ACTION&#9;ActivateTerminalToolWindow" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
@@ -456,12 +441,16 @@
       <workItem from="1523748849411" duration="601000" />
       <workItem from="1523878633955" duration="7002000" />
       <workItem from="1523934240036" duration="126000" />
-      <workItem from="1523951462366" duration="7211000" />
+      <workItem from="1523951462366" duration="9661000" />
+      <workItem from="1523970355070" duration="1614000" />
+      <workItem from="1524011183114" duration="606000" />
+      <workItem from="1524039967409" duration="315000" />
+      <workItem from="1524040398208" duration="1446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="320154000" />
+    <option name="totallyTimeSpent" value="326585000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -474,18 +463,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="804" y="0" width="1123" height="1086" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32834226" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="ReactNative" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1008" y="100" width="819" height="887" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7540107" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.017094018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Floobits" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32486773" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36791444" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36791444" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23236994" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24647225" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.247505" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -493,6 +480,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1008" y="100" width="819" height="887" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -574,36 +562,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/rooms.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="24" column="33" lean-forward="false" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/Becentral.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/room.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="37" column="1" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="37" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/join_us.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="25" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json" />
-    <entry file="file://$PROJECT_DIR$/public/images/spaces.png" />
-    <entry file="file://$PROJECT_DIR$/public/images/24h.png" />
-    <entry file="file://$PROJECT_DIR$/public/images/Becentral.jpg" />
     <entry file="file://$PROJECT_DIR$/public/images/becentralLogo.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -749,13 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/layout/_spaces.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/scss/layout/_join_us.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1150">
@@ -763,15 +714,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/Union.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/scss/app.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/base/_base.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2806">
+          <caret line="122" column="10" lean-forward="false" selection-start-line="122" selection-start-column="10" selection-end-line="122" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/layout/_newsletter.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1684">
+          <caret line="116" column="24" lean-forward="false" selection-start-line="116" selection-start-column="19" selection-end-line="116" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -784,66 +751,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/layout/_newsletter.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/scss/layout/_nav.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding>
-            <marker date="1523957059668" expanded="true" signature="67:71" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/layout/_contact.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="30" column="7" lean-forward="false" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-          <folding>
-            <marker date="1523539062381" expanded="false" signature="66:70" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="190" column="26" lean-forward="false" selection-start-line="190" selection-start-column="26" selection-end-line="190" selection-end-column="26" />
+        <state relative-caret-position="276">
+          <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/scss/layout/_event.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+        <state relative-caret-position="1449">
+          <caret line="63" column="24" lean-forward="false" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/base/_base.scss">
+    <entry file="file://$PROJECT_DIR$/assets/scss/layout/_footer.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="122" column="10" lean-forward="false" selection-start-line="122" selection-start-column="10" selection-end-line="122" selection-end-column="10" />
+        <state relative-caret-position="295">
+          <caret line="38" column="25" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/layout/_contact.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="82" column="8" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+          <folding>
+            <marker date="1523539062381" expanded="false" signature="66:70" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/BECENTRAL-logo-2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/BECENTRAL_21032018_web_960p-16.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/BECENTRAL_21032018_web_960p-7.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/tiketToDigital.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/tickettodigital.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/studioC.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/openspace.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/layout/_spaces.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="107" column="9" lean-forward="false" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/Union.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="365" column="67" lean-forward="true" selection-start-line="365" selection-start-column="67" selection-end-line="374" selection-end-column="25" />
+        <state relative-caret-position="142">
+          <caret line="276" column="44" lean-forward="true" selection-start-line="276" selection-start-column="44" selection-end-line="276" selection-end-column="44" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#4;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#22973#23336#0" expanded="false" />
           </folding>
         </state>
       </provider>

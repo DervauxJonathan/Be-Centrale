@@ -283,7 +283,7 @@
                     <hr class="line">
                     <h2>Spaces</h2>
                 </div>
-                <div class="mobile-img"><img src="./images/room2.png" alt="rooms_©Ersan Memić"></div>
+                <div class="mobile-img"><img src="./images/BECENTRAL_21032018_web_960p-1.jpg" alt="rooms_©Ersan Memić"></div>
                 <p class="reg-paragraphe">
                     Are you looking for a central place to host your digital event? Our campus has plenty of rooms for
                     trainings, workshops, meetings or even fancy award ceremonies! Fill in the questionnaire to check
@@ -381,7 +381,7 @@
             <li><a href="https://www.instagram.com/becentral/?hl=fr"><i class="fa fa-instagram" aria-hidden="true"></i></a>
             </li>
         </ul>
-        <h2>NewsLetter</h2>
+        <h2 id="footerNews">NewsLetter</h2>
         <div class='copyright'>
             © Becentral - 2018
         </div>
@@ -590,13 +590,20 @@
 
     let news = document.querySelector(".containerModal");
     let newsLink = document.querySelector("#news");
+    let newsFooterLink = document.querySelector("#footerNews");
     let closeLink = document.querySelector("#close");
     let body = document.querySelector("body");
     newsLink.addEventListener('click', function (e) {
         e.preventDefault();
         news.style.display = 'block';
         body.style.overflowY = 'hidden'
-    })
+    });
+
+    newsFooterLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        news.style.display = 'block';
+        body.style.overflowY = 'hidden'
+    });
 
     closeLink.addEventListener('click', function (e) {
         e.preventDefault();

@@ -12,6 +12,8 @@ import axios from "axios";
 
 $(document).ready(function () {
 
+
+
 //animation ticket //
     var ticket = $('.ticket');
     var h1 = $('h1');
@@ -182,7 +184,7 @@ $(document).ready(function () {
 
 formatGoogleCalendar.init({
     calendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/becentral.org_e38ra8m0u4tgu03nipvtkvcca8@group.calendar.google.com/events?key=AIzaSyDm_lJBT0CIW7hDU38FmlblBbwpJALaqLg',
-    past: true,
+    past: false,
     upcoming: true,
     sameDayTimes: true,
     dayNames: true,
