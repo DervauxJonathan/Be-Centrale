@@ -1,176 +1,233 @@
-.form {
+@import"../modules/variables.scss";
+.modal{
+  // display: none;
+
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  background-color:rgba(0, 0, 0, 0.7);
   width: 100%;
-  padding-bottom: 100px;
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  z-index: 100;
   display: none;
-
-  :focus {
-    outline: none;
-  }
-
-  .form a {
-    outline: none;
-  }
-
-  .title {
-    left: 20%;
-    position: relative;
-    width: 400px;
-    margin-bottom: 50px;
-    text-align: center;
-    transform: translateX(-50%);
-    font-family: $text-font;
-    display: flex;
-    align-items: center;
-
-    hr {
-      background: $title;
-      height: 5px;
-      width: 40px;
-      border: none;
-      display: block;
-    }
-
-    h2 {
-      font-size: $title-size;
-      display: block;
-      color: $title;
+  .closeButton{
+    cursor: pointer;
+    img{
+      width: 50px;
+      float: right;
     }
   }
+  textarea {
+    resize: none;
+    font-family: "roboto";
+  }
 
-  .container {
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 50px auto 0;
+  .form {
 
-    .form_contact {
-      border: 1px solid;
-      border-color: $title;
-      box-sizing: border-box;
-      display: -webkit-flex;
-      display: -ms-flex;
-      display: flex;
-      justify-content: center;
+
+    :focus {
+      outline: none;
+    }
+    .form a{
+      outline: none;
+    }
+    .titles{
+      left: 20%;
+      position: relative;
       width: 400px;
+      margin-bottom: 50px;
+      text-align: center;
+      transform: translateX(-50%);
+      font-family: $text-font;
+      display: flex;
+      align-items: center;
 
-      #first-group {
-        display: grid;
-        grid-template-columns: 129px 129px;
-        grid-column-gap: 40px;
-        grid-row-gap: 40px;
-      }
 
-      #second-group {
-        margin-top: 20px;
-      }
+      hr {
 
-      .form-group {
-        margin: 0 auto;
-      }
-
-      h4 {
-        font-size: 11.5px;
-        font-family: "roboto";
-        font-weight: 100;
-        color: #757575;
-        margin-bottom: 20px;
+        background: $title;
+        height: 5px;
         width: 50px;
+        margin-right: 25px;
+        border: none;
+        display: block;
       }
 
-      .checkbox {
-        width: 100%;
-        margin-top: 20px;
-
-        h4 {
-          font-size: 11px;
-          font-family: "roboto";
-          color: #757575;
-          width: 30%;
-          border-bottom: 1px solid #cccccc;
-        }
-
-        .contain {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-
-          input[type="checkbox"] {
-            height: 11px;
-            border: none;
-          }
-
-          span {
-            font-size: 10px;
-            font-family: 'roboto';
-            color: #757575;
-            margin-right: 13px;
-          }
-
-          .form-group {
-            display: -webkit-flex;
-            display: -ms-flex;
-            display: flex;
-            justify-content: space-between;
-            margin: 0 auto;
-          }
-        }
+      h2 {
+        font-size: $title-size;
+        display: block;
+        color: $title;
       }
+
+
     }
-
-    .send_msg {
+    .container {
+      width: 66%;
+      display: flex;
+      justify-content: space-around;
       margin: 0 auto;
 
-      textarea {
-        border: none;
-        border-bottom: 1px solid $darkgrey;
-        padding-bottom: 50px;
-        width: 250px;
+      .form_contact {
+        width: 320px;
+        border: 1px solid;
+        border-color: #00d991;
+        background-color: #fff;
+
+        input {
+          width: 90%;
+        }
+
+        h3{
+          font-family: $text-font;
+          color: #757575;
+          text-align: center;
+        }
+
+        h4 {
+          font-size: 11.5px;
+          font-family: "roboto";
+          font-weight: 100;
+          color: #757575;
+          margin-bottom: 20px;
+          width: 50px;
+        }
+        .number {
+          width: 80%;
+          display: flex;
+          align-content: flex-end;
+          justify-content: space-between;
+          flex-wrap: wrap;
+
+          input{
+            width: 100%;
+          }
+
+          h4 {
+            font-size: 11.5px;
+            font-family: "roboto";
+            font-weight: 100;
+            color: #757575;
+            width: 100%;
+            border: none;
+            margin-top: -5px;
+
+          }
+        }
+        .form-group_number{
+
+          input{
+            width: 32%;
+          }
+        }
+
+        .checkbox {
+          width: 100%;
+          margin-top: 30px;
+          margin-bottom: 30px;
+
+          .contain {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+
+            input[type="checkbox"]{
+              height: 11px;
+              width: 11px;
+              border: none;
+            }
+            span {
+              font-size: 10px;
+              font-family: 'roboto';
+            }
+
+            .form-group {
+              display: -webkit-flex;
+              display: -ms-flex;
+              display: flex;
+              justify-content: space-between;
+
+              input {
+                width: 25px;
+              }
+            }
+          }
+        }
       }
 
-      h4 {
-        font-size: 11.5px;
+      .form-label {
+        font-size: 12px;
+        color: #5e9bfc;
+        line-height: 30px;
+        margin: 0;
+        display: block;
+        opacity: 1;
+        -webkit-transition: 0.333s ease top, 0.333s ease opacity;
+        transition: 0.333s ease top, 0.333s ease opacity;
+      }
+
+      .form-control {
+        border-radius: 0;
+        border-color: #ccc;
+        border-width: 0 0 1px 0;
+        border-style: none none solid none;
+        box-shadow: none;
+      }
+
+      .form-control:focus {
+        box-shadow: none;
+        border-color: #5e9bfc;
+      }
+
+      .js-hide-label {
+        opacity: 0;
+      }
+
+      .js-unhighlight-label {
+        color: red;
+      }
+
+      .btn-start-order {
+        background: 0 0 #ffffff;
+        border: 1px solid $darkgrey;
+        color: $darkgrey;
         font-family: "roboto";
-        color: #757575;
-        border-bottom: 1px solid #cccccc;
-        margin-top: 40px;
+        font-size: 14px;
+        line-height: inherit;
+        margin: 10px 0;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        transition: all 0.25s ease 0s;
+
       }
-    }
 
-    .form-label {
-      font-size: 12px;
-      color: #5e9bfc;
-      margin: 0;
-      display: block;
-      opacity: 1;
-      -webkit-transition: 0.333s ease top, 0.333s ease opacity;
-      transition: 0.333s ease top, 0.333s ease opacity;
-    }
+      .btn-start-order:active,
+      .btn-start-order:focus,
+      .btn-start-order:hover {
+        border-color: #5e9bfc;
+        color: #5e9bfc;
+      }
+      .msg textarea{
+        width: 90%;
+        height: 100px;
+        border: 1px solid $title;
+      }
 
-    .form-control {
-      border-radius: 0;
-      border-color: #ccc;
-      border-width: 0 0 1px 0;
-      border-style: none none solid none;
-      box-shadow: none;
+      // .right {
+      //   width: 45%;
+      //   img{
+      //     width: 500px;
+      //   }
+      // }
     }
+  }
+}
+@media (max-width: 576px) {
 
-    .form-control:focus {
-      box-shadow: none;
-      border-color: #5e9bfc;
-    }
-
-    .js-hide-label {
-      opacity: 0;
-    }
-
-    .js-unhighlight-label {
-      color: $title;
+  .closeButton{
+    cursor: pointer;
+    img{
+      width: 25px;
+      float: right;
     }
   }
 }

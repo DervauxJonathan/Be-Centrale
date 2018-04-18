@@ -1,5 +1,14 @@
 @import "../modules/variables";
 @import "../base/base";
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.81);
+  z-index: 500;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
 .rooms {
   position: relative;
   font-family: $text-font;
@@ -25,9 +34,31 @@
       object-fit: cover;
     }
   }
+  .paragraphe {
+    display: none;
+  }
+  .back {
+    position: absolute;
+    a {
+      text-decoration: none;
+      color: #4f4f4f;
+      z-index: 2;
+    }
+  }
+  .specs {
+    display: none;
+  }
 }
 
 @media (min-width: 992px) {
+  .buttonContent {
+    position: absolute;
+    top: 75%;
+    left: 15%;
+    .button {
+    }
+  }
+
   .rooms {
     .container {
       overflow: hidden;
@@ -43,14 +74,14 @@
           margin-top: 65px;
           padding-right: 20px;
           .paragraphe {
-            margin-left: 75px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
             margin-top: 50px;
             line-height: $txt-lh;
             font-size: $text-font;
-            max-width: 360px;
-            overflow: hidden;
             .float {
-              min-width: 400px;
+              width: 100%;
             }
           }
           .btn {
@@ -129,42 +160,85 @@
             word-break: normal;
             color: white;
             top: 40px;
-            left: 60px;
+            left: 20px;
             z-index: 100;
           }
-        } // .grey_overlay{
-        //   display: block;
-        //   background:grey;
-        //   width: 204px;
-        //   height: 165px;
-        //   position: absolute;
-        //   bottom: 0;
-        //   left: 0;
-        // }
+        }
       }
     }
   }
 }
 
-.rooms{
-  .container{
-    .left{
-      display: none;
+.rooms {
+  .container {
+    .left {
+      .back {
+        position: absolute;
+        top: 0;
+      }
+      display: block;
+      width: 40%;
+      margin: 0 auto;
+
+      .description {
+        margin-left: 65px;
+        margin-top: 65px;
+        padding-right: 20px;
+        .subTitle {
+          width: 250px;
+        }
+        .paragraphe {
+          margin: 0 auto;
+
+        }
+        .btn {
+          margin-left: 75px;
+          margin-top: 42px;
+          border: 1px solid $title;
+          width: 100px;
+          color: $title;
+          padding: 10px;
+        }
+      }
+      .specs {
+        width: 90%;
+        height: 166px;
+        position: relative;
+        bottom: 0;
+        background: $ligthgrey;
+        padding: 30px 30px 30px 65px;
+        margin: 0 auto;
+
+        .content {
+          display: flex;
+          ul {
+            list-style: none;
+            li {
+              margin-bottom: 42px;
+            }
+          }
+          .values {
+            margin-left: 50px;
+            color: $title;
+            font-weight: 400;
+          }
+        }
+      }
     }
-    .right{
+    .right {
       width: 100%;
       position: relative;
       overflow: hidden;
-      .rooms_list{
+      .rooms_list {
         left: 50%;
         transform: translateX(-50%);
         position: absolute;
-        top: 20px;
-        width: 550px;
+
+        width: 320px;
         display: flex;
-        color: #F2F2F2;
+        color: $title;
         font-weight: 400;
-        font-size: 22px;
+        font-size: 16px;
         list-style: none;
         justify-content: space-between;
         z-index: 7;
@@ -172,32 +246,34 @@
           text-align: right;
           margin-bottom: 20px;
           cursor: pointer;
-          }
         }
-        .room_box {
-          display: block;
-          background: rgba(0, 217, 145, 0.81);
-          width: 50px;
-          height: 40px;
+      }
+      .room_box {
+        display: block;
+        background: rgba(0, 217, 145, 0.81);
+        width: 50px;
+        height: 40px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        .name {
+          width: 350px;
           position: absolute;
-          bottom: 0;
-          left: 0;
-          z-index: 10;
-          .name {
-            width: 350px;
-            position: absolute;
-            line-height: 84px;
-            font-size: 16px;
-            word-break: normal;
-            color: white;
-            top: -25px;
-            left: 6px;
-            z-index: 100;
-          }
+          line-height: 84px;
+          font-size: 16px;
+          word-break: normal;
+          color: white;
+          top: -25px;
+          left: 6px;
+          z-index: 100;
         }
-      .img_container_room{
+      }
+      .img_container_room {
         position: relative;
       }
     }
   }
-  }
+}
+
+//Modal rooms//
