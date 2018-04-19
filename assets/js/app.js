@@ -108,7 +108,7 @@ $(document).ready(function () {
                 .fromTo($('.grey_overlay'), 0.5, {x: "0%"}, {x: "100%", ease: Power4.easeInOut}, "-=0.5")
                 //   .fromTo(roomName,0.5,{x:-150},{x:0,ease: Power4.easeInOut})
                 .from([roomCapacity, roomPeople, roomMaterial], 0.5, {autoAlpha: 0, y: 20}, 'tween-=0.75')
-                //.set([roomCapacity,roomPeople,roomMaterial],{autoAlpha:1})
+            //.set([roomCapacity,roomPeople,roomMaterial],{autoAlpha:1})
             // TweenLite.from([roomCapacity,roomPeople,roomMaterial],0.7,{autoAlpha:0,y:20});
         })
     });
@@ -178,8 +178,6 @@ $(document).ready(function () {
 });
 
 
-
-
 formatGoogleCalendar.init({
     calendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/becentral.org_e38ra8m0u4tgu03nipvtkvcca8@group.calendar.google.com/events?key=AIzaSyDm_lJBT0CIW7hDU38FmlblBbwpJALaqLg',
     past: false,
@@ -198,4 +196,69 @@ formatGoogleCalendar.init({
 });
 
 
+$("#aboutbtn").click(function () {
+    $('html, body').animate({
+        scrollTop: $(".about").offset().top - 50
+    }, 500);
+});
 
+
+$("#cofoundersbtnMobile").click(function () {
+    $('html, body').animate({
+        scrollTop: $(".co-founders").offset().top - 50
+    }, 500);
+});
+
+
+$("#communitybtnMobile").click(function () {
+    $('html, body').animate({
+        scrollTop: $(".community").offset().top - 50
+    }, 500);
+});
+
+$("#joinusbtnMobile").click(function () {
+    $('html, body').animate({
+        scrollTop: $(".join_us").offset().top - 100
+    }, 500);
+});
+
+$("#spacesbtnMobile").click(function () {
+    $('html, body').animate({
+        scrollTop: $(".spaces").offset().top - 100
+    }, 500);
+});
+$("#evmtbtnMobile").click(function () {
+    $('html, body').animate({
+        scrollTop: $(".event").offset().top - 100
+    }, 500);
+});
+$("#contactbtnMobile").click(function () {
+    $('html, body').animate({
+        scrollTop: $(".contact").offset().top - 100
+    }, 500);
+});
+
+$('#closeMobile').click(function () {
+    var tl = new TimelineMax();
+    tl.to($('.main-mobile-nav'), 0.3, {x: '-100%'});
+})
+
+
+$('#ham').click(function () {
+    var tl = new TimelineMax();
+    tl.to($('.main-mobile-nav'), 0.3, {x: '100%'});
+})
+
+$('.mobileLink').click(function () {
+
+})
+
+var roomButton = document.querySelector('#roomButton');
+var form = document.querySelector('.modal');
+roomButton.addEventListener('click', function () {
+    form.style.display = "block";
+
+    $('.closing').click(function () {
+        form.style.display = "none";
+    })
+});

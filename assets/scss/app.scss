@@ -1,6 +1,7 @@
 @import "/modules/variables";
 @import "/base/base";
 @import "/layout/nav";
+@import "/layout/navMobile";
 @import "/layout/header";
 @import "/layout/join_us";
 @import "/layout/spaces";
@@ -16,8 +17,7 @@
 @import "/layout/newsletter";
 @import "/layout/form";
 
-
-*{
+* {
   margin: 0;
   padding: 0;
 }

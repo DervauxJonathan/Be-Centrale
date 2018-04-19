@@ -7,14 +7,22 @@
   height: 100vh;
   position: absolute;
 }
+.containerMobile{
+  display: flex;
+  flex-direction: column;
+  img{
+    width: 100%;
+  }
+}
 .rooms {
+
   position: relative;
   font-family: $text-font;
-  .buttonContent{
-    position: absolute;
-    top:75%;
-    left: 15%;
-
+  .container{
+    display: none;
+  }
+  .paragraphe{
+    display:none;
   }
   .subTitle {
     @extend .title;
@@ -40,9 +48,6 @@
   }
 }
 
-.paragraphe{
-  display:none;
-}
 .back{
   position: absolute;
   a{
@@ -51,10 +56,36 @@
     z-index: 2;
   }
 }
+.buttonContent{
+  display: none;
+  position: absolute;
+  top:68%;
+  left: 15%;
+
+}
+.buttonMail{
+  display: block;
+
+}
 @media (min-width: 992px) {
+  .buttonContent{
+    position: absolute;
+    top:68%;
+    left: 15%;
+    display: block;
 
+  }
+  .buttonMail{
+    display: none;
+  }
   //modals
-
+  .containerMobile{
+    display: none;
+    flex-direction: column;
+    img{
+      width: 100%;
+    }
+  }
   .rooms {
     .container {
       overflow: hidden;
@@ -214,7 +245,7 @@
       }
     }
     .specs {
-      display: none;
+      display: block;
       width: 90%;
       height: 166px;
       position: relative;

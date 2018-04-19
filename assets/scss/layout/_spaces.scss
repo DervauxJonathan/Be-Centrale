@@ -21,10 +21,10 @@
   }
   .mobile-img {
     width: 100%;
-    background: #000;
+    background: url("./images/community.jpg") center center;
     height: 380px;
+    background-size: cover;
     overflow: hidden;
-    object-fit: cover;
     img {
       width: 100%;
       object-fit: cover;
@@ -96,13 +96,13 @@
             }
           }
         }
-        .one{
+        .one {
           background: url("./images/openspace.jpg") center center;
         }
-        .two{
+        .two {
           background: url("./images/boardroom.jpg") center center;
         }
-        .three{
+        .three {
           background: url("./images/studioC.jpg") center center;
         }
         .mobile-img {

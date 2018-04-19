@@ -6,6 +6,9 @@
     @extend .title;
     z-index: 5;
   }
+  .subTitle.desktop{
+    display: none;
+  }
   .desktop {
     display: none;
   }

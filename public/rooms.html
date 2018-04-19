@@ -8,6 +8,95 @@
     <title>Document</title>
 </head>
 <body>
+
+<div class="form">
+    <div class="title">
+        <hr class="line"/>
+        <h2>Book a room</h2>
+    </div>
+    <div class="container">
+        <div class="form_contact">
+            <!-- <h3>Contact us</h3> -->
+            <form id="contact-form" class="form" action="https://formspree.io/yourock@becentral.org" method="POST"
+                  role="form">
+                <div id="first-group">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" tabindex="1"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="first-name" name="name" placeholder="First-Name"
+                               tabindex="2" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email"
+                               tabindex="3" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="company" name="company" placeholder="Company"
+                               tabindex="4" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name-event" name="name-event"
+                               placeholder="Name of event" tabindex="5" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="attendees" name="attendees"
+                               placeholder="Number of attendees" tabindex="8" required>
+                    </div>
+                    <div class="form-group">
+                        <input id="date" type="text" name="date" placeholder="date" onfocus="(this.type='date')">
+                    </div>
+                    <div class="form-group">
+                        <input id="time" type="text" name="time" onfocus="(this.type='time')" placeholder="time">
+                    </div>
+                </div>
+
+                <div id="second-group">
+                    <div class="checkbox">
+                        <h4>Catering</h4>
+                        <div class="contain">
+                            <div class="form-group">
+                                <input type="checkbox" class="form-control" id="checkbox" name="breakfast"
+                                       placeholder="Breakfast" tabindex="9"> <span>Breakfast</span> <span
+                                    class="checkmark"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="form-control" id="checkbox" name="lunch"
+                                       placeholder="Lunch" tabindex="10"> <span>Lunch</span> <span
+                                    class="checkmark"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="form-control" id="checkbox" name="dinner"
+                                       placeholder="Dinner" tabindex="11"> <span>Dinner</span> <span
+                                    class="checkmark"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="form-control" id="checkbox" name="reception"
+                                       placeholder="Reception" tabindex="12"> <span>Reception</span> <span
+                                    class="checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="send_msg">
+                            <h4>Message</h4>
+                            <div class="msg">
+                                <textarea name="message" class="form-control" id="message" placeholder="..."
+                                          tabindex="13" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="button">
+                    <input type="submit" value="send"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <div class="rooms">
     <div class="back">
         <a href="index.html"><img src="images/arrow.svg" alt=""><span>Back</span></a>
@@ -77,9 +166,8 @@
     <div class="closeButton">
         <img src="images/close.png" alt="close button" class="closing">
     </div>
-    <div class="form">
+    <!--<div class="form">
         <div class="container">
-
             <div class="form_contact">
                 <h3>Contact us</h3>
                 <form id="contact-form" class="form" action="#" method="POST" role="form">
@@ -133,22 +221,22 @@
                         <div class="contain">
                             <div class="form-group">
                                 <input type="checkbox" class="form-control" id="checkbox" name="breakfast"
-                                       placeholder="Breakfast" tabindex="9" required> <span>Breakfast</span> <span
+                                       placeholder="Breakfast" tabindex="9"> <span>Breakfast</span> <span
                                     class="checkmark"></span>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" class="form-control" id="checkbox" name="lunch"
-                                       placeholder="Lunch" tabindex="10" required> <span>Lunch</span> <span
+                                       placeholder="Lunch" tabindex="10" > <span>Lunch</span> <span
                                     class="checkmark"></span>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" class="form-control" id="checkbox" name="dinner"
-                                       placeholder="Dinner" tabindex="11" required> <span>Dinner</span> <span
+                                       placeholder="Dinner" tabindex="11" > <span>Dinner</span> <span
                                     class="checkmark"></span>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" class="form-control" id="checkbox" name="reception"
-                                       placeholder="Reception" tabindex="12" required> <span>Reception</span> <span
+                                       placeholder="Reception" tabindex="12" > <span>Reception</span> <span
                                     class="checkmark"></span>
                             </div>
                         </div>
@@ -166,12 +254,12 @@
                     </div>
                 </form>
             </div>
-            <!--
+            &lt;!&ndash;
                   <div class="right">
                     <div class="imgcontainer">
-                      <img src="images/test_form.jpg" alt=""> -->
+                      <img src="images/test_form.jpg" alt=""> &ndash;&gt;
         </div>
-    </div>
+    </div>-->
 </div>
 </div>
 <script src="app.js"></script>

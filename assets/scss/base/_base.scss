@@ -31,8 +31,15 @@
   }
 }
 
-.section {
+.section.about{
   margin-bottom: 100px;
+}
+
+.section.co-founders, .section.community, .section.join_us, .section.spaces , .section.event{
+  margin-bottom: 150px;
+}
+
+.section {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -120,7 +127,7 @@ a.animated-button:link, a.animated-button:visited {
   border-radius: 0;
 }
 
-.animated{
+.animated {
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
@@ -214,9 +221,6 @@ body {
     transform: translateX(-50%);
   }
 
-  .section {
-    margin-bottom: 200px;
-  }
 }
 
 .back {
