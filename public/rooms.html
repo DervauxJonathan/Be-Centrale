@@ -105,7 +105,7 @@
 
                 <div class="form_contact">
                     <h3>Contact us</h3>
-                    <form id="contact-form" class="form" action="#" method="POST" role="form">
+                    <form id="contact-form" class="form" action="https://formspree.io/yourock@becentral.org" method="POST" role="form">
                         <div class="form-group">
                             <label class="form-label" for="name">Name</label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Name"
@@ -156,22 +156,22 @@
                             <div class="contain">
                                 <div class="form-group">
                                     <input type="checkbox" class="form-control" id="checkbox" name="breakfast"
-                                           placeholder="Breakfast" tabindex="9" required> <span>Breakfast</span> <span
+                                           placeholder="Breakfast" tabindex="9"> <span>Breakfast</span> <span
                                         class="checkmark"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox" class="form-control" id="checkbox" name="lunch"
-                                           placeholder="Lunch" tabindex="10" required> <span>Lunch</span> <span
+                                           placeholder="Lunch" tabindex="10"> <span>Lunch</span> <span
                                         class="checkmark"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox" class="form-control" id="checkbox" name="dinner"
-                                           placeholder="Dinner" tabindex="11" required> <span>Dinner</span> <span
+                                           placeholder="Dinner" tabindex="11"> <span>Dinner</span> <span
                                         class="checkmark"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox" class="form-control" id="checkbox" name="reception"
-                                           placeholder="Reception" tabindex="12" required> <span>Reception</span> <span
+                                           placeholder="Reception" tabindex="12"> <span>Reception</span> <span
                                         class="checkmark"></span>
                                 </div>
                             </div>
@@ -193,6 +193,20 @@
         </div>
     </div>
 </div>
+<script>
+    var roomButton = document.querySelector('#roomButton');
+    var closeButton = document.querySelector('.closing');
+    var form = document.querySelector('.modal');
+
+    roomButton.addEventListener('click', function () {
+        form.style.display = "block";
+    });
+
+    closeButton.addEventListener('click', function () {
+        form.style.display = "none";
+    });
+
+</script>
 <script src="app.js"></script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
