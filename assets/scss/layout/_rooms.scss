@@ -1,29 +1,52 @@
-/*
 @import "../modules/variables";
 @import "../base/base";
-.overlay{
-  background-color:rgba(0, 0, 0, 0.81);
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.81);
   z-index: 500;
   width: 100vw;
   height: 100vh;
   position: absolute;
 }
-.containerMobile{
+
+.containerMobile {
+  max-width: 700px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  img{
+  text-align: center;
+  line-height: 150%;
+  .back.backMobile{
+    margin: 0;
+    position: absolute;
+    top:10px;
+    left: 20px;
+  }
+  .subTitle {
+    width: 205px;
+    margin: 80px auto 20px;
+  }
+  .mobileDescription {
+    margin: 0 10px;
+    line-height: 150%;
+  }
+  img {
     width: 100%;
   }
+  a {
+    margin: 20px auto;
+  }
 }
-.rooms {
 
+.rooms {
   position: relative;
   font-family: $text-font;
-  .container{
+
+  .container {
     display: none;
   }
-  .paragraphe{
-    display:none;
+  .paragraphe {
+    display: none;
   }
   .subTitle {
     @extend .title;
@@ -49,41 +72,34 @@
   }
 }
 
-.back{
-  position: absolute;
-  a{
-    text-decoration: none;
-    color: #4f4f4f;
-    z-index: 2;
-  }
-}
-.buttonContent{
-  display: none;
-  position: absolute;
-  top:68%;
-  left: 15%;
-
-}
-.buttonMail{
+.buttonMail {
   display: block;
 
 }
+
+@media (min-width: 768px) {
+  .rooms {
+
+    .subTitle {
+      width: 300px;
+    }
+  }
+}
+
 @media (min-width: 992px) {
-  .buttonContent{
+  .buttonContent {
     position: absolute;
-    top:68%;
-    left: 15%;
     display: block;
 
   }
-  .buttonMail{
+  .buttonMail {
     display: none;
   }
   //modals
-  .containerMobile{
+  .containerMobile {
     display: none;
     flex-direction: column;
-    img{
+    img {
       width: 100%;
     }
   }
@@ -98,20 +114,15 @@
         position: relative;
         width: 40%;
         .description {
-          margin-left: 65px;
           margin-top: 65px;
           padding-right: 20px;
           .paragraphe {
             display: block;
-            margin-left: auto;
-            margin-right: auto;
             margin-top: 50px;
             line-height: $txt-lh;
             font-size: $text-font;
-            max-width: 360px;
-
             .float {
-              min-width: 400px;
+              max-width: 430px;
             }
           }
           .btn {
@@ -194,33 +205,24 @@
             left: 20px;
             z-index: 100;
           }
-        } // .grey_overlay{
-        //   display: block;
-        //   background:grey;
-        //   width: 204px;
-        //   height: 165px;
-        //   position: absolute;
-        //   bottom: 0;
-        //   left: 0;
-        // }
+        }
       }
     }
   }
 }
 
+.container {
 
-.container{
-  .left {
-    .back{
-      !* font-family: "Roboto"; *!
-      !* text-transform: uppercase; *!
-      !* font-size: 18px; *!
-      !* margin-bottom: 100px; *!
-      !* display: flex; *!
-      !* margin-left: 20px; *!
-      position: absolute;
-      top: 0;
+  .back {
+    position: absolute;
+    a {
+      text-decoration: none;
+      color: #4f4f4f;
+      z-index: 2;
     }
+  }
+  .left {
+
     display: block;
     width: 40%;
     margin: 0 auto;
@@ -229,12 +231,11 @@
       margin-left: 65px;
       margin-top: 65px;
       padding-right: 20px;
-      .subTitle{
-        width: 250px;
+      .subTitle {
+        width: 295px;
       }
       .paragraphe {
         margin: 0 auto;
-
       }
       .btn {
         margin-left: 75px;
@@ -255,7 +256,6 @@
       padding: 30px 30px 30px 65px;
       margin: 0 auto;
 
-
       .content {
         display: flex;
         ul {
@@ -272,11 +272,11 @@
       }
     }
   }
-  .right{
+  .right {
     width: 100%;
     position: relative;
     overflow: hidden;
-    .rooms_list{
+    .rooms_list {
       left: 50%;
       transform: translateX(-50%);
       position: absolute;
@@ -316,10 +316,8 @@
         z-index: 100;
       }
     }
-    .img_container_room{
+    .img_container_room {
       position: relative;
     }
   }
 }
-
-//Modal rooms//*/

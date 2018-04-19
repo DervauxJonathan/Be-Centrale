@@ -12,8 +12,6 @@ import axios from "axios";
 
 $(document).ready(function () {
 
-
-
 //animation ticket //
     var ticket = $('.ticket');
     var h1 = $('h1');
@@ -255,10 +253,10 @@ $('.mobileLink').click(function () {
 
 var roomButton = document.querySelector('#roomButton');
 var form = document.querySelector('.modal');
-roomButton.addEventListener('click', function () {
-    form.style.display = "block";
+roomButton.addEventListener('click',function(){
+    form.style.display="block";
 
-    $('.closing').click(function () {
-        form.style.display = "none";
+    $('.closing').click(function(){
+        form.style.display="none";
     })
 });
