@@ -9,100 +9,34 @@
 </head>
 <body>
 
-<div class="form">
-    <div class="title">
-        <hr class="line"/>
-        <h2>Book a room</h2>
-    </div>
-    <div class="container">
-        <div class="form_contact">
-            <!-- <h3>Contact us</h3> -->
-            <form id="contact-form" class="form" action="https://formspree.io/yourock@becentral.org" method="POST"
-                  role="form">
-                <div id="first-group">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" tabindex="1"
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="first-name" name="name" placeholder="First-Name"
-                               tabindex="2" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email"
-                               tabindex="3" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="company" name="company" placeholder="Company"
-                               tabindex="4" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="name-event" name="name-event"
-                               placeholder="Name of event" tabindex="5" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="attendees" name="attendees"
-                               placeholder="Number of attendees" tabindex="8" required>
-                    </div>
-                    <div class="form-group">
-                        <input id="date" type="text" name="date" placeholder="date" onfocus="(this.type='date')">
-                    </div>
-                    <div class="form-group">
-                        <input id="time" type="text" name="time" onfocus="(this.type='time')" placeholder="time">
-                    </div>
-                </div>
-
-                <div id="second-group">
-                    <div class="checkbox">
-                        <h4>Catering</h4>
-                        <div class="contain">
-                            <div class="form-group">
-                                <input type="checkbox" class="form-control" id="checkbox" name="breakfast"
-                                       placeholder="Breakfast" tabindex="9"> <span>Breakfast</span> <span
-                                    class="checkmark"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" class="form-control" id="checkbox" name="lunch"
-                                       placeholder="Lunch" tabindex="10"> <span>Lunch</span> <span
-                                    class="checkmark"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" class="form-control" id="checkbox" name="dinner"
-                                       placeholder="Dinner" tabindex="11"> <span>Dinner</span> <span
-                                    class="checkmark"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" class="form-control" id="checkbox" name="reception"
-                                       placeholder="Reception" tabindex="12"> <span>Reception</span> <span
-                                    class="checkmark"></span>
-                            </div>
-                        </div>
-                        <div class="send_msg">
-                            <h4>Message</h4>
-                            <div class="msg">
-                                <textarea name="message" class="form-control" id="message" placeholder="..."
-                                          tabindex="13" required></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="button">
-                    <input type="submit" value="send"/>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
 <div class="rooms">
-    <div class="back">
-        <a href="index.html"><img src="images/arrow.svg" alt=""><span>Back</span></a>
-    </div>
     <div>
+        <div class="containerMobile">
+            <div class="back backMobile">
+                <a href="index.html"><img src="images/arrow.svg" alt=""><span>Back</span></a>
+            </div>
+            <div class="content">
+                <div class="subTitle">
+                    <hr class="line">
+                    <h2>Our Spaces</h2>
+                </div>
+                <div class="mobileDescription">
+                    We organize training sessions, workshops, seminars, meetups, hackathons, bootcamps… Any form of
+                    exchange involving digital knowledge, expertise, insights and experiences intented to help
+                    people and companies forward.
+                </div>
+                <a href="mailto:yourock@becentral.org" class="buttonStyle">BOOK A ROOM</a>
+
+            </div>
+            <img src="images/boardroom.jpg" alt="">
+            <img src="images/foyer.jpg" alt="">
+            <img src="images/studioC.jpg" alt="">
+
+        </div>
         <div class="container">
+            <div class="back">
+                <a href="index.html"><img src="images/arrow.svg" alt=""><span>Back</span></a>
+            </div>
             <div class="left">
                 <div class="description">
                     <div class="subTitle">
@@ -113,7 +47,7 @@
                         <div class="float">
                             We organize training sessions, workshops, seminars, meetups, hackathons, bootcamps… Any form
                             of
-                            exchange involving digital knowledge, expertise, insights and expereiences intented to help
+                            exchange involving digital knowledge, expertise, insights and experiences intented to help
                             people and companies forward.
                         </div>
                         <div class="buttonContent">
@@ -161,106 +95,103 @@
             </div>
         </div>
     </div>
-</div>
-<div class="modal">
-    <div class="closeButton">
-        <img src="images/close.png" alt="close button" class="closing">
-    </div>
-    <!--<div class="form">
-        <div class="container">
-            <div class="form_contact">
-                <h3>Contact us</h3>
-                <form id="contact-form" class="form" action="#" method="POST" role="form">
-                    <div class="form-group">
-                        <label class="form-label" for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" tabindex="1"
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="name">First-Name</label>
-                        <input type="text" class="form-control" id="first-name" name="name" placeholder="First-Name"
-                               tabindex="2" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email"
-                               tabindex="3" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="company">Company</label>
-                        <input type="text" class="form-control" id="company" name="company" placeholder="Company"
-                               tabindex="4" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="name-event">Name of event</label>
-                        <input type="text" class="form-control" id="name-event" name="name-event"
-                               placeholder="Name of event" tabindex="5" required>
-                    </div>
-                    <div class="number">
-                        <div class="form-group">
-                            <label class="form-label" for="date-event">Date of event</label>
-                            <h4>Date of event</h4>
-                            <input type="date" class="form-control" id="date-event" name="date-event"
-                                   placeholder="Date of event" tabindex="6" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="time-event">Time of event</label>
-                            <h4>Time of event</h4>
-                            <input type="time" class="form-control" id="time" name="time-event"
-                                   placeholder="Time of event" tabindex="7" required>
-                        </div>
-                    </div>
-                    <div class="form-group_number">
-                        <label class="form-label" for="attendees">Number of attendees</label>
-                        <input type="number" class="form-control" id="attendees" name="attendees"
-                               placeholder="Number of attendees" tabindex="8" required>
-                    </div>
 
-                    <div class="checkbox">
-                        <h4>Catering</h4>
-                        <div class="contain">
-                            <div class="form-group">
-                                <input type="checkbox" class="form-control" id="checkbox" name="breakfast"
-                                       placeholder="Breakfast" tabindex="9"> <span>Breakfast</span> <span
-                                    class="checkmark"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" class="form-control" id="checkbox" name="lunch"
-                                       placeholder="Lunch" tabindex="10" > <span>Lunch</span> <span
-                                    class="checkmark"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" class="form-control" id="checkbox" name="dinner"
-                                       placeholder="Dinner" tabindex="11" > <span>Dinner</span> <span
-                                    class="checkmark"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" class="form-control" id="checkbox" name="reception"
-                                       placeholder="Reception" tabindex="12" > <span>Reception</span> <span
-                                    class="checkmark"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-
-                        <h4>Message</h4>
-                        <div class="msg">
-                            <textarea name="message" class="form-control" id="message" placeholder="..." tabindex="13"
-                                      required></textarea>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-start-order">Send</button>
-                    </div>
-                </form>
-            </div>
-            &lt;!&ndash;
-                  <div class="right">
-                    <div class="imgcontainer">
-                      <img src="images/test_form.jpg" alt=""> &ndash;&gt;
+    <div class="modal">
+        <div class="closeButton">
+            <img src="images/close.png" alt="close button" class="closing">
         </div>
-    </div>-->
-</div>
+        <div class="form">
+            <div class="container">
+
+                <div class="form_contact">
+                    <h3>Contact us</h3>
+                    <form id="contact-form" class="form" action="#" method="POST" role="form">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name"
+                                   tabindex="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="name">First-Name</label>
+                            <input type="text" class="form-control" id="first-name" name="name" placeholder="First-Name"
+                                   tabindex="2" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email"
+                                   tabindex="3" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="company">Company</label>
+                            <input type="text" class="form-control" id="company" name="company" placeholder="Company"
+                                   tabindex="4" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="name-event">Name of event</label>
+                            <input type="text" class="form-control" id="name-event" name="name-event"
+                                   placeholder="Name of event" tabindex="5" required>
+                        </div>
+                        <div class="number">
+                            <div class="form-group">
+                                <label class="form-label" for="date-event">Date of event</label>
+                                <h4>Date of event</h4>
+                                <input type="date" class="form-control" id="date-event" name="date-event"
+                                       placeholder="Date of event" tabindex="6" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="time-event">Time of event</label>
+                                <h4>Time of event</h4>
+                                <input type="time" class="form-control" id="time" name="time-event"
+                                       placeholder="Time of event" tabindex="7" required>
+                            </div>
+                        </div>
+                        <div class="form-group_number">
+                            <label class="form-label" for="attendees">Number of attendees</label>
+                            <input type="number" class="form-control" id="attendees" name="attendees"
+                                   placeholder="Number of attendees" tabindex="8" required>
+                        </div>
+
+                        <div class="checkbox">
+                            <h4>Catering</h4>
+                            <div class="contain">
+                                <div class="form-group">
+                                    <input type="checkbox" class="form-control" id="checkbox" name="breakfast"
+                                           placeholder="Breakfast" tabindex="9" required> <span>Breakfast</span> <span
+                                        class="checkmark"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="form-control" id="checkbox" name="lunch"
+                                           placeholder="Lunch" tabindex="10" required> <span>Lunch</span> <span
+                                        class="checkmark"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="form-control" id="checkbox" name="dinner"
+                                           placeholder="Dinner" tabindex="11" required> <span>Dinner</span> <span
+                                        class="checkmark"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="form-control" id="checkbox" name="reception"
+                                           placeholder="Reception" tabindex="12" required> <span>Reception</span> <span
+                                        class="checkmark"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <h4>Message</h4>
+                            <div class="msg">
+                                <textarea name="message" class="form-control" id="message" placeholder="..."
+                                          tabindex="13" required></textarea>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-start-order">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="app.js"></script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -303,17 +234,6 @@
                 }
             });
         }
-    });
-</script>
-<script>
-    var roomButton = document.querySelector('#roomButton');
-    var form = document.querySelector('.modal');
-    roomButton.addEventListener('click', function () {
-        form.style.display = "block";
-
-        $('.closing').click(function () {
-            form.style.display = "none";
-        })
     });
 </script>
 </body>
