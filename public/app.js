@@ -22410,15 +22410,8 @@ $('.mobileLink').click(function () {
 
 })
 
-var roomButton = document.querySelector('#roomButton');
-var form = document.querySelector('.modal');
-roomButton.addEventListener('click',function(){
-    form.style.display="block";
 
-    $('.closing').click(function(){
-        form.style.display="none";
-    })
-});
+
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
 

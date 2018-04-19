@@ -251,12 +251,4 @@ $('.mobileLink').click(function () {
 
 })
 
-var roomButton = document.querySelector('#roomButton');
-var form = document.querySelector('.modal');
-roomButton.addEventListener('click',function(){
-    form.style.display="block";
 
-    $('.closing').click(function(){
-        form.style.display="none";
-    })
-});
