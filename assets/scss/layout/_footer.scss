@@ -32,11 +32,19 @@ footer {
     }
     .copyright {
       color: #313131;
+    /* text-align: center; */
+    font-family: "Roboto";
+    font-size: 11px;
+    padding: 10px;
+    margin-bottom: 30px;
+    width: 320px;
+    margin: 0 auto;
+    a{
+      text-decoration: none;
+      color: #313131;
       text-align: center;
-      font-family: $text-font;
-      font-size: $small-txt-size;
-      padding: 10px;
-      margin-bottom:30px;
+    }
+    
     }
   }
 }

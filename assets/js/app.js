@@ -22,13 +22,14 @@ $(document).ready(function () {
     var title = $('.title-animation');
     var section = $('section')
     var tl = new TimelineLite();
+    
 
     tl
         .from(ticket, 0.8, {width: 0, ease: Power0.easeOut})
         .from(h1, 1, {autoAlpha: 0}, '+=0.05')
         .from(logo, 0.5, {opacity: 0, x: -200, ease: Power0.easeOut}, '-=0.25');
 //animation on scroll//
-
+   
     var controller = new ScrollMagic.Controller();
 
     $('.section').each(function () {
@@ -256,13 +257,23 @@ $('#closeMobile').click(function () {
 
 
 $('#ham').click(function () {
+    $('.main-mobile-nav').fadeIn()
     var tl = new TimelineMax();
-    tl.to($('.main-mobile-nav'), 0.3, {x: '100%'});
+
+    tl
+    .to($('.main-mobile-nav'), 0.3, {x: '100%'})
+    .staggerFrom($('.LinkBurger'),0.2,{opacity:0,x:-125, yoyo:true},0.1)
 })
 
 $('.mobileLink').click(function () {
-
+    
+   $('.main-mobile-nav').fadeOut()
 })
+
+
+
+
+
 
 var roomButton = document.querySelector('#roomButton');
 var form = document.querySelector('.modal');

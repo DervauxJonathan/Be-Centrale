@@ -5,6 +5,9 @@
   #ham{
     position: fixed;
     z-index: 50;
+    img{
+      width: 50px;
+    }
   }
   .main-mobile-nav {
     flex-direction: column;
@@ -17,6 +20,12 @@
     align-items: center;
     display: flex;
     height: 100%;
+    #closeMobile{
+      float: right;
+     img{
+       width: 25px;
+     }
+    }
     .container {
       width: 98%;
       margin: 0 auto;
