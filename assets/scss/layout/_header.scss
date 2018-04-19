@@ -11,10 +11,7 @@
   width: 100%;
   margin-bottom: 50px;
 
-  video {
-    display: none;
 
-  }
   .content {
     width: 100%;
     background: #f2f2f2;
@@ -43,15 +40,16 @@
 
 @media (min-width: 768px) {
   .headerVideo {
-    video {
-      display: block;
-    }
+
     display: block;
     position: relative;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
     -webkit-background-size: cover;
     background-size: cover;
+    background: url("images/Becentral_header.jpg") no-repeat center center;
+    background-attachment: fixed;
     .content {
       position: absolute;
       z-index: 20;
