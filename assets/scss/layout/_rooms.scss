@@ -57,10 +57,10 @@
   }
 }
 .buttonContent{
-  display: none;
   position: absolute;
-  top:68%;
-  left: 15%;
+  top: 39%;
+  left: 10%;
+  display: block;
   
 }
 .buttonMail{
@@ -70,8 +70,8 @@
 @media (min-width: 992px) {
   .buttonContent{
     position: absolute;
-    top:68%;
-    left: 15%;
+    top: 39%;
+    left: 8%;
     display: block;
     
   }
@@ -97,7 +97,7 @@
         position: relative;
         width: 40%;
         .description {
-          margin-left: 65px;
+          
           margin-top: 65px;
           padding-right: 20px;
           .paragraphe {
@@ -229,7 +229,10 @@
       margin-top: 65px;
       padding-right: 20px;
       .subTitle{
-          width: 250px;
+        width: 295px;
+      
+      
+      
         }
         .paragraphe {
           margin: 0 auto;
