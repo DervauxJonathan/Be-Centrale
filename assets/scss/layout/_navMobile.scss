@@ -22,6 +22,7 @@
     height: 100%;
     #closeMobile{
       float: right;
+      margin-left: 98%;
      img{
        width: 25px;
      }
@@ -46,6 +47,9 @@
             text-decoration: none;
             &:visited {
               color: white;
+            }
+            &:hover{
+              color: $title;
             }
           }
         }
