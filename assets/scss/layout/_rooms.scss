@@ -49,11 +49,11 @@
 }
 
 .back{
-  position: absolute;
-  a{
-    text-decoration: none;
-    color: #4f4f4f;
-    z-index: 2;
+    position: absolute;
+    a{
+      text-decoration: none;
+      color: #4f4f4f;
+      z-index: 2;
   }
 }
 .buttonContent{
@@ -61,11 +61,11 @@
   position: absolute;
   top:68%;
   left: 15%;
-
+  
 }
 .buttonMail{
   display: block;
-
+  
 }
 @media (min-width: 992px) {
   .buttonContent{
@@ -73,7 +73,7 @@
     top:68%;
     left: 15%;
     display: block;
-
+    
   }
   .buttonMail{
     display: none;
@@ -108,7 +108,7 @@
             line-height: $txt-lh;
             font-size: $text-font;
             max-width: 360px;
-
+            
             .float {
               min-width: 400px;
             }
@@ -123,7 +123,7 @@
           }
         }
         .specs {
-
+          
           width: 90%;
           height: 166px;
           position: absolute;
@@ -194,9 +194,9 @@
             z-index: 100;
           }
         } // .grey_overlay{
-        //   display: block;
-        //   background:grey;
-        //   width: 204px;
+          //   display: block;
+          //   background:grey;
+          //   width: 204px;
         //   height: 165px;
         //   position: absolute;
         //   bottom: 0;
@@ -211,114 +211,114 @@
 .container{
   .left {
     .back{
-      /* font-family: "Roboto"; */
-      /* text-transform: uppercase; */
-      /* font-size: 18px; */
-      /* margin-bottom: 100px; */
-      /* display: flex; */
-      /* margin-left: 20px; */
-      position: absolute;
-      top: 0;
+          /* font-family: "Roboto"; */
+    /* text-transform: uppercase; */
+    /* font-size: 18px; */
+    /* margin-bottom: 100px; */
+    /* display: flex; */
+    /* margin-left: 20px; */
+    position: absolute;
+    top: 0;
     }
     display: block;
     width: 40%;
     margin: 0 auto;
-
+    
     .description {
       margin-left: 65px;
       margin-top: 65px;
       padding-right: 20px;
       .subTitle{
-        width: 250px;
+          width: 250px;
+        }
+        .paragraphe {
+          margin: 0 auto;
+      
+        }
+        .btn {
+          margin-left: 75px;
+          margin-top: 42px;
+          border: 1px solid $title;
+          width: 100px;
+          color: $title;
+          padding: 10px;
+        }
       }
-      .paragraphe {
+      .specs {
+        display: block;
+        width: 90%;
+        height: 166px;
+        position: relative;
+        bottom: 0;
+        background: $ligthgrey;
+        padding: 30px 30px 30px 65px;
         margin: 0 auto;
-
-      }
-      .btn {
-        margin-left: 75px;
-        margin-top: 42px;
-        border: 1px solid $title;
-        width: 100px;
-        color: $title;
-        padding: 10px;
-      }
-    }
-    .specs {
-      display: block;
-      width: 90%;
-      height: 166px;
-      position: relative;
-      bottom: 0;
-      background: $ligthgrey;
-      padding: 30px 30px 30px 65px;
-      margin: 0 auto;
-
-
-      .content {
-        display: flex;
-        ul {
-          list-style: none;
-          li {
-            margin-bottom: 42px;
+       
+        
+        .content {
+          display: flex;
+          ul {
+            list-style: none;
+            li {
+              margin-bottom: 42px;
+            }
+          }
+          .values {
+            margin-left: 50px;
+            color: $title;
+            font-weight: 400;
           }
         }
-        .values {
-          margin-left: 50px;
-          color: $title;
-          font-weight: 400;
-        }
       }
     }
-  }
-  .right{
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    .rooms_list{
-      left: 50%;
-      transform: translateX(-50%);
-      position: absolute;
-
-      width: 320px;
-      display: flex;
-      color: $title;
-      font-weight: 400;
-      font-size: 16px;
-      list-style: none;
-      justify-content: space-between;
-      z-index: 7;
-      li {
-        text-align: right;
-        margin-bottom: 20px;
-        cursor: pointer;
-      }
-    }
-    .room_box {
-      display: block;
-      background: rgba(0, 217, 145, 0.81);
-      width: 50px;
-      height: 40px;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      z-index: 10;
-      .name {
-        width: 350px;
-        position: absolute;
-        line-height: 84px;
-        font-size: 16px;
-        word-break: normal;
-        color: white;
-        top: -25px;
-        left: 6px;
-        z-index: 100;
-      }
-    }
-    .img_container_room{
+    .right{
+      width: 100%;
       position: relative;
+      overflow: hidden;
+      .rooms_list{
+        left: 50%;
+        transform: translateX(-50%);
+        position: absolute;
+        
+        width: 320px;
+        display: flex;
+        color: $title;
+        font-weight: 400;
+        font-size: 16px;
+        list-style: none;
+        justify-content: space-between;
+        z-index: 7;
+        li {
+          text-align: right;
+          margin-bottom: 20px;
+          cursor: pointer;
+          }
+        }
+        .room_box {
+          display: block;
+          background: rgba(0, 217, 145, 0.81);
+          width: 50px;
+          height: 40px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: 10;
+          .name {
+            width: 350px;
+            position: absolute;
+            line-height: 84px;
+            font-size: 16px;
+            word-break: normal;
+            color: white;
+            top: -25px;
+            left: 6px;
+            z-index: 100;
+          }
+        }
+      .img_container_room{
+        position: relative;
+      }
     }
   }
-}
 
 //Modal rooms//

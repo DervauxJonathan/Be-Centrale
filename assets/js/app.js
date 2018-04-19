@@ -65,6 +65,16 @@ $(document).ready(function () {
 
 
     });
+    var roomButton = document.querySelector('#roomButton');
+    var form = document.querySelector('.modal');
+    roomButton.addEventListener('click',function(){
+    form.style.display="block";
+  
+  $('.closing').click(function(){
+    form.style.display="none";
+  })
+});
+
 
     function getDataFromRoom() {
         return axios.get('http://localhost:3000/room.json')
@@ -112,6 +122,7 @@ $(document).ready(function () {
             // TweenLite.from([roomCapacity,roomPeople,roomMaterial],0.7,{autoAlpha:0,y:20});
         })
     });
+    
     $('#openMenu').click(function () {
         $("#main").fadeIn(200);
         $('#openMenu').animate({left: "-10%"});
