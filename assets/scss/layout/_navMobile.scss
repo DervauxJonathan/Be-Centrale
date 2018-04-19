@@ -20,6 +20,7 @@
     align-items: center;
     display: flex;
     height: 100%;
+    z-index:71;
     #closeMobile{
       float: right;
       margin-left: 98%;
@@ -34,13 +35,15 @@
       align-items: center;
       justify-content: space-between;
       ul {
-        font-family: $nav-font;
+        margin: 0 auto;
+        font-family: "Montserrat";
         color: white;
         display: flex;
         flex-direction: column;
         list-style: none;
-        width: 700px;
-        justify-content: space-between;
+       
+        justify-content: center;
+        align-content: center;
         li {
           margin-top: 30px;
           a {

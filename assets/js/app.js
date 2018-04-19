@@ -249,10 +249,15 @@ $('#closeMobile').click(function () {
 $('#ham').click(function () {
     var tl = new TimelineMax();
     tl.to($('.main-mobile-nav'), 0.3, {x: '100%'});
+    $('#ham').style.marginLeft='-20%'
+    $('#closeMobile').style.marginLeft='95%'
+
 })
 
 $('.mobileLink').click(function () {
     var tl = new TimelineMax();
     tl.to($('.main-mobile-nav'), 0.3, {x: '-100%'});
+    $('#ham').style.marginLeft='20%'
+    $('#closeMobile').style.marginLeft='120%'
 })
 
