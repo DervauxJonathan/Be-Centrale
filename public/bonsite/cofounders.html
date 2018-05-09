@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="app.css"/>
+  <meta charset="utf-8">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="stylesheet" href="app.css">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">  
+  <title>Co-founders & Ambassadors</title>
+</head>
+
+<body>
+  <div class="back">
+    <a href="index.html"><img src="images/arrow.svg" alt=""><span>Back</span></a>
+  </div>
+  <div class="cofunders_page">
+    <div class="container">
+      <header>
+        <div class="titles">
+          <hr class="line" />
+          <h2>Our Co-founders</h2>
+        </div>
+        <div class="bg">
+        </div>
+        <div class="description">
+          <p>Late 2016, a group of passionate entrepreneurs had an idea: create a central hub where digital could become accessible to everyone. And guess what? They found the absolute must: Brussels Central Station. With more than 60.000 travellers passing
+            through the station every day, the location was ideal to develop their mission. Nothing would have been possible without them!</p>
+        </div>
+      </header>
+      <section>
+        <div class="cofunders">
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Bart-Becks.jpg" alt="Bart_Becks">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/bbecks/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Bart<br>Becks</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Karen-Boers.jpg" alt="Karen_Boers">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/karenboers/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Karen<br>Boers</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Chris-Burggraeve.jpg" alt="Chris_Burggraeve">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/chrisburggraeve/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Chris<br>Burggraeve</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Anne-Collet.jpg" alt="Anne_collet">
+              <div class="more">
+                <a href="">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Anne<br>Collet</p>
+            </div>
+          </div>
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Xavier-Damman.jpg" alt="Xavier_Damman">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/xavierdamman/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Xavier<br>Damman</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Alexander-De-Croo.jpg" alt="Alexander_De_Croo">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/alexanderdecroo/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Alexander<br>De Croo</p>
+            </div>
+          </div>
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Baudouin-de-Trootsembergh.jpg" alt="Baudouin-de-Troostembergh">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/baudouin-de-troostembergh-38898b11/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Baudouin<br>de Trootsembergh</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Wim-de-Waele.jpg" alt="Wim_de_Waele">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/wimdewaele/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Wim<br>de Waele</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Jean-Jacques-Delens.jpg" alt="Jean-Jacques-Delens">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/jean-jacques-delens-9b772056/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Jean-Jacques<br>Delens</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Olivier-Delens.jpg" alt="Olivier-Delens">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/olivier-delens-a701555a/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Olivier<br>Delens</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Sebastien-Deletaille.jpg" alt="Sebastien-Deletaille">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/sebastiendeletaille/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Sébastien<br>Deletaille</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Herman-Derache.jpg" alt="Herman-Derache">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/hermanderache/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Herman<br>Derache</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Thierry-Geerts.jpg" alt="Thierry-Geert">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/thierrygeerts/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Thierry<br>Geerts</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Peter-Hinssen.jpg" alt="Peter-Hinssen">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/phinssen/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Peter<br>Hinssen</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Laurent-Hublet.jpg" alt="Laurent-Hublet">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/laurent-hublet-70aba710/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Laurent<br>Hublet</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Frank-Maene.jpg" alt="Frank-Maene">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/frankmaene/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Frank<br>Maene</p>
+            </div>
+          </div>
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Omar-Mohout.jpg" alt="Omar-Mohout">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/omarmohout/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Omar<br>Mohout</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Caroline-Sedda.jpg" alt="Caroline-Sedda">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/carolinesedda/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Caroline<br>Sedda</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Roald-Sieberath.jpg" alt="Roald-Sieberath">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/roald/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Roald<br>Sieberath</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Bart-Steukers.jpg" alt="Bart-Steukers">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/bartsteukers/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Bart<br>Steukers</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Fabian-Thylmann.jpg" alt="Fabien-Thylmann">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/fabianthylmann/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Fabian<br>Thylmann</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Pascale-Van-Damme.jpg" alt="Pascale-Van-Damme">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/pascale-van-damme/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Pascale<br>Van Damme</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Philippe-Van-Impe.jpg" alt="Philippe-Van-Impe">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/pvanimpe/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Philippe<br>Van Impe</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Philippe-Van-Ophem.jpg" alt="Philippe-Van-Ophem">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/pvanophem/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Philippe<br>Van Ophem</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Saskia-Van-Uffelen.jpg" alt="Saskia-Van-Uffelen">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/saskiavanuffelen/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Saskia<br>Van Uffelen</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Toon-Vanagt.jpg" alt="Toon-Vanagt">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/toonvanagt/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Toon<br>Vanagt</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Olivier-Vanden-Eynde.jpg" alt="Olivier-Vanden-Eynde">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/olivier-vanden-eynde-359320/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Olivier<br>Vanden Eynde</p>
+            </div>
+          </div>
+
+          <div class="img-block-1">
+            <div class="img">
+              <img src="images/co-funders/Robin-Wauters.jpg" alt="Robin-Wauter">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/robinwauters/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Robin<br>Wauters</p>
+            </div>
+          </div>
+
+      </section>
+      </div>
+
+
+      <section>
+        <div class="titles">
+          <hr class="line" />
+          <h2>Ambassadors</h2>
+        </div>
+        <div class="amb">
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Akkermans.jpg" alt="Michel_Akkermans">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/michelakkermans/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Michel<br> Akkermans
+              </p>
+            </div>
+          </div>
+
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/AnthonyBelpaire.jpg" alt="Anthony_Belpaire">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/abelp/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Anthony<br>Belpaire</p>
+            </div>
+          </div>
+
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Marc_Breesel.jpg" alt="Marc_Bressel">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/bresseel/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Marc<br>Bresseel</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Casneuf.jpg" alt="Pieter_Casneuf">
+              <div class="more">
+                +
+              </div>
+            </div>
+            <div class="text">
+              <p>Pieter<br>Casneuf</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Bernard_de_Caniere.jpg" alt="">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/bernard-de-canni%C3%A8re-316861/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Bernard<br>De Cannière</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Jean-de-Crane.jpg" alt="Jean-de-Crane-Heysselaer">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/jeandecrane/ ">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Jean<br>de Crane d'Heysselaer</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Joke-Dehond.jpg" alt="Joke-Dehond">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/jokedehond/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Joke<br>Dehond</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Philippe-Mauchard.jpg" alt="Philippe-Mauchard">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/philippe-m-mauchard-61b400/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Philippe<br>Mauchard</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Pierre-Rion.jpg" alt="Pierre-Rion">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/pierre-h-rion-abb8347/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Pierre<br>Rion</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Fabian-Vandenreyt.jpg" alt="Fabian-Vandenreyt">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/fvandenreydt/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Fabian<br>Vandenreydt</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Toon-Vanparys.jpg" alt="Toon-Vanparys">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/toonvanparys/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Toon<br>Vanparys</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Verougstraete.jpg" alt="Daniel-Verougstraete">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/daniel-verougstraete-28a103/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Daniel<br>Verougstraete</p>
+            </div>
+          </div>
+          <div class="img-block">
+            <div class="img">
+              <img src="images/amb/Luc-Wynant.jpg" alt="Luc-Wynant">
+              <div class="more">
+                <a href="https://www.linkedin.com/in/lucwynant/">+</a>
+              </div>
+            </div>
+            <div class="text">
+              <p>Luc<br>Wynant</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  </div>
+</body>
+<script src="app.js"></script>
+
+</html>
