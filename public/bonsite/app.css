@@ -3173,7 +3173,7 @@ body {
     height: 300px;
     min-width: 200px;
     margin-left: 20px;
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
 }
 
 .community_page .text {
@@ -5228,8 +5228,9 @@ footer .content .copyright {
     color: #313131;
     font-size: 11px;
     padding: 10px;
+    margin-top: 20px;
     margin-bottom: 30px;
-    width: 92px;
+    width: 110px;
 }
 
 footer .content .copyright a {
@@ -5888,4 +5889,177 @@ body {
     margin: 0;
     padding: 0;
 }
-		
+
+/* pages jobs */
+
+.jobs {
+  font-size: 16px;
+  font-family: Roboto;
+  border: 5px solid #00d991;
+  margin: 20px;
+  line-height: 35px;
+}
+.fonction {
+  color: white;
+  background-color: #00d991;
+  border: 5px solid #00d991;
+  text-align: center;
+}
+.descriptionjob {
+  padding-top: 15px;
+  padding-left: 15px;
+  margin-bottom: 10px;
+}
+.pjobs {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 10px;
+}
+.uldescription {
+  margin-left: 40px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.ulrequirements {
+  margin-left: 40px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.ulbenefits {
+  margin-left: 40px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.whatup {
+  padding-left: 15px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+.jobs_offer {
+  height: 200px;
+  width: 340px;
+  border: 1px solid #CCC;
+}
+.button_jobs {
+  position: absolute;
+  display: block;
+  margin: 30px auto 0;
+  padding: 14px 15px;
+  color: #00d991;
+  font-size: 14px;
+  border-radius: 0;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  letter-spacing: .08em;
+}
+.button_jobs:hover {
+  color: white !important;
+  text-shadow: none;
+  background-color: #00d991;
+}
+  .animation_job:before {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 0px;
+    z-index: -1;
+    content: '';
+    color: #000 !important;
+    background: #00d991;
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  }
+
+  .animation_job:link:after, .animation_job:visited:after {
+      content: "";
+      position: absolute;
+      height: 0%;
+      left: 50%;
+      top: 50%;
+      width: 150%;
+      z-index: -1;
+      -webkit-transition: all 0.75s ease 0s;
+      -moz-transition: all 0.75s ease 0s;
+      -o-transition: all 0.75s ease 0s;
+      transition: all 0.75s ease 0s;
+}
+.center_button_jobs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 340px;
+  height: 114px;
+}
+.line_left {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.line_right {
+  margin-top: 20px;
+  margin-right: 20px;
+  float: right;
+}
+.title_jobs {
+  text-align: center;
+  margin-top: 18px;
+}
+.desc_jobs {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 45px;
+  text-align: center;
+}
+.animated-button {
+left: auto !important;
+}
+.list_jobs {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+.right_jobs {
+  width: 100% !important;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #00d991;
+  text-align: center;
+  font-size: 25px;
+}
+#container_jobs {
+  margin-top: 0;
+}
+@media (min-width: 360px) and (max-width: 767px) {
+    .line_right {
+      background-color: #00d991;
+      width: 45px;
+      height: 5px;
+      border: none;
+      float: right;
+    }
+    .line_left {
+      background-color: #00d991;
+      width: 45px;
+      height: 5px;
+      border: none;
+    }
+    .jobs_offer {
+      margin-bottom: 20px;
+    }
+}
+#back_jobs {
+  margin-bottom: 50px;
+}
+#menu_index {
+  width: 800px;
+}
